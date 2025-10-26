@@ -34,21 +34,22 @@ export const metadata: Metadata = {
     siteName: "NexGenAds",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://i.ibb.co/dsmmnnvG/meta.png",
         width: 1200,
-        height: 630,
+        height: 1200,
         alt: "NexGenAds Platform",
       },
     ],
   },
   icons: {
-    icon: "/logo.svg",
+    icon: "/favicon.svg",
+    apple: "/apple-touch-icon.png",
   },
   twitter: {
     card: "summary_large_image",
     title: "NexGenAds - Coming Soon",
     description: "Revolutionary advertising intermediary platform from Coimbatore",
-    images: ["/twitter-image.jpg"],
+    images: ["https://i.ibb.co/dsmmnnvG/meta.png"],
     creator: "@nexgenads",
   },
   robots: {
@@ -78,7 +79,12 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/logo.svg" />
+        <link rel="icon" href="/favicon.svg" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="alternate" hrefLang="en-IN" href="https://nexgenads.space/en-IN" />
+        <link rel="alternate" hrefLang="ta-IN" href="https://nexgenads.space/ta-IN" />
+        <link rel="alternate" hrefLang="x-default" href="https://nexgenads.space" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
         <meta name="theme-color" content="#00D9FF" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -131,6 +137,47 @@ export default function RootLayout({
                 console.log = console.warn = console.error = console.info = console.debug = function() {};
               })();
             `,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "NexGenAds",
+              "url": "https://nexgenads.space",
+              "logo": "https://nexgenads.space/logo.png",
+              "sameAs": [
+                "https://twitter.com/nexgenads"
+              ]
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "NexGenAds",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Coimbatore",
+                "addressLocality": "Coimbatore",
+                "addressRegion": "TN",
+                "postalCode": "641001",
+                "addressCountry": "IN"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "11.0168",
+                "longitude": "76.9558"
+              },
+              "url": "https://nexgenads.space",
+              "telephone": "+91-999-999-9999",
+              "priceRange": "$$$"
+            })
           }}
         />
       </head>

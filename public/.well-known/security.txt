@@ -1,0 +1,4 @@
+Contact: mailto:security@nexgenads.space
+Preferred-Languages: en
+Canonical: https://nexgenads.space/.well-known/security.txt
+Policy: https://nexgenads.space/security-policy
