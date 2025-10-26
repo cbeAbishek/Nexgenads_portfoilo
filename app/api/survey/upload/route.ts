@@ -8,6 +8,7 @@ const ALLOWED_TYPES = {
   image: ['image/jpeg', 'image/png', 'image/webp', 'image/gif'],
   audio: ['audio/mpeg', 'audio/wav', 'audio/webm', 'audio/ogg', 'audio/mp4'],
 } as const;
+const normalizeMimeType = (mime: string) => mime.split(';')[0]?.trim().toLowerCase();
 
 type UploadType = keyof typeof ALLOWED_TYPES;
 
@@ -32,7 +33,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing file upload.' }, { status: 400 });
     }
 
-    if (!ALLOWED_TYPES[type].some((mime) => mime === file.type)) {
+    const normalizedMimeType = normalizeMimeType(file.type);
+
+    if (!normalizedMimeType) {
+      return NextResponse.json({ error: 'Unsupported file type.' }, { status: 400 });
+    }
+
+    if (!ALLOWED_TYPES[type].some((mime) => mime === normalizedMimeType)) {
       return NextResponse.json({ error: 'Unsupported file type.' }, { status: 400 });
     }
 
@@ -42,7 +49,7 @@ export async function POST(request: NextRequest) {
 
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-    const extension = getExtension(file, type);
+  const extension = getExtension(file, type, normalizedMimeType);
     const filePath = `${type}/${new Date().toISOString().split('T')[0]}-${randomUUID()}.${extension}`;
 
     const { error: uploadError } = await supabase.storage.from('survey').upload(filePath, buffer, {
@@ -72,22 +79,24 @@ export async function POST(request: NextRequest) {
   }
 }
 
-function getExtension(file: File, type: UploadType): string {
+function getExtension(file: File, type: UploadType, normalizedMimeType?: string): string {
   const nameParts = file.name.split('.');
   if (nameParts.length > 1) {
     return nameParts.pop()!.toLowerCase();
   }
 
+  const mime = normalizedMimeType ?? normalizeMimeType(file.type);
+
   if (type === 'audio') {
-    if (file.type === 'audio/mpeg') return 'mp3';
-    if (file.type === 'audio/wav') return 'wav';
-    if (file.type === 'audio/ogg') return 'ogg';
-    if (file.type === 'audio/webm') return 'webm';
+    if (mime === 'audio/mpeg') return 'mp3';
+    if (mime === 'audio/wav') return 'wav';
+    if (mime === 'audio/ogg') return 'ogg';
+    if (mime === 'audio/webm') return 'webm';
     return 'mp3';
   }
 
-  if (file.type === 'image/png') return 'png';
-  if (file.type === 'image/webp') return 'webp';
-  if (file.type === 'image/gif') return 'gif';
+  if (mime === 'image/png') return 'png';
+  if (mime === 'image/webp') return 'webp';
+  if (mime === 'image/gif') return 'gif';
   return 'jpg';
 }
