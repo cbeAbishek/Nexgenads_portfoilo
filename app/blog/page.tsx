@@ -44,9 +44,49 @@ const blogPosts = [
 ];
 
 export const metadata = {
-  title: 'NexGenAds Blog | Playbooks for Tamil Nadu Marketers',
+  title: 'NexGenAds Blog | Advertising Insights, Playbooks & Tamil Nadu Marketing Trends',
   description:
-    'Deep-dives, launch updates, and Tamil Nadu-first playbooks for advertisers, mediators, designers, and ad space owners building with NexGenAds.',
+    'Expert insights on advertising in Tamil Nadu and India. Deep-dives into DOOH, cinema advertising, hyperlocal marketing, and AI-powered ad-tech. Playbooks for advertisers, mediators, designers, and ad space owners. Stay updated with the latest marketing trends, Tamil-first advertising strategies, and industry best practices from NexGenAds.',
+  keywords: [
+    'advertising blog India',
+    'Tamil Nadu marketing insights',
+    'ad-tech blog',
+    'DOOH advertising trends',
+    'hyperlocal marketing India',
+    'cinema advertising insights',
+    'outdoor advertising blog',
+    'advertising playbooks',
+    'marketing strategies India',
+    'Tamil advertising best practices',
+    'advertising industry news',
+    'media buying tips',
+    'creative advertising insights',
+    'advertising technology blog',
+    'marketing automation insights',
+    'regional advertising trends',
+    'Coimbatore marketing',
+    'Chennai advertising trends',
+    'advertising case studies India',
+    'marketing research Tamil Nadu',
+  ].join(', '),
+  openGraph: {
+    title: 'NexGenAds Blog | Tamil Nadu Marketing & Advertising Insights',
+    description: 'Expert playbooks, trends, and insights for advertisers, mediators, and designers in India.',
+    images: [
+      {
+        url: 'https://nexgenads.space/NexGenAds_meta.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'NexGenAds Blog - Advertising Insights',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NexGenAds Blog | Advertising Playbooks & Insights',
+    description: 'Tamil Nadu marketing trends, DOOH insights, and advertising best practices',
+    images: ['https://nexgenads.space/NexGenAds_meta.jpg'],
+  },
 };
 
 export default function BlogPage() {

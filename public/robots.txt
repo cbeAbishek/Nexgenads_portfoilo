@@ -2,6 +2,33 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /private/
+
+# Allow crawling of important pages
+Allow: /$
+Allow: /about
+Allow: /blog
+Allow: /contact
+Allow: /investors
+Allow: /partners
+Allow: /survey
+Allow: /waitlist
+Allow: /faq
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Crawl delay for all bots
+Crawl-delay: 1
 
 # Sitemap
 Sitemap: https://nexgenads.space/sitemap.xml
