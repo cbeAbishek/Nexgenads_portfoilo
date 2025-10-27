@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "NexGenAds",
     images: [
       {
-        url: "https://i.ibb.co/dsmmnnvG/meta.png",
+        url: "https://i.ibb.co/nNwsYZb4/Nex-Gen-Ads-meta.jpg",
         width: 1200,
         height: 1200,
         alt: "NexGenAds Platform",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "NexGenAds - Coming Soon",
     description: "Revolutionary advertising intermediary platform from Coimbatore",
-    images: ["https://i.ibb.co/dsmmnnvG/meta.png"],
+    images: ["https://i.ibb.co/nNwsYZb4/Nex-Gen-Ads-meta.jpg"],
     creator: "@nexgenads",
   },
   robots: {
@@ -70,6 +70,7 @@ export const metadata: Metadata = {
   },
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -88,7 +89,28 @@ export default function RootLayout({
         <meta name="theme-color" content="#00D9FF" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WB1RJ9JHG3"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-WB1RJ9JHG3');
+            `,
+          }}
+        />
+
+        {/* Security Script - Disable DevTools */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // Disable right-click
+    `,
+          }}
+        />
+
         {/* Security Script - Disable DevTools */}
         <script
           dangerouslySetInnerHTML={{
@@ -177,6 +199,24 @@ export default function RootLayout({
               "url": "https://nexgenads.space",
               "telephone": "+91-999-999-9999",
               "priceRange": "$$$"
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "url": "https://nexgenads.space/",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://nexgenads.space/search?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+              }
             })
           }}
         />

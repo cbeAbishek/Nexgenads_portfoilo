@@ -5,6 +5,13 @@ import { MapPin, Sparkles, Zap, Users, Palette, TrendingUp, Shield } from 'lucid
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import PushSubscriptionPrompt from '@/components/pwa/PushSubscriptionPrompt';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'NexGenAds: AI-Powered Advertising for Tamil Nadu',
+  description: 'The intelligent hub connecting brands, media partners, and designers across Tamil Nadu. Built in Coimbatore to power the next wave of local advertising.',
+  keywords: 'Tamil Nadu advertising, Coimbatore ad-tech, AI advertising platform, local brand marketing, media buying India',
+};
 
 const HeroSection = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
