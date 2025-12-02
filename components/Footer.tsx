@@ -67,10 +67,9 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Facebook, href: 'https://www.facebook.com/share/1aP2yyEf6U/', label: 'Facebook' },
+    { icon: Instagram, href: 'https://www.instagram.com/nexgenads.ai?igsh=aWxsbXV2aml4MDE3', label: 'Instagram' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/nexgenads-ai/', label: 'LinkedIn' },
   ];
 
   return (
@@ -182,7 +181,7 @@ const Footer = () => {
           <div className="flex items-center space-x-3">
             <Phone className="w-5 h-5 text-[#00D9FF]" />
             <a href="tel:+919876543210" className="text-sm text-muted-foreground hover:text-foreground">
-              +91 98765 43210
+              +91 95663 72450
             </a>
           </div>
         </div>

@@ -250,10 +250,10 @@ const CTASection = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Be among the first to try NexGenAds and turn your brand into Tamil Nadu&apos;s next standout story.
           </p>
-          <PushSubscriptionPrompt
+          {/* <PushSubscriptionPrompt
             className="mx-auto max-w-3xl"
             interests={["launch-updates", "tamil-nadu-campaigns"]}
-          />
+          /> */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" asChild className="btn-glow bg-gradient-to-r from-[#00D9FF] to-[#A855F7] text-lg px-8">
               <Link href="/waitlist">Join Waitlist</Link>

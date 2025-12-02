@@ -386,11 +386,11 @@ export default function WaitlistPageClient() {
               </Button>
             </form>
 
-            <PushSubscriptionPrompt
+            {/* <PushSubscriptionPrompt
               className="mt-6"
               metadata={{ source: 'waitlist_page', coordinates }}
               interests={[userType]}
-            />
+            /> */}
 
             <footer className="text-center text-xs text-white/50">
               Your responses are stored securely in Supabase and used only for NexGenAds launch updates.

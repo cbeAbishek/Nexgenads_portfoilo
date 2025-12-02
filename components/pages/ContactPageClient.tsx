@@ -45,7 +45,7 @@ const contactInfo: ContactInfo[] = [
   {
     icon: Phone,
     title: 'Phone',
-    value: '+91 98765 43210',
+    value: '+91 95663 72450',
     link: 'tel:+919876543210',
   },
   {
