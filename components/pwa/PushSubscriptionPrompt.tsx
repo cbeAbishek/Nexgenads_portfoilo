@@ -151,12 +151,12 @@ export default function PushSubscriptionPrompt({
       )}
     >
       <div className="flex items-start gap-4">
-        <div className="rounded-2xl bg-gradient-to-br from-[#00D9FF]/20 to-[#A855F7]/20 p-3 text-[#00D9FF]">
+        <div className="rounded-2xl bg-gradient-to-br from-[#008dec]/20 to-[#1d36bf]/20 p-3 text-[#008dec]">
           {status === 'success' ? <CheckCircle2 className="h-6 w-6" /> : <BellRing className="h-6 w-6" />}
         </div>
         <div className="space-y-1">
           <h3 className="text-lg font-semibold">Stay in the loop on your mobile</h3>
-          <p className="text-sm text-white/70">
+          <p className="text-sm text-[#333333]">
             Enable NexGenAds push notifications to get early access alerts, Tamil Nadu campaign spotlights, and launch invites straight to your device.
           </p>
           {status === 'denied' && (
@@ -186,11 +186,11 @@ export default function PushSubscriptionPrompt({
           type="button"
           onClick={handleSubscribe}
           disabled={status === 'loading' || status === 'success' || status === 'unsupported'}
-          className="bg-gradient-to-r from-[#00D9FF] to-[#A855F7] px-5"
+          className="bg-gradient-to-r from-[#008dec] to-[#1d36bf] px-5"
         >
           {status === 'loading' ? 'Enabling…' : hasSubscription ? 'Update my alerts' : 'Enable mobile alerts'}
         </Button>
-        <p className="text-xs text-white/50">
+        <p className="text-xs text-[#333333]/70">
           We send only high-value announcements. Unsubscribe anytime.
         </p>
       </div>

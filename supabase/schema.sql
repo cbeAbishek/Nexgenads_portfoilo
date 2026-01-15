@@ -64,6 +64,27 @@ CREATE TABLE IF NOT EXISTS contact_submissions (
   metadata JSONB DEFAULT '{}'::jsonb
 );
 
+-- Job Applications Table
+CREATE TABLE IF NOT EXISTS job_applications (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  job_id VARCHAR(255) NOT NULL,
+  job_title VARCHAR(255) NOT NULL,
+  full_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50) NOT NULL,
+  current_location VARCHAR(255) NOT NULL,
+  experience VARCHAR(100) NOT NULL,
+  current_company VARCHAR(255),
+  resume_link TEXT NOT NULL,
+  linkedin_profile TEXT,
+  portfolio_link TEXT,
+  cover_letter TEXT NOT NULL,
+  applied_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  status VARCHAR(50) DEFAULT 'new', -- new, reviewing, shortlisted, interview, rejected, hired
+  metadata JSONB DEFAULT '{}'::jsonb,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- FAQ Requests Table (visitors can submit new questions)
 CREATE TABLE IF NOT EXISTS faq_requests (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -122,6 +143,9 @@ CREATE INDEX IF NOT EXISTS idx_partner_applications_type ON partner_applications
 CREATE INDEX IF NOT EXISTS idx_survey_responses_type ON survey_responses(stakeholder_type);
 CREATE INDEX IF NOT EXISTS idx_survey_responses_created_at ON survey_responses(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_contact_submissions_status ON contact_submissions(status);
+CREATE INDEX IF NOT EXISTS idx_job_applications_status ON job_applications(status);
+CREATE INDEX IF NOT EXISTS idx_job_applications_job_id ON job_applications(job_id);
+CREATE INDEX IF NOT EXISTS idx_job_applications_applied_at ON job_applications(applied_at DESC);
 CREATE INDEX IF NOT EXISTS idx_waitlist_email ON waitlist(email);
 CREATE INDEX IF NOT EXISTS idx_faq_requests_status ON faq_requests(status);
 CREATE INDEX IF NOT EXISTS idx_push_subscriptions_endpoint ON push_subscriptions(endpoint);

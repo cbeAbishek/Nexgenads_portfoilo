@@ -126,8 +126,8 @@ const InvestorsPageClient = () => {
                 key={index}
                 className="glass-effect-strong p-6 rounded-xl text-center hover:scale-105 transition-transform duration-300"
               >
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#00D9FF] to-[#A855F7] flex items-center justify-center mx-auto mb-4">
-                  <stat.icon className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#008dec] to-[#1d36bf] flex items-center justify-center mx-auto mb-4">
+                  <stat.icon className="w-6 h-6 text-[#000000]" />
                 </div>
                 <h3 className="text-3xl font-bold text-gradient mb-2">{stat.value}</h3>
                 <p className="font-semibold mb-1">{stat.label}</p>
@@ -157,11 +157,11 @@ const InvestorsPageClient = () => {
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start space-x-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#00D9FF] mt-2"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#008dec] mt-2"></div>
                   <span className="text-sm">Transaction-based revenue</span>
                 </li>
                 <li className="flex items-start space-x-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#00D9FF] mt-2"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#008dec] mt-2"></div>
                   <span className="text-sm">Scalable with volume</span>
                 </li>
               </ul>
@@ -174,11 +174,11 @@ const InvestorsPageClient = () => {
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start space-x-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#00D9FF] mt-2"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#008dec] mt-2"></div>
                   <span className="text-sm">Recurring monthly revenue</span>
                 </li>
                 <li className="flex items-start space-x-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#00D9FF] mt-2"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#008dec] mt-2"></div>
                   <span className="text-sm">High-margin income</span>
                 </li>
               </ul>
@@ -191,11 +191,11 @@ const InvestorsPageClient = () => {
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start space-x-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#00D9FF] mt-2"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#008dec] mt-2"></div>
                   <span className="text-sm">Custom solutions</span>
                 </li>
                 <li className="flex items-start space-x-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#00D9FF] mt-2"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#008dec] mt-2"></div>
                   <span className="text-sm">Enterprise contracts</span>
                 </li>
               </ul>
@@ -292,7 +292,7 @@ const InvestorsPageClient = () => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 btn-glow bg-gradient-to-r from-[#00D9FF] to-[#A855F7]"
+                  className="flex-1 btn-glow bg-gradient-to-r from-[#008dec] to-[#1d36bf]"
                 >
                   <Send className="w-4 h-4 mr-2" />
                   {isSubmitting ? 'Submitting...' : 'Submit Inquiry'}

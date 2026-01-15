@@ -42,7 +42,7 @@ const HeroSection = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle) => {
-        ctx.fillStyle = 'rgba(0, 217, 255, 0.5)';
+        ctx.fillStyle = 'rgba(0, 141, 236, 0.3)'; // #008dec with opacity
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fill();
@@ -69,38 +69,38 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
       <canvas ref={canvasRef} className="absolute inset-0 z-0" />
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/50 to-background z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white z-10"></div>
       <div className="relative z-20 container-custom text-center space-y-8 px-4">
-        <div className="inline-flex items-center space-x-2 glass-effect px-4 py-2 rounded-full animate-fade-up">
-          <MapPin className="w-4 h-4 text-[#00D9FF]" />
-          <span className="text-sm">Born in Coimbatore • Built for Tamil Nadu</span>
+        <div className="inline-flex items-center space-x-2 bg-white shadow-lg border border-[#1d36bf]/10 px-4 py-2 rounded-full animate-fade-up">
+          <MapPin className="w-4 h-4 text-[#008dec]" />
+          <span className="text-sm text-[#000000]">Born in Coimbatore • Built for Tamil Nadu</span>
         </div>
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-up">
           <span className="text-gradient">Powering Tamil Nadu&apos;s</span>
           <br />
-          <span className="text-foreground">next wave of advertising</span>
+          <span className="text-[#000000]">next wave of advertising</span>
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-up" style={{ animationDelay: '0.2s' }}>
+        <p className="text-lg md:text-xl text-[#333333] max-w-3xl mx-auto animate-fade-up" style={{ animationDelay: '0.2s' }}>
           A single intelligent hub that connects Tamil Nadu&apos;s brands, media partners, designers, and ad space owners to launch bold campaigns faster.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: '0.4s' }}>
-          <Button size="lg" asChild className="btn-glow bg-gradient-to-r from-[#00D9FF] to-[#A855F7] text-lg px-8">
+          <Button size="lg" asChild className="btn-glow bg-gradient-to-r from-[#008dec] to-[#1d36bf] text-white text-lg px-8">
             <Link href="/waitlist">Join Waitlist</Link>
           </Button>
-          <Button size="lg" variant="outline" asChild className="glass-effect text-lg px-8">
+          <Button size="lg" variant="outline" asChild className="bg-white border-[#1d36bf]/20 text-[#000000] hover:bg-[#008dec]/10 text-lg px-8">
             <Link href="/about">Learn More</Link>
           </Button>
         </div>
-        <div className="inline-flex items-center space-x-2 glass-effect-strong px-6 py-3 rounded-full animate-fade-up" style={{ animationDelay: '0.6s' }}>
-          <Sparkles className="w-5 h-5 text-[#00D9FF] animate-pulse" />
-          <span className="text-lg font-semibold">Launching soon across Tamil Nadu</span>
+        <div className="inline-flex items-center space-x-2 bg-white shadow-xl border border-[#008dec]/20 px-6 py-3 rounded-full animate-fade-up" style={{ animationDelay: '0.6s' }}>
+          <Sparkles className="w-5 h-5 text-[#008dec] animate-pulse" />
+          <span className="text-lg font-semibold text-[#000000]">Launching soon across Tamil Nadu</span>
         </div>
       </div>
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
-        <div className="w-6 h-10 border-2 border-[#00D9FF] rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-3 bg-[#00D9FF] rounded-full animate-pulse"></div>
+        <div className="w-6 h-10 border-2 border-[#008dec] rounded-full flex items-start justify-center p-2">
+          <div className="w-1 h-3 bg-[#008dec] rounded-full animate-pulse"></div>
         </div>
       </div>
     </section>
@@ -142,13 +142,13 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section className="section-padding">
+    <section className="section-padding bg-[#fcf7f7]">
       <div className="container-custom">
         <div className="text-center mb-16 fade-in-section">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#000000]">
             <span className="text-gradient">Why</span> NexGenAds?
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-[#333333] max-w-2xl mx-auto">
             A complete workflow for Tamil Nadu businesses, creatives, and media partners to launch together.
           </p>
         </div>
@@ -157,14 +157,14 @@ const FeaturesSection = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="glass-effect p-6 rounded-xl hover:glass-effect-strong transition-all duration-300 group fade-in-section"
+              className="bg-white border border-[#1d36bf]/10 shadow-lg p-6 rounded-xl hover:shadow-xl hover:border-[#008dec]/30 transition-all duration-300 group fade-in-section"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#00D9FF] to-[#A855F7] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#008dec] to-[#1d36bf] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <feature.icon className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-muted-foreground">{feature.description}</p>
+              <h3 className="text-xl font-semibold mb-2 text-[#000000]">{feature.title}</h3>
+              <p className="text-[#333333]">{feature.description}</p>
             </div>
           ))}
         </div>
@@ -198,13 +198,13 @@ const StakeholdersSection = () => {
   ];
 
   return (
-    <section className="section-padding bg-card/50">
+    <section className="section-padding bg-white">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#000000]">
             Built for <span className="text-gradient">every role</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-[#333333] max-w-2xl mx-auto">
             One platform crafted around the needs of Tamil Nadu&apos;s entire advertising community.
           </p>
         </div>
@@ -213,15 +213,15 @@ const StakeholdersSection = () => {
           {stakeholders.map((stakeholder, index) => (
             <div
               key={index}
-              className="glass-effect-strong p-8 rounded-xl hover:scale-105 transition-transform duration-300"
+              className="bg-white border border-[#1d36bf]/10 shadow-lg p-8 rounded-xl hover:scale-105 hover:shadow-xl transition-all duration-300"
             >
-              <h3 className="text-2xl font-bold mb-3">{stakeholder.title}</h3>
-              <p className="text-muted-foreground mb-6">{stakeholder.description}</p>
+              <h3 className="text-2xl font-bold mb-3 text-[#000000]">{stakeholder.title}</h3>
+              <p className="text-[#333333] mb-6">{stakeholder.description}</p>
               <ul className="space-y-2">
                 {stakeholder.benefits.map((benefit, i) => (
                   <li key={i} className="flex items-center space-x-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#00D9FF]"></div>
-                    <span className="text-sm">{benefit}</span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#008dec]"></div>
+                    <span className="text-sm text-[#000000]">{benefit}</span>
                   </li>
                 ))}
               </ul>
@@ -230,7 +230,7 @@ const StakeholdersSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button size="lg" asChild className="btn-glow bg-gradient-to-r from-[#00D9FF] to-[#A855F7]">
+          <Button size="lg" asChild className="btn-glow bg-gradient-to-r from-[#008dec] to-[#1d36bf] text-white">
             <Link href="/survey">Take Our Survey</Link>
           </Button>
         </div>
@@ -241,13 +241,13 @@ const StakeholdersSection = () => {
 
 const CTASection = () => {
   return (
-    <section className="section-padding">
+    <section className="section-padding bg-[#fcf7f7]">
       <div className="container-custom">
-        <div className="glass-effect-strong p-12 rounded-2xl text-center space-y-6">
-          <h2 className="text-3xl md:text-5xl font-bold">
+        <div className="bg-white border border-[#1d36bf]/10 shadow-xl p-12 rounded-2xl text-center space-y-6">
+          <h2 className="text-3xl md:text-5xl font-bold text-[#000000]">
             Join the <span className="text-gradient">Tamil Nadu ad-tech</span> journey
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p className="text-[#333333] max-w-2xl mx-auto text-lg">
             Be among the first to try NexGenAds and turn your brand into Tamil Nadu&apos;s next standout story.
           </p>
           {/* <PushSubscriptionPrompt
@@ -255,10 +255,10 @@ const CTASection = () => {
             interests={["launch-updates", "tamil-nadu-campaigns"]}
           /> */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" asChild className="btn-glow bg-gradient-to-r from-[#00D9FF] to-[#A855F7] text-lg px-8">
+            <Button size="lg" asChild className="btn-glow bg-gradient-to-r from-[#008dec] to-[#1d36bf] text-white text-lg px-8">
               <Link href="/waitlist">Join Waitlist</Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="glass-effect text-lg px-8">
+            <Button size="lg" variant="outline" asChild className="bg-white border-[#1d36bf]/20 text-[#000000] hover:bg-[#008dec]/10 text-lg px-8">
               <Link href="/investors">Become an Investor</Link>
             </Button>
           </div>

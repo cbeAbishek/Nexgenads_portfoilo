@@ -24,32 +24,59 @@ export const metadata = {
 
 export default function CookiePolicyPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background/95 to-background text-white">
-      <section className="section-padding">
-        <div className="container-custom max-w-4xl space-y-12">
-          <header className="space-y-4">
-            <h1 className="text-3xl font-bold md:text-5xl">Cookie Policy</h1>
-            <p className="text-white/70">
-              Effective date: 22 January 2025. We use cookies and service worker storage to keep your NexGenAds experience fast, secure, and tailored to the Tamil Nadu advertising ecosystem.
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50 text-gray-900">
+      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl space-y-12">
+          <header className="space-y-6 text-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 to-orange-100 px-5 py-2.5 text-sm font-medium text-amber-800 shadow-sm">
+              <span className="text-base">🍪</span>
+              <span className="tracking-wide">Cookies & Storage</span>
+            </div>
+
+            <h1 className="text-3xl font-bold md:text-5xl lg:text-6xl leading-tight">
+              Cookie Policy for{' '}
+              <span className="text-blue-600">Nex</span>
+              <span className="text-red-600">Gen</span>
+              <span className="text-yellow-500">Ads</span>
+            </h1>
+
+            <p className="mx-auto max-w-3xl text-base text-gray-600 md:text-lg leading-relaxed">
+              Effective date: <span className="font-semibold text-gray-900">22 January 2025</span>. We use cookies and service worker storage to keep your NexGenAds experience fast, secure, and tailored to the Tamil Nadu advertising ecosystem.
             </p>
           </header>
 
-          <div className="space-y-8">
-            {cookieCategories.map((category) => (
-              <article key={category.title} className="rounded-3xl border border-white/10 bg-white/5 p-6">
-                <h2 className="text-lg font-semibold text-white">{category.title}</h2>
-                <p className="mt-2 text-sm text-white/70">{category.description}</p>
+          <div className="space-y-6">
+            {cookieCategories.map((category, index) => (
+              <article
+                key={category.title}
+                className="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 text-white font-bold shadow-sm">
+                    {index + 1}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h2 className="text-lg md:text-xl font-bold text-gray-900">{category.title}</h2>
+                    <p className="mt-3 text-sm md:text-base text-gray-600 leading-relaxed">
+                      {category.description}
+                    </p>
+                  </div>
+                </div>
               </article>
             ))}
           </div>
 
-          <section className="rounded-3xl border border-white/10 bg-white/5 p-6 text-sm text-white/70 space-y-3">
-            <h2 className="text-lg font-semibold text-white">Your controls</h2>
-            <p>
+          <section className="rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-amber-50 p-6 md:p-8 shadow-lg space-y-3">
+            <h2 className="text-lg md:text-xl font-bold text-gray-900">Your controls</h2>
+            <p className="text-sm md:text-base text-gray-600 leading-relaxed">
               You can clear or block cookies through your browser settings. However, refusing essential cookies may cause the NexGenAds waitlist, survey, or push notifications to stop working correctly.
             </p>
-            <p>
-              For any cookie related questions contact privacy@nexgenads.space. We review this policy each quarter and update the effective date when changes are published.
+            <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+              For cookie-related questions, contact{' '}
+              <a className="font-semibold text-amber-700 hover:text-amber-800 underline-offset-4 hover:underline" href="mailto:privacy@nexgenads.space">
+                privacy@nexgenads.space
+              </a>
+              . We review this policy each quarter and update the effective date when changes are published.
             </p>
           </section>
         </div>

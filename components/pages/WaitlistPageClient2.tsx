@@ -223,13 +223,13 @@ export default function WaitlistPageClient() {
           <div className="glass-effect-strong rounded-3xl p-10 md:p-14 space-y-10">
             <header className="space-y-4 text-center">
               <div className="inline-flex items-center gap-2 glass-effect px-4 py-2 rounded-full">
-                <Sparkles className="w-4 h-4 text-[#00D9FF]" />
-                <span className="text-sm text-white/80">Built for Tamil Nadu businesses</span>
+                <Sparkles className="w-4 h-4 text-[#008dec]" />
+                <span className="text-sm text-[#000000]/80">Built for Tamil Nadu businesses</span>
               </div>
               <h1 className="text-3xl md:text-4xl font-bold text-balance">
                 Power your next campaign across Tamil Nadu with <span className="text-gradient">NexGenAds</span>
               </h1>
-              <p className="text-white/70 text-base md:text-lg max-w-2xl mx-auto">
+              <p className="text-[#000000]/70 text-base md:text-lg max-w-2xl mx-auto">
                 Share a few details so we can send you product updates, launch invites, and partner opportunities tailored for Tamil Nadu brands and creatives.
               </p>
             </header>
@@ -237,18 +237,18 @@ export default function WaitlistPageClient() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm text-white/80">Full name</label>
+                  <label className="text-sm text-[#000000]/80">Full name</label>
                   <Input
                     value={fullName}
                     onChange={(event) => setFullName(event.target.value)}
                     placeholder="Enter your first and last name"
                     required
                     disabled={isSubmitting}
-                    className="bg-white/5 border-white/20 text-white placeholder:text-white/50"
+                    className="bg-white border-[#1d36bf]/30 text-[#000000] placeholder:text-[#000000]/50"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm text-white/80">Email</label>
+                  <label className="text-sm text-[#000000]/80">Email</label>
                   <Input
                     type="email"
                     value={email}
@@ -256,7 +256,7 @@ export default function WaitlistPageClient() {
                     placeholder="name@example.com"
                     required
                     disabled={isSubmitting}
-                    className="bg-white/5 border-white/20 text-white placeholder:text-white/50"
+                    className="bg-white border-[#1d36bf]/30 text-[#000000] placeholder:text-[#000000]/50"
                   />
                   {emailSuggestion && (
                     <p className="text-xs text-amber-200">
@@ -268,13 +268,13 @@ export default function WaitlistPageClient() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm text-white/80">How do you identify?</label>
+                  <label className="text-sm text-[#000000]/80">How do you identify?</label>
                   <div className="relative">
                     <select
                       value={userType}
                       onChange={(event) => setUserType(event.target.value)}
                       disabled={isSubmitting}
-                      className="w-full appearance-none bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00D9FF]"
+                      className="w-full appearance-none bg-white border border-[#1d36bf]/30 rounded-xl px-4 py-3 text-[#000000] focus:outline-none focus:border-[#008dec]"
                     >
                       {userTypes.map((type) => (
                         <option key={type.value} value={type.value} className="text-black">
@@ -282,11 +282,11 @@ export default function WaitlistPageClient() {
                         </option>
                       ))}
                     </select>
-                    <Sparkles className="w-4 h-4 text-[#00D9FF] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <Sparkles className="w-4 h-4 text-[#008dec] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm text-white/80 flex items-center gap-2">
+                  <label className="text-sm text-[#000000]/80 flex items-center gap-2">
                     <MapPin className="w-4 h-4" />
                     Which district are you from?
                   </label>
@@ -295,9 +295,9 @@ export default function WaitlistPageClient() {
                     onChange={(event) => setDistrict(event.target.value)}
                     placeholder="Coimbatore, Chennai, Madurai..."
                     disabled={isSubmitting}
-                    className="bg-white/5 border-white/20 text-white placeholder:text-white/50"
+                    className="bg-white border-[#1d36bf]/30 text-[#000000] placeholder:text-[#000000]/50"
                   />
-                  <div className="min-h-[1.25rem] text-xs text-white/60 flex items-center gap-2">
+                  <div className="min-h-[1.25rem] text-xs text-[#000000]/60 flex items-center gap-2">
                     {isLocating && <Loader2 className="h-4 w-4 animate-spin" />}
                     {locationStatus === 'success' && !isLocating && 'Location detected automatically. Feel free to adjust.'}
                     {locationStatus === 'denied' && !isLocating && (
@@ -312,7 +312,7 @@ export default function WaitlistPageClient() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm text-white/80 flex items-center gap-2">
+                  <label className="text-sm text-[#000000]/80 flex items-center gap-2">
                     <Phone className="w-4 h-4" />
                     Contact number (optional)
                   </label>
@@ -322,7 +322,7 @@ export default function WaitlistPageClient() {
                     onChange={(event) => setPhone(event.target.value)}
                     placeholder="10 digit mobile"
                     disabled={isSubmitting}
-                    className="bg-white/5 border-white/20 text-white placeholder:text-white/50"
+                    className="bg-white border-[#1d36bf]/30 text-[#000000] placeholder:text-[#000000]/50"
                   />
                   {phoneSuggestion && (
                     <p className="text-xs text-amber-200">
@@ -331,26 +331,26 @@ export default function WaitlistPageClient() {
                   )}
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm text-white/80">Business or brand name (optional)</label>
+                  <label className="text-sm text-[#000000]/80">Business or brand name (optional)</label>
                   <Input
                     value={businessName}
                     onChange={(event) => setBusinessName(event.target.value)}
                     placeholder="Tell us the name people know you by"
                     disabled={isSubmitting}
-                    className="bg-white/5 border-white/20 text-white placeholder:text-white/50"
+                    className="bg-white border-[#1d36bf]/30 text-[#000000] placeholder:text-[#000000]/50"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm text-white/80">What support are you looking for? (optional)</label>
+                <label className="text-sm text-[#000000]/80">What support are you looking for? (optional)</label>
                 <Textarea
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
                   placeholder="Share campaign goals, marketing needs, or ad spaces you want to fill..."
                   rows={4}
                   disabled={isSubmitting}
-                  className="bg-white/5 border-white/20 text-white placeholder:text-white/50"
+                  className="bg-white border-[#1d36bf]/30 text-[#000000] placeholder:text-[#000000]/50"
                 />
               </div>
 
@@ -380,7 +380,7 @@ export default function WaitlistPageClient() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full btn-glow bg-gradient-to-r from-[#00D9FF] to-[#A855F7] text-lg py-6"
+                className="w-full btn-glow bg-gradient-to-r from-[#008dec] to-[#1d36bf] text-lg py-6"
               >
                 {isSubmitting ? 'Submitting your details...' : 'Join the priority waitlist'}
               </Button>
@@ -392,7 +392,7 @@ export default function WaitlistPageClient() {
               interests={[userType]}
             /> */}
 
-            <footer className="text-center text-xs text-white/50">
+            <footer className="text-center text-xs text-[#000000]/50">
               Your responses are stored securely in Supabase and used only for NexGenAds launch updates.
             </footer>
           </div>

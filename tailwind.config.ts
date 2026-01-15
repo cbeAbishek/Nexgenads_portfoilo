@@ -44,12 +44,16 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Custom brand colors for advertising platform
+        // Custom brand colors for NexGenAds
         brand: {
-          blue: "#00D9FF",
-          purple: "#A855F7",
-          pink: "#EC4899",
-          cyan: "#06B6D4",
+          bg: '#fcf7f7',
+          white: '#ffffff',
+          text: '#000000',
+          'text-secondary': '#333333',
+          primary: '#008dec',
+          accent: '#f3a800',
+          danger: '#f30a29',
+          'dark-blue': '#1d36bf',
         },
       },
       borderRadius: {

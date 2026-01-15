@@ -34,22 +34,22 @@ export const metadata: Metadata = {
     siteName: "NexGenAds",
     images: [
       {
-        url: "https://i.ibb.co/nNwsYZb4/Nex-Gen-Ads-meta.jpg",
+        url: "/NexGenAds_meta.jpg",
         width: 1200,
-        height: 1200,
+        height: 630,
         alt: "NexGenAds Platform",
       },
     ],
   },
   icons: {
-    icon: "/favicon.svg",
-    apple: "/apple-touch-icon.png",
+    icon: "/logo.ico",
+    apple: "/logo.png",
   },
   twitter: {
     card: "summary_large_image",
     title: "NexGenAds - Coming Soon",
     description: "Revolutionary advertising intermediary platform from Coimbatore",
-    images: ["https://i.ibb.co/nNwsYZb4/Nex-Gen-Ads-meta.jpg"],
+    images: ["/NexGenAds_meta.jpg"],
     creator: "@nexgenads",
   },
   robots: {
@@ -80,8 +80,8 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/favicon.svg" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/logo.ico" />
+        <link rel="apple-touch-icon" href="/logo.png" />
         <link rel="alternate" hrefLang="en-IN" href="https://nexgenads.space/en-IN" />
         <link rel="alternate" hrefLang="ta-IN" href="https://nexgenads.space/ta-IN" />
         <link rel="alternate" hrefLang="x-default" href="https://nexgenads.space" />
@@ -224,9 +224,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
       >
-        <Preloader />
+        {/* <Preloader /> */}
         <Navigation />
-        <main className="pt-20">
+        <main className="min-h-screen">
           {children}
         </main>
         <Footer />

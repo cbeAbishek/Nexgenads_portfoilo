@@ -145,8 +145,8 @@ export default function PartnersPageClient() {
                 key={index}
                 className="glass-effect-strong p-8 rounded-xl hover:scale-105 transition-all duration-300"
               >
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#00D9FF] to-[#A855F7] flex items-center justify-center mb-6">
-                  <type.icon className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#008dec] to-[#1d36bf] flex items-center justify-center mb-6">
+                  <type.icon className="w-8 h-8 text-[#000000]" />
                 </div>
                 <h3 className="text-2xl font-bold mb-3">{type.title}</h3>
                 <p className="text-muted-foreground mb-6">{type.description}</p>
@@ -154,7 +154,7 @@ export default function PartnersPageClient() {
                   <p className="font-semibold text-sm">Benefits:</p>
                   {type.benefits.map((benefit, i) => (
                     <div key={i} className="flex items-start space-x-3">
-                      <CheckCircle className="w-5 h-5 text-[#00D9FF] flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="w-5 h-5 text-[#008dec] flex-shrink-0 mt-0.5" />
                       <span className="text-sm text-muted-foreground">{benefit}</span>
                     </div>
                   ))}
@@ -303,7 +303,7 @@ export default function PartnersPageClient() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-[#00D9FF] to-[#A855F7] hover:opacity-90"
+                className="w-full bg-gradient-to-r from-[#008dec] to-[#1d36bf] hover:opacity-90"
               >
                 {isSubmitting ? (
                   'Submitting...'

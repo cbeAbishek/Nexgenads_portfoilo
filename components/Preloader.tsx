@@ -22,8 +22,8 @@ const Preloader = () => {
       <div className="text-center space-y-6">
         {/* Animated Logo */}
         <div className="relative inline-block">
-          <Sparkles className="w-20 h-20 text-[#00D9FF] animate-pulse" />
-          <div className="absolute inset-0 bg-[#00D9FF] blur-3xl opacity-50 animate-pulse"></div>
+          <Sparkles className="w-20 h-20 text-[#008dec] animate-pulse" />
+          <div className="absolute inset-0 bg-[#008dec] blur-3xl opacity-50 animate-pulse"></div>
         </div>
 
         {/* Brand Name */}

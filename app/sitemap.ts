@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { blogPosts } from '@/lib/content';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://nexgenads.space';
@@ -53,10 +54,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   };
 
-  return routes.map((route) => ({
+  const staticEntries: MetadataRoute.Sitemap = routes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: getChangeFrequency(route),
     priority: getPriority(route),
   }));
+
+  const blogEntries: MetadataRoute.Sitemap = blogPosts
+    .filter((post) => post.status === 'published')
+    .map((post) => {
+      const lastModified = new Date(post.updatedDate ?? post.publishDate);
+      const images = post.coverImage
+        ? [post.coverImage.startsWith('http') ? post.coverImage : `${baseUrl}${post.coverImage}`]
+        : undefined;
+
+      return {
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified,
+        changeFrequency: 'monthly',
+        priority: 0.7,
+        images,
+      };
+    });
+
+  return [...staticEntries, ...blogEntries];
 }

@@ -135,10 +135,12 @@ const Navigation = () => {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
-    { href: '/investors', label: 'Investors' },
-    { href: '/partners', label: 'Partners' },
-    { href: '/support', label: 'Support' },
+    // { href: '/investors', label: 'Investors' },
+    // { href: '/partners', label: 'Partners' },
+    // { href: '/support', label: 'Support' },
     { href: '/survey', label: 'Survey' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/career', label: 'Career' },
     { href: '/contact', label: 'Contact' },
   ];
 
@@ -152,98 +154,93 @@ const Navigation = () => {
   return (
     <nav
       className={`fixed top-6 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'top-4' : ''
+        isScrolled ? 'top-3' : ''
       }`}
     >
       <div className="container-custom px-4 sm:px-6 lg:px-8">
         <div
-          className={`relative border overflow-hidden rounded-3xl transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`relative border overflow-hidden rounded-2xl sm:rounded-3xl transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
             isScrolled
-              ? 'bg-black/80 backdrop-blur-xl border-white/20 shadow-2xl shadow-[#00D9FF]/20'
-              : 'bg-black/60 backdrop-blur-md border-white/10 shadow-lg'
+              ? 'bg-white/95 backdrop-blur-xl border-[#1d36bf]/20 shadow-[0_8px_32px_rgba(0,141,236,0.15),0_4px_16px_rgba(29,54,191,0.1)]'
+              : 'bg-white/90 backdrop-blur-md border-[#008dec]/15 shadow-[0_4px_24px_rgba(0,141,236,0.08),0_2px_12px_rgba(29,54,191,0.05)]'
           }`}
         >
           {/* Animated gradient border effect */}
           <div
-            className="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-500 rounded-3xl overflow-hidden"
+            className="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-700 rounded-2xl sm:rounded-3xl overflow-hidden"
           >
             <div
-              className="absolute inset-0 bg-gradient-to-r from-[#00D9FF] via-[#A855F7] to-[#EC4899] opacity-25 blur-xl animate-pulse"
+              className="absolute inset-0 bg-gradient-to-r from-[#008dec]/20 via-[#1d36bf]/15 to-[#f3a800]/20 blur-xl"
             ></div>
           </div>
 
           {/* Flowing corner accent */}
           <div className="absolute inset-0 pointer-events-none">
             <div
-              className={`absolute right-6 top-2 w-32 h-32 rounded-full blur-3xl transition-opacity duration-700 ${
-                isMobileMenuOpen ? 'opacity-60' : 'opacity-40'
+              className={`absolute right-4 sm:right-6 top-1 w-24 sm:w-32 h-24 sm:h-32 rounded-full blur-3xl transition-all duration-700 ${
+                isMobileMenuOpen ? 'opacity-40 scale-110' : 'opacity-25'
               }`}
               style={{
-                background: 'radial-gradient(circle at center, rgba(0,217,255,0.35), transparent 65%)',
+                background: 'radial-gradient(circle at center, rgba(0,141,236,0.4), transparent 65%)',
               }}
             ></div>
             <div
-              className={`absolute left-6 bottom-2 w-32 h-32 rounded-full blur-3xl transition-all duration-700 ${
-                isMobileMenuOpen ? 'opacity-55 translate-y-2' : 'opacity-35'
+              className={`absolute left-4 sm:left-6 bottom-1 w-24 sm:w-32 h-24 sm:h-32 rounded-full blur-3xl transition-all duration-700 ${
+                isMobileMenuOpen ? 'opacity-35 translate-y-2 scale-110' : 'opacity-20'
               }`}
               style={{
-                background: 'radial-gradient(circle at center, rgba(168,85,247,0.35), transparent 70%)',
+                background: 'radial-gradient(circle at center, rgba(243,168,0,0.35), transparent 70%)',
               }}
             ></div>
           </div>
 
           <div className="relative flex items-center justify-between px-6 sm:px-8 lg:px-10 py-3 sm:py-4">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-3 group relative z-10">
-              <div className="relative flex items-center space-x-3">
+            <Link href="/" className="flex items-center space-x-2 sm:space-x-3 group relative z-10">
+              <div className="relative flex items-center space-x-2 sm:space-x-3">
                 {/* Logo Image */}
-                <div className="relative w-10 h-10 sm:w-12 sm:h-12">
+                <div className="relative w-9 h-9 sm:w-11 sm:h-11 lg:w-12 lg:h-12 group-hover:scale-110 transition-transform duration-500">
                   <Image
                     src="/logo.svg"
                     alt="NexGenAds Logo"
                     fill
-                    className="object-contain group-hover:scale-110 transition-transform duration-500"
+                    className="object-contain group-hover:rotate-6 transition-all duration-500"
                     priority
                   />
-                  <div className="absolute inset-0 bg-[#00D9FF] blur-xl opacity-30 group-hover:opacity-60 transition-all duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#008dec] to-[#f3a800] blur-xl opacity-20 group-hover:opacity-50 group-hover:scale-125 transition-all duration-500 rounded-full"></div>
                 </div>
               </div>
               
-              <span className="text-xl sm:text-2xl font-bold text-gradient group-hover:scale-105 transition-transform duration-300">
-                NexGenAds
+              <span className="text-lg sm:text-xl lg:text-2xl font-bold transition-all duration-500" style={{ fontFamily: 'var(--font-neue-machina)' }}>
+                <span className="text-blue-600">Nex</span><span className="text-red-600">Gen</span><span className="text-yellow-500">Ads</span>
               </span>
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1 lg:space-x-2 relative z-10">
+            <div className="hidden md:flex items-center space-x-0.5 lg:space-x-1 relative z-10">
               {navLinks.map((link) => {
                 const isActive = isActiveRoute(link.href);
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative px-3 lg:px-4 py-2 rounded-[5px] transition-all duration-300 group ${
-                      isActive
-                        ? 'text-white bg-gradient-to-r from-[#00D9FF]/20 to-[#A855F7]/20'
-                        : 'text-foreground/70 hover:text-white hover:bg-white/5'
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`relative px-3 lg:px-4 py-2 rounded-xl transition-all duration-300 group overflow-hidden ${
+                      isActive ? 'text-red-600' : 'text-gray-600 hover:text-red-600 hover:bg-[#008dec]/8'
                     }`}
                   >
-                    {/* Active indicator */}
-                    {isActive && (
-                      <span className="absolute inset-0 rounded-[5px] bg-gradient-to-r from-[#00D9FF] to-[#A855F7] opacity-20 animate-pulse"></span>
-                    )}
-                    
-                    <span className="relative z-10 font-medium text-sm lg:text-base">{link.label}</span>
-                    
-                    {/* Hover underline effect */}
+                    <span className={`relative z-10 font-medium text-sm lg:text-base transition-transform duration-300 ${isActive ? '' : 'group-hover:translate-x-0.5'}`}>
+                      {link.label}
+                    </span>
+
+                    {/* Animated underline: visible on hover OR when active */}
                     <span
-                      className={`absolute bottom-1 left-3 lg:left-4 right-3 lg:right-4 h-0.5 bg-gradient-to-r from-[#00D9FF] to-[#A855F7] transition-all duration-300 ${
-                        isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                      className={`absolute bottom-1.5 left-3 lg:left-4 h-0.5 bg-gradient-to-r from-red-500 to-red-600 transition-all duration-300 rounded-full w-0 opacity-0 ${
+                        isActive
+                          ? 'w-[calc(100%-1.5rem)] lg:w-[calc(100%-2rem)] opacity-100'
+                          : 'group-hover:w-[calc(100%-1.5rem)] lg:group-hover:w-[calc(100%-2rem)] group-hover:opacity-100'
                       }`}
                     ></span>
-
-                    {/* Glow effect on hover */}
-                    <span className="absolute inset-0 rounded-[5px] bg-gradient-to-r from-[#00D9FF]/0 to-[#A855F7]/0 group-hover:from-[#00D9FF]/10 group-hover:to-[#A855F7]/10 transition-all duration-300 blur-sm"></span>
                   </Link>
                 );
               })}
@@ -253,28 +250,30 @@ const Navigation = () => {
             <div className="hidden md:block relative z-10">
               <Button 
                 onClick={() => setShowWaitlistModal(true)}
-                className="relative overflow-hidden rounded-full px-5 lg:px-6 py-2 bg-gradient-to-r from-[#00D9FF] to-[#A855F7] hover:shadow-lg hover:shadow-[#00D9FF]/50 transition-all duration-300 group text-sm lg:text-base cursor-pointer"
+                className="relative overflow-hidden rounded-full px-5 lg:px-7 py-2.5 bg-red-600 hover:bg-red-700 shadow-lg shadow-red-600/25 hover:shadow-xl hover:shadow-red-600/40 hover:scale-105 active:scale-95 transition-all duration-500 group text-sm lg:text-base font-semibold cursor-pointer text-white"
               >
-                <span className="relative z-10">Join Waitlist</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-[#A855F7] to-[#00D9FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span className="relative z-10 flex items-center gap-2">
+                  Join Waitlist
+                </span>
+                <span className="absolute inset-0 bg-gradient-to-r from-[#f3a800] via-[#008dec] to-[#1d36bf] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
               </Button>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden relative z-10 p-2 rounded-lg text-foreground hover:bg-white/10 transition-all duration-300"
+              className={`md:hidden relative z-10 p-2.5 rounded-xl transition-all duration-300 ${isMobileMenuOpen ? 'bg-[#008dec]/15 shadow-inner' : 'hover:bg-[#008dec]/10 hover:shadow-md'}`}
               aria-label="Toggle menu"
             >
               <div className="relative w-6 h-6">
                 <Menu
-                  className={`absolute inset-0 w-6 h-6 transition-all duration-300 ${
-                    isMobileMenuOpen ? 'rotate-90 opacity-0' : 'rotate-0 opacity-100'
+                  className={`absolute inset-0 w-6 h-6 text-[#1d36bf] transition-all duration-500 ${
+                    isMobileMenuOpen ? 'rotate-180 opacity-0 scale-50' : 'rotate-0 opacity-100 scale-100'
                   }`}
                 />
                 <X
-                  className={`absolute inset-0 w-6 h-6 transition-all duration-300 ${
-                    isMobileMenuOpen ? 'rotate-0 opacity-100' : '-rotate-90 opacity-0'
+                  className={`absolute inset-0 w-6 h-6 text-[#1d36bf] transition-all duration-500 ${
+                    isMobileMenuOpen ? 'rotate-0 opacity-100 scale-100' : '-rotate-180 opacity-0 scale-50'
                   }`}
                 />
               </div>
@@ -283,21 +282,22 @@ const Navigation = () => {
 
           {/* Mobile Menu Dropdown */}
           <div
-            className={`md:hidden transition-all ${
+            className={`md:hidden transition-all overflow-hidden ${
               isMobileMenuOpen 
-                ? 'max-h-[700px] opacity-100 duration-700 ease-out' 
-                : 'max-h-0 opacity-0 duration-500 ease-in'
+                ? 'max-h-[700px] opacity-100' 
+                : 'max-h-0 opacity-0'
             }`}
             style={{
-              overflow: 'hidden',
+              transitionDuration: isMobileMenuOpen ? '700ms' : '400ms',
+              transitionTimingFunction: isMobileMenuOpen ? 'cubic-bezier(0.16, 1, 0.3, 1)' : 'cubic-bezier(0.4, 0, 0.2, 1)',
             }}
           >
             <div 
-              className={`border-t border-white/10 bg-gradient-to-b from-black/40 to-black/60 backdrop-blur-sm transition-all duration-700 ${
-                isMobileMenuOpen ? 'translate-y-0' : 'translate-y-0'
+              className={`border-t border-[#008dec]/15 bg-gradient-to-b from-white/80 to-white/95 backdrop-blur-lg transition-all duration-500 ${
+                isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
               }`}
             >
-              <div className="px-6 py-6 space-y-3 pb-8">
+              <div className="px-4 sm:px-6 py-4 sm:py-6 space-y-2 sm:space-y-3 pb-6 sm:pb-8">
                 {navLinks.map((link, index) => {
                   const isActive = isActiveRoute(link.href);
                   return (
@@ -306,27 +306,27 @@ const Navigation = () => {
                       className={`transform transition-all ${
                         isMobileMenuOpen
                           ? 'translate-y-0 opacity-100 scale-100'
-                          : 'translate-y-8 opacity-0 scale-95'
+                          : 'translate-y-6 opacity-0 scale-95'
                       }`}
                       style={{
-                        transitionDuration: '600ms',
-                        transitionDelay: isMobileMenuOpen ? `${100 + index * 60}ms` : '0ms',
+                        transitionDuration: '500ms',
+                        transitionDelay: isMobileMenuOpen ? `${80 + index * 50}ms` : '0ms',
                         transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
                       }}
                     >
                       <Link
                         href={link.href}
-                        className={`block px-5 py-3.5 rounded-full transition-all duration-300 ${
+                        className={`block px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl transition-all duration-300 group ${
                           isActive
-                            ? 'bg-gradient-to-r from-[#00D9FF]/20 to-[#A855F7]/20 text-white border border-white/20 shadow-lg shadow-[#00D9FF]/20'
-                            : 'text-foreground/80 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10'
+                            ? 'text-red-600 border border-red-500 shadow-md shadow-red-500/10'
+                            : 'text-gray-700 hover:text-[#1d36bf] hover:bg-[#008dec]/8 border border-transparent hover:border-[#008dec]/15 hover:shadow-sm'
                         }`}
                       >
                         <div className="flex items-center justify-between">
-                          <span className="font-medium text-base">{link.label}</span>
+                          <span className={`font-medium text-sm sm:text-base group-hover:translate-x-1 transition-transform duration-300 ${isActive ? 'text-red-600' : ''}`}>{link.label}</span>
                           {isActive && (
                             <span className="flex items-center space-x-2">
-                              <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[#00D9FF] to-[#A855F7] animate-pulse"></span>
+                              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-lg shadow-red-500/50"></span>
                             </span>
                           )}
                         </div>
@@ -339,11 +339,11 @@ const Navigation = () => {
                   className={`transform transition-all ${
                     isMobileMenuOpen
                       ? 'translate-y-0 opacity-100 scale-100'
-                      : 'translate-y-8 opacity-0 scale-95'
+                      : 'translate-y-6 opacity-0 scale-95'
                   }`}
                   style={{
-                    transitionDuration: '600ms',
-                    transitionDelay: isMobileMenuOpen ? `${100 + navLinks.length * 60}ms` : '0ms',
+                    transitionDuration: '500ms',
+                    transitionDelay: isMobileMenuOpen ? `${80 + navLinks.length * 50}ms` : '0ms',
                     transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
                   }}
                 >
@@ -352,9 +352,12 @@ const Navigation = () => {
                       setShowWaitlistModal(true);
                       setIsMobileMenuOpen(false);
                     }}
-                    className="w-full mt-2 rounded-full px-6 py-3.5 bg-gradient-to-r from-[#00D9FF] to-[#A855F7] hover:shadow-lg hover:shadow-[#00D9FF]/50 transition-all duration-300 text-base font-semibold hover:scale-105 cursor-pointer"
+                    className="w-full mt-2 rounded-xl sm:rounded-2xl px-6 py-3 sm:py-3.5 bg-red-600 hover:bg-red-700 shadow-lg shadow-red-600/25 hover:shadow-xl hover:shadow-red-600/40 active:scale-[0.98] transition-all duration-500 text-sm sm:text-base font-semibold cursor-pointer text-white"
                   >
-                    Join Waitlist
+                    <span className="flex items-center justify-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-white/80 animate-pulse"></span>
+                      Join Waitlist
+                    </span>
                   </Button>
                 </div>
               </div>
@@ -365,8 +368,11 @@ const Navigation = () => {
 
       {/* Waitlist Modal */}
       {showWaitlistModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="relative bg-gradient-to-br from-black/90 to-black/80 border border-white/20 rounded-3xl p-8 max-w-md w-full shadow-2xl shadow-[#00D9FF]/20 animate-in fade-in zoom-in-95 duration-300">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-md">
+          <div className="relative bg-white border border-[#008dec]/20 rounded-2xl sm:rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-[0_20px_60px_rgba(0,141,236,0.2),0_8px_24px_rgba(29,54,191,0.15)] animate-in fade-in zoom-in-95 duration-300">
+            {/* Decorative gradient accent */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#008dec] via-[#1d36bf] to-[#f3a800] rounded-t-2xl sm:rounded-t-3xl"></div>
+            
             {/* Close Button */}
             <button
               onClick={() => {
@@ -380,29 +386,31 @@ const Navigation = () => {
                 setWaitlistPhone('');
                 setWaitlistNote('');
               }}
-              className="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-lg transition-all duration-300"
+              className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-xl transition-all duration-300 group"
             >
-              <X className="w-5 h-5 text-white/80 hover:text-white" />
+              <X className="w-5 h-5 text-gray-500 group-hover:text-[#1d36bf] group-hover:rotate-90 transition-all duration-300" />
             </button>
 
             {/* Header */}
             <div className="mb-6">
-              <div className="flex items-center space-x-2 mb-3">
-                <Mail className="w-6 h-6 text-[#00D9FF]" />
-                <h2 className="text-2xl font-bold text-gradient">Join Waitlist</h2>
+              <div className="flex items-center space-x-3 mb-3">
+                <div className="p-2 bg-gradient-to-br from-[#008dec]/15 to-[#1d36bf]/15 rounded-xl">
+                  <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-[#008dec]" />
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#1d36bf] to-[#008dec] bg-clip-text text-transparent">Join Waitlist</h2>
               </div>
-              <p className="text-white/70 text-sm">Be the first from Tamil Nadu to explore the NexGenAds platform. Share your details and we will reach out soon.</p>
+              <p className="text-gray-600 text-sm">Be the first from Tamil Nadu to explore the NexGenAds platform. Share your details and we will reach out soon.</p>
             </div>
 
             {/* Form */}
-            <form onSubmit={handleJoinWaitlist} className="space-y-4">
+            <form onSubmit={handleJoinWaitlist} className="space-y-3 sm:space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <Input
                   type="text"
                   placeholder="Your name"
                   value={waitlistName}
                   onChange={(e) => setWaitlistName(e.target.value)}
-                  className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white placeholder:text-white/50 focus:border-[#00D9FF] focus:outline-none transition-all duration-300"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-[#008dec] focus:bg-white focus:ring-2 focus:ring-[#008dec]/20 transition-all duration-300"
                   disabled={waitlistLoading}
                   required
                 />
@@ -410,14 +418,14 @@ const Navigation = () => {
                   <select
                     value={waitlistUserType}
                     onChange={(e) => setWaitlistUserType(e.target.value)}
-                    className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white focus:border-[#00D9FF] focus:outline-none transition-all duration-300"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-[#008dec] focus:bg-white focus:ring-2 focus:ring-[#008dec]/20 transition-all duration-300"
                     disabled={waitlistLoading}
                   >
-                    <option value="advertiser" className="text-black">Advertiser</option>
-                    <option value="mediator" className="text-black">Media Partner</option>
-                    <option value="designer" className="text-black">Designer</option>
-                    <option value="ad_space_owner" className="text-black">Ad Space Owner</option>
-                    <option value="enthusiast" className="text-black">Startup Enthusiast</option>
+                    <option value="advertiser" className="text-gray-900">Advertiser</option>
+                    <option value="mediator" className="text-gray-900">Media Partner</option>
+                    <option value="designer" className="text-gray-900">Designer</option>
+                    <option value="ad_space_owner" className="text-gray-900">Ad Space Owner</option>
+                    <option value="enthusiast" className="text-gray-900">Startup Enthusiast</option>
                   </select>
                 </div>
               </div>
@@ -428,7 +436,7 @@ const Navigation = () => {
                   placeholder="Email address"
                   value={waitlistEmail}
                   onChange={(e) => setWaitlistEmail(e.target.value)}
-                  className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white placeholder:text-white/50 focus:border-[#00D9FF] focus:outline-none transition-all duration-300"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-[#008dec] focus:bg-white focus:ring-2 focus:ring-[#008dec]/20 transition-all duration-300"
                   disabled={waitlistLoading}
                   required
                 />
@@ -440,15 +448,15 @@ const Navigation = () => {
                   placeholder="Your district"
                   value={waitlistDistrict}
                   onChange={(e) => setWaitlistDistrict(e.target.value)}
-                  className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white placeholder:text-white/50 focus:border-[#00D9FF] focus:outline-none transition-all duration-300"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-[#008dec] focus:bg-white focus:ring-2 focus:ring-[#008dec]/20 transition-all duration-300"
                   disabled={waitlistLoading}
                 />
                 <Input
                   type="tel"
-                  placeholder="Phone number (optional)"
+                  placeholder="Phone (optional)"
                   value={waitlistPhone}
                   onChange={(e) => setWaitlistPhone(e.target.value)}
-                  className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white placeholder:text-white/50 focus:border-[#00D9FF] focus:outline-none transition-all duration-300"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-[#008dec] focus:bg-white focus:ring-2 focus:ring-[#008dec]/20 transition-all duration-300"
                   disabled={waitlistLoading}
                 />
               </div>
@@ -457,24 +465,24 @@ const Navigation = () => {
                 placeholder="Tell us what support you need (optional)"
                 value={waitlistNote}
                 onChange={(e) => setWaitlistNote(e.target.value)}
-                className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white placeholder:text-white/50 focus:border-[#00D9FF] focus:outline-none transition-all duration-300"
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-[#008dec] focus:bg-white focus:ring-2 focus:ring-[#008dec]/20 transition-all duration-300 resize-none"
                 rows={3}
                 disabled={waitlistLoading}
               />
 
               {/* Error Message */}
               {waitlistError && (
-                <div className="flex items-center space-x-2 p-3 bg-red-500/20 border border-red-500/50 rounded-lg">
+                <div className="flex items-center space-x-2 p-3 bg-red-50 border border-red-200 rounded-xl">
                   <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
-                  <p className="text-sm text-red-200">{waitlistError}</p>
+                  <p className="text-sm text-red-600">{waitlistError}</p>
                 </div>
               )}
 
               {/* Success Message */}
               {waitlistSuccess && (
-                <div className="flex items-center space-x-2 p-3 bg-green-500/20 border border-green-500/50 rounded-lg">
+                <div className="flex items-center space-x-2 p-3 bg-green-50 border border-green-200 rounded-xl">
                   <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <p className="text-sm text-green-200">{waitlistSuccess}</p>
+                  <p className="text-sm text-green-600">{waitlistSuccess}</p>
                 </div>
               )}
 
@@ -482,12 +490,24 @@ const Navigation = () => {
               <Button
                 type="submit"
                 disabled={waitlistLoading}
-                className="w-full rounded-xl px-6 py-3 bg-gradient-to-r from-[#00D9FF] to-[#A855F7] hover:shadow-lg hover:shadow-[#00D9FF]/50 transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full rounded-xl px-6 py-3.5 bg-gradient-to-r from-[#008dec] via-[#1d36bf] to-[#008dec] bg-[length:200%_auto] shadow-lg shadow-[#008dec]/25 hover:shadow-xl hover:shadow-[#008dec]/40 hover:bg-right active:scale-[0.98] transition-all duration-500 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {waitlistLoading ? 'Joining...' : 'Join Waitlist'}
+                <span className="flex items-center justify-center gap-2">
+                  {waitlistLoading ? (
+                    <>
+                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                      Joining...
+                    </>
+                  ) : (
+                    <>
+                      <span className="w-2 h-2 rounded-full bg-white/80 animate-pulse"></span>
+                      Join Waitlist
+                    </>
+                  )}
+                </span>
               </Button>
 
-              <p className="text-xs text-white/50 text-center">
+              <p className="text-xs text-gray-500 text-center">
                 We respect your privacy and will email only about NexGenAds launches.
               </p>
             </form>

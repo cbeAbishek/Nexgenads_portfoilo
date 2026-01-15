@@ -57,10 +57,9 @@ const contactInfo: ContactInfo[] = [
 ];
 
 const socialLinks: SocialLink[] = [
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Facebook, href: '#', label: 'Facebook' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/company/nexgenads-ai/', label: 'LinkedIn' },
+  { icon: Instagram, href: 'https://www.instagram.com/nexgenads.ai?igsh=aWxsbXV2aml4MDE3', label: 'Instagram' },
+  { icon: Facebook, href: 'https://www.facebook.com/share/1aP2yyEf6U/', label: 'Facebook' },
 ];
 
 export default function ContactPageClient() {
@@ -109,47 +108,57 @@ export default function ContactPageClient() {
   };
 
   return (
-    <div className="min-h-screen">
-      <section className="section-padding bg-gradient-to-b from-background to-card/30">
-        <div className="container-custom text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Get in <span className="text-gradient">Touch</span>
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50">
+      <section className="section-padding bg-gradient-to-br from-blue-50/50 via-white to-purple-50/30 border-b border-blue-100">
+        <div className="container-custom text-center pt-20 md:pt-2">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-gray-900 tracking-tight">
+            Get in <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">Touch</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Have questions or want to collaborate? We&apos;d love to hear from you.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Have questions or want to collaborate with <span className="text-blue-600 font-semibold">Nex</span><span className="text-red-600 font-semibold">Gen</span><span className="text-yellow-500 font-semibold">Ads</span>? We&apos;d love to hear from you.
           </p>
         </div>
       </section>
 
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            {contactInfo.map((info) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 mb-12 md:mb-16">
+            {contactInfo.map((info, index) => {
+              const gradients = [
+              'from-blue-500 to-cyan-500',
+              'from-purple-500 to-pink-500',
+              'from-pink-500 to-red-500'
+              ];
+              return (
               <a
                 key={info.title}
                 href={info.link}
-                className="glass-effect p-8 rounded-xl text-center hover:glass-effect-strong transition-all duration-300 group"
+                className="bg-white/80 backdrop-blur-sm p-4 md:p-8 rounded-xl border border-blue-100 shadow-sm hover:shadow-lg hover:border-blue-200 transition-all duration-300 group text-center"
               >
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#00D9FF] to-[#A855F7] flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <info.icon className="w-8 h-8 text-white" />
+                <div className={`w-12 h-12 md:w-16 md:h-16 rounded-xl bg-gradient-to-br ${gradients[index]} flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform shadow-md`}>
+                <info.icon className="w-6 h-6 md:w-8 md:h-8 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{info.title}</h3>
-                <p className="text-muted-foreground">{info.value}</p>
+                <h3 className="text-base md:text-lg font-bold text-gray-900 mb-1 md:mb-2 group-hover:text-blue-600 transition-colors">{info.title}</h3>
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">{info.value}</p>
               </a>
-            ))}
-          </div>
+              );
+            })}
+            </div>
 
           <div className="grid md:grid-cols-2 gap-12">
-            <div className="glass-effect-strong p-8 rounded-xl">
-              <h2 className="text-2xl font-bold mb-6">Send us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="bg-white/80 backdrop-blur-sm p-8 rounded-xl border border-blue-100 shadow-lg">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="w-10 h-10 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center text-white text-lg font-bold shadow-md">1</span>
+                <h2 className="text-2xl font-bold text-gray-900">Send us a Message</h2>
+              </div>
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <Input
                   type="text"
                   placeholder="Full Name *"
                   value={formData.fullName}
                   onChange={(event) => setFormData({ ...formData, fullName: event.target.value })}
                   required
-                  className="bg-background/50"
+                  className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
                 />
                 <Input
                   type="email"
@@ -157,17 +166,17 @@ export default function ContactPageClient() {
                   value={formData.email}
                   onChange={(event) => setFormData({ ...formData, email: event.target.value })}
                   required
-                  className="bg-background/50"
+                  className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
                 />
                 <Input
                   type="tel"
                   placeholder="Phone Number"
                   value={formData.phone}
                   onChange={(event) => setFormData({ ...formData, phone: event.target.value })}
-                  className="bg-background/50"
+                  className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
                 />
                 <Select onValueChange={(value) => setFormData({ ...formData, inquiryType: value })}>
-                  <SelectTrigger className="bg-background/50">
+                  <SelectTrigger className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md">
                     <SelectValue placeholder="Inquiry Type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -183,7 +192,7 @@ export default function ContactPageClient() {
                   value={formData.subject}
                   onChange={(event) => setFormData({ ...formData, subject: event.target.value })}
                   required
-                  className="bg-background/50"
+                  className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
                 />
                 <Textarea
                   placeholder="Your Message *"
@@ -191,28 +200,40 @@ export default function ContactPageClient() {
                   onChange={(event) => setFormData({ ...formData, message: event.target.value })}
                   required
                   rows={5}
-                  className="bg-background/50"
+                  className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md resize-none"
                 />
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full btn-glow bg-gradient-to-r from-[#00D9FF] to-[#A855F7]"
+                  className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 py-6 text-base"
                 >
-                  <Send className="w-4 h-4 mr-2" />
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                      Sending Message...
+                    </span>
+                  ) : (
+                    <span className="flex items-center justify-center gap-2">
+                      <Send className="w-5 h-5" />
+                      Send Message
+                    </span>
+                  )}
                 </Button>
                 {submitMessage && (
-                  <p className={`text-sm text-center ${
-                    submitMessage.includes('Thank') ? 'text-green-500' : 'text-red-500'
+                  <div className={`p-4 rounded-xl font-medium shadow-md text-center ${
+                    submitMessage.includes('Thank') ? 'bg-green-50 border-2 border-green-500 text-green-700' : 'bg-red-50 border-2 border-red-500 text-red-700'
                   }`}>
-                    {submitMessage}
-                  </p>
+                    <div className="flex items-center justify-center gap-2">
+                      <span className="text-xl">{submitMessage.includes('Thank') ? '✅' : '⚠️'}</span>
+                      {submitMessage}
+                    </div>
+                  </div>
                 )}
               </form>
             </div>
 
             <div className="space-y-8">
-              <div id="map" className="glass-effect-strong p-4 rounded-xl h-80">
+              <div id="map" className="bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-blue-100 shadow-lg h-80">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125618.23272836075!2d76.98785994335938!3d11.016844600000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859af2f971cb5%3A0x2fc1c81e183ed282!2sCoimbatore%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1234567890123"
                   width="100%"
@@ -225,8 +246,11 @@ export default function ContactPageClient() {
                 ></iframe>
               </div>
 
-              <div className="glass-effect-strong p-8 rounded-xl">
-                <h3 className="text-xl font-semibold mb-4">Connect with Us</h3>
+              <div className="bg-white/80 backdrop-blur-sm p-8 rounded-xl border border-purple-100 shadow-lg">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="w-10 h-10 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-lg font-bold shadow-md">2</span>
+                  <h3 className="text-xl font-bold text-gray-900">Connect with Us</h3>
+                </div>
                 <div className="flex space-x-4">
                   {socialLinks.map((social) => (
                     <a
@@ -234,14 +258,14 @@ export default function ContactPageClient() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-full glass-effect flex items-center justify-center hover:glass-effect-strong transition-all group"
+                      className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center border border-blue-100 hover:border-blue-300 hover:shadow-md transition-all group"
                       aria-label={social.label}
                     >
-                      <social.icon className="w-6 h-6 text-muted-foreground group-hover:text-[#00D9FF] transition-colors" />
+                      <social.icon className="w-6 h-6 text-gray-600 group-hover:text-blue-600 group-hover:scale-110 transition-all" />
                     </a>
                   ))}
                 </div>
-                <p className="mt-6 text-sm text-muted-foreground">
+                <p className="mt-6 text-sm text-gray-600 leading-relaxed">
                   Follow us on social media for the latest updates and announcements.
                 </p>
               </div>

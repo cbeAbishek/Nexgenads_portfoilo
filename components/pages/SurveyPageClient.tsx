@@ -395,7 +395,7 @@ const SurveyPageClient = () => {
             setImageFile(file);
           }}
           disabled={isSubmitting}
-          className="bg-background/50 mt-2 cursor-pointer"
+          className="bg-white border-gray-200 mt-2 cursor-pointer hover:border-blue-400 transition-colors"
         />
         <p className="text-xs text-muted-foreground mt-2">
           Upload mood boards, mockups, or reference photos (max 5 MB).
@@ -463,7 +463,7 @@ const SurveyPageClient = () => {
               handleAudioFileInput(file);
             }}
             disabled={isSubmitting || isRecording}
-            className="bg-background/50 cursor-pointer"
+            className="bg-white border-gray-200 cursor-pointer hover:border-blue-400 transition-colors"
           />
           <p className="text-xs text-muted-foreground">
             Drop a quick idea or feedback recording (max 5 MB). You can record directly or upload an existing audio file.
@@ -488,48 +488,60 @@ const SurveyPageClient = () => {
   );
 
   return (
-    <div className="min-h-screen">
-      <section className="section-padding bg-gradient-to-b from-background to-card/30">
-        <div className="container-custom text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Help Us <span className="text-gradient">Build Better</span>
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50">
+      <section className="section-padding bg-gradient-to-br from-blue-50/80 via-white to-purple-50/30">
+        <div className="container-custom text-center pt-20 md:pt-2">
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 text-gray-900 tracking-tight" style={{ fontFamily: 'var(--font-neue-machina)' }}>
+            Help Us <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">Build Better</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Your feedback shapes the future of NexGenAds. Take our survey and be part of the journey.
           </p>
         </div>
       </section>
 
-      <section className="section-padding">
+      <section className="section-padding bg-white">
         <div className="container-custom max-w-4xl">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-4 glass-effect p-1 mb-8">
-              <TabsTrigger value="advertiser" className="flex items-center gap-2">
-                <Briefcase className="w-4 h-4" />
-                <span className="hidden sm:inline">Advertiser</span>
+            <TabsList className="grid w-full grid-cols-4 gap-3 bg-transparent p-0 mb-8">
+              <TabsTrigger 
+              value="advertiser" 
+              className="flex flex-col sm:flex-row items-center justify-center gap-2 py-4 px-3 rounded-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:border-blue-600 data-[state=active]:text-white data-[state=active]:shadow-xl data-[state=active]:scale-105 text-black font-bold transition-all duration-300 hover:scale-102 hover:shadow-lg"
+              >
+              <Briefcase className="w-6 h-6" />
+              <span className="text-sm sm:text-base">Advertiser</span>
               </TabsTrigger>
-              <TabsTrigger value="mediator" className="flex items-center gap-2">
-                <Users className="w-4 h-4" />
-                <span className="hidden sm:inline">Mediator</span>
+              <TabsTrigger 
+              value="mediator" 
+              className="flex flex-col sm:flex-row items-center justify-center gap-2 py-4 px-3 rounded-xl border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100 hover:from-purple-100 hover:to-purple-200 data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:border-purple-600 data-[state=active]:text-white data-[state=active]:shadow-xl data-[state=active]:scale-105 text-black font-bold transition-all duration-300 hover:scale-102 hover:shadow-lg"
+              >
+              <Users className="w-6 h-6" />
+              <span className="text-sm sm:text-base">Mediator</span>
               </TabsTrigger>
-              <TabsTrigger value="designer" className="flex items-center gap-2">
-                <Palette className="w-4 h-4" />
-                <span className="hidden sm:inline">Designer</span>
+              <TabsTrigger 
+              value="designer" 
+              className="flex flex-col sm:flex-row items-center justify-center gap-2 py-4 px-3 rounded-xl border-2 border-pink-200 bg-gradient-to-br from-pink-50 to-pink-100 hover:from-pink-100 hover:to-pink-200 data-[state=active]:from-pink-500 data-[state=active]:to-pink-600 data-[state=active]:border-pink-600 data-[state=active]:text-white data-[state=active]:shadow-xl data-[state=active]:scale-105 text-black font-bold transition-all duration-300 hover:scale-102 hover:shadow-lg"
+              >
+              <Palette className="w-6 h-6" />
+              <span className="text-sm sm:text-base">Designer</span>
               </TabsTrigger>
-              <TabsTrigger value="adspace" className="flex items-center gap-2">
-                <Building2 className="w-4 h-4" />
-                <span className="hidden sm:inline">Ad Space</span>
+              <TabsTrigger 
+              value="adspace" 
+              className="flex flex-col sm:flex-row items-center justify-center gap-2 py-4 px-3 rounded-xl border-2 border-indigo-200 bg-gradient-to-br from-indigo-50 to-indigo-100 hover:from-indigo-100 hover:to-indigo-200 data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:border-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-xl data-[state=active]:scale-105 text-black font-bold transition-all duration-300 hover:scale-102 hover:shadow-lg"
+              >
+              <Building2 className="w-6 h-6" />
+              <span className="text-sm sm:text-base">Ad Space</span>
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="advertiser">
-              <div className="glass-effect-strong p-8 rounded-xl">
-                <h2 className="text-2xl font-bold mb-6">Advertiser Survey</h2>
+              <div className="bg-gradient-to-br from-white to-blue-50/30 p-8 rounded-xl border border-blue-200 shadow-lg">
+                <h2 className="text-2xl font-bold mb-6 text-gray-900">Advertiser Survey</h2>
                 <form onSubmit={(e) => { e.preventDefault(); handleSubmit('advertiser', advertiserData); }} className="space-y-6">
                   <div>
-                    <Label>Company Size</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Company Size</Label>
                     <Select onValueChange={(value) => setAdvertiserData({ ...advertiserData, companySize: value })}>
-                      <SelectTrigger className="bg-background/50 mt-2">
+                      <SelectTrigger className="bg-white border-gray-200 mt-2 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md">
                         <SelectValue placeholder="Select company size" />
                       </SelectTrigger>
                       <SelectContent>
@@ -542,9 +554,9 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>Monthly Advertising Budget</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Monthly Advertising Budget</Label>
                     <Select onValueChange={(value) => setAdvertiserData({ ...advertiserData, budget: value })}>
-                      <SelectTrigger className="bg-background/50 mt-2">
+                      <SelectTrigger className="bg-white border-gray-200 mt-2 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md">
                         <SelectValue placeholder="Select budget range" />
                       </SelectTrigger>
                       <SelectContent>
@@ -557,12 +569,13 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>Primary Advertising Channels (Select all that apply)</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Primary Advertising Channels (Select all that apply)</Label>
                     <div className="space-y-3 mt-3">
                       {['Digital (Social Media)', 'Print Media', 'Outdoor (Billboards, etc.)', 'TV/Radio', 'Events'].map((channel) => (
-                        <div key={channel} className="flex items-center space-x-2">
+                        <div key={channel} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-50/50 transition-colors">
                           <Checkbox
                             id={channel}
+                            className="data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
                             onCheckedChange={(checked) => {
                               const channels = getArrayValue(advertiserData, 'channels');
                               const isChecked = checked === true;
@@ -574,16 +587,16 @@ const SurveyPageClient = () => {
                               });
                             }}
                           />
-                          <Label htmlFor={channel} className="cursor-pointer">{channel}</Label>
+                          <Label htmlFor={channel} className="cursor-pointer text-gray-700 font-medium">{channel}</Label>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   <div>
-                    <Label>Biggest Challenge in Current Advertising</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Biggest Challenge in Current Advertising</Label>
                     <Textarea
-                      className="bg-background/50 mt-2"
+                      className="bg-white border-gray-200 mt-2 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md resize-none"
                       rows={4}
                       placeholder="Share your main pain points..."
                       value={getStringValue(advertiserData, 'challenges')}
@@ -592,10 +605,10 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>Email (Optional)</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Email (Optional)</Label>
                     <Input
                       type="email"
-                      className="bg-background/50 mt-2"
+                      className="bg-white border-gray-200 mt-2 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
                       placeholder="your@email.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -607,7 +620,7 @@ const SurveyPageClient = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full btn-glow bg-gradient-to-r from-[#00D9FF] to-[#A855F7]"
+                    className="w-full bg-red-600 hover:bg-red-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
                   >
                     {isSubmitting ? 'Submitting...' : 'Submit Survey'}
                   </Button>
@@ -616,13 +629,13 @@ const SurveyPageClient = () => {
             </TabsContent>
 
             <TabsContent value="mediator">
-              <div className="glass-effect-strong p-8 rounded-xl">
-                <h2 className="text-2xl font-bold mb-6">Mediator Survey</h2>
+              <div className="bg-gradient-to-br from-white to-purple-50/30 p-8 rounded-xl border border-purple-200 shadow-lg">
+                <h2 className="text-2xl font-bold mb-6 text-gray-900">Mediator Survey</h2>
                 <form onSubmit={(e) => { e.preventDefault(); handleSubmit('mediator', mediatorData); }} className="space-y-6">
                   <div>
-                    <Label>Years of Experience</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Years of Experience</Label>
                     <Select onValueChange={(value) => setMediatorData({ ...mediatorData, experience: value })}>
-                      <SelectTrigger className="bg-background/50 mt-2">
+                      <SelectTrigger className="bg-white border-gray-200 mt-2 hover:border-purple-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all shadow-sm hover:shadow-md">
                         <SelectValue placeholder="Select experience" />
                       </SelectTrigger>
                       <SelectContent>
@@ -635,10 +648,10 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>Average Deals Per Month</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Average Deals Per Month</Label>
                     <Input
                       type="number"
-                      className="bg-background/50 mt-2"
+                      className="bg-white border-gray-200 mt-2 hover:border-purple-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all shadow-sm hover:shadow-md"
                       placeholder="Number of deals"
                       value={getStringValue(mediatorData, 'dealsPerMonth')}
                       onChange={(e) => setMediatorData({ ...mediatorData, dealsPerMonth: e.target.value })}
@@ -646,9 +659,9 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>Commission Range You Typically Earn</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Commission Range You Typically Earn</Label>
                     <Select onValueChange={(value) => setMediatorData({ ...mediatorData, commission: value })}>
-                      <SelectTrigger className="bg-background/50 mt-2">
+                      <SelectTrigger className="bg-white border-gray-200 mt-2 hover:border-purple-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all shadow-sm hover:shadow-md">
                         <SelectValue placeholder="Select range" />
                       </SelectTrigger>
                       <SelectContent>
@@ -661,9 +674,9 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>What features would help you close more deals?</Label>
+                    <Label className="text-sm font-semibold text-gray-700">What features would help you close more deals?</Label>
                     <Textarea
-                      className="bg-background/50 mt-2"
+                      className="bg-white border-gray-200 mt-2 hover:border-purple-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all shadow-sm hover:shadow-md resize-none"
                       rows={4}
                       placeholder="Share your thoughts..."
                       value={getStringValue(mediatorData, 'desiredFeatures')}
@@ -672,10 +685,10 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>Email (Optional)</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Email (Optional)</Label>
                     <Input
                       type="email"
-                      className="bg-background/50 mt-2"
+                      className="bg-white border-gray-200 mt-2 hover:border-purple-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all shadow-sm hover:shadow-md"
                       placeholder="your@email.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -687,22 +700,29 @@ const SurveyPageClient = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full btn-glow bg-gradient-to-r from-[#00D9FF] to-[#A855F7]"
+                    className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 py-6 text-base"
                   >
-                    {isSubmitting ? 'Submitting...' : 'Submit Survey'}
+                    {isSubmitting ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                        Submitting...
+                      </span>
+                    ) : (
+                      'Submit Survey'
+                    )}
                   </Button>
                 </form>
               </div>
             </TabsContent>
 
             <TabsContent value="designer">
-              <div className="glass-effect-strong p-8 rounded-xl">
-                <h2 className="text-2xl font-bold mb-6">Designer Survey</h2>
+              <div className="bg-gradient-to-br from-white to-pink-50/30 p-8 rounded-xl border border-pink-200 shadow-lg">
+                <h2 className="text-2xl font-bold mb-6 text-gray-900">Designer Survey</h2>
                 <form onSubmit={(e) => { e.preventDefault(); handleSubmit('designer', designerData); }} className="space-y-6">
                   <div>
-                    <Label>Design Specialization</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Design Specialization</Label>
                     <Select onValueChange={(value) => setDesignerData({ ...designerData, specialization: value })}>
-                      <SelectTrigger className="bg-background/50 mt-2">
+                      <SelectTrigger className="bg-white border-gray-200 mt-2 hover:border-pink-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all shadow-sm hover:shadow-md">
                         <SelectValue placeholder="Select specialization" />
                       </SelectTrigger>
                       <SelectContent>
@@ -716,10 +736,10 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>Years of Experience</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Years of Experience</Label>
                     <Input
                       type="number"
-                      className="bg-background/50 mt-2"
+                      className="bg-white border-gray-200 mt-2 hover:border-pink-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all shadow-sm hover:shadow-md"
                       placeholder="Years"
                       value={getStringValue(designerData, 'experience')}
                       onChange={(e) => setDesignerData({ ...designerData, experience: e.target.value })}
@@ -727,9 +747,9 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>Average Project Rate</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Average Project Rate</Label>
                     <Select onValueChange={(value) => setDesignerData({ ...designerData, rate: value })}>
-                      <SelectTrigger className="bg-background/50 mt-2">
+                      <SelectTrigger className="bg-white border-gray-200 mt-2 hover:border-pink-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all shadow-sm hover:shadow-md">
                         <SelectValue placeholder="Select rate range" />
                       </SelectTrigger>
                       <SelectContent>
@@ -742,9 +762,9 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>What challenges do you face finding advertising projects?</Label>
+                    <Label className="text-sm font-semibold text-gray-700">What challenges do you face finding advertising projects?</Label>
                     <Textarea
-                      className="bg-background/50 mt-2"
+                      className="bg-white border-gray-200 mt-2 hover:border-pink-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all shadow-sm hover:shadow-md resize-none"
                       rows={4}
                       placeholder="Share your challenges..."
                       value={getStringValue(designerData, 'challenges')}
@@ -753,10 +773,10 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>Email (Optional)</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Email (Optional)</Label>
                     <Input
                       type="email"
-                      className="bg-background/50 mt-2"
+                      className="bg-white border-gray-200 mt-2 hover:border-pink-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all shadow-sm hover:shadow-md"
                       placeholder="your@email.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -768,22 +788,29 @@ const SurveyPageClient = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full btn-glow bg-gradient-to-r from-[#00D9FF] to-[#A855F7]"
+                    className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 py-6 text-base"
                   >
-                    {isSubmitting ? 'Submitting...' : 'Submit Survey'}
+                    {isSubmitting ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                        Submitting...
+                      </span>
+                    ) : (
+                      'Submit Survey'
+                    )}
                   </Button>
                 </form>
               </div>
             </TabsContent>
 
             <TabsContent value="adspace">
-              <div className="glass-effect-strong p-8 rounded-xl">
-                <h2 className="text-2xl font-bold mb-6">Ad Space Owner Survey</h2>
+              <div className="bg-gradient-to-br from-white to-indigo-50/30 p-8 rounded-xl border border-indigo-200 shadow-lg">
+                <h2 className="text-2xl font-bold mb-6 text-gray-900">Ad Space Owner Survey</h2>
                 <form onSubmit={(e) => { e.preventDefault(); handleSubmit('ad_space_owner', adSpaceData); }} className="space-y-6">
                   <div>
-                    <Label>Type of Ad Space</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Type of Ad Space</Label>
                     <Select onValueChange={(value) => setAdSpaceData({ ...adSpaceData, spaceType: value })}>
-                      <SelectTrigger className="bg-background/50 mt-2">
+                      <SelectTrigger className="bg-white border-gray-200 mt-2 hover:border-indigo-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all shadow-sm hover:shadow-md">
                         <SelectValue placeholder="Select space type" />
                       </SelectTrigger>
                       <SelectContent>
@@ -797,10 +824,10 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>Number of Ad Spaces</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Number of Ad Spaces</Label>
                     <Input
                       type="number"
-                      className="bg-background/50 mt-2"
+                      className="bg-white border-gray-200 mt-2 hover:border-indigo-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all shadow-sm hover:shadow-md"
                       placeholder="Count"
                       value={getStringValue(adSpaceData, 'spaceCount')}
                       onChange={(e) => setAdSpaceData({ ...adSpaceData, spaceCount: e.target.value })}
@@ -808,9 +835,9 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>Average Monthly Revenue Per Space</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Average Monthly Revenue Per Space</Label>
                     <Select onValueChange={(value) => setAdSpaceData({ ...adSpaceData, revenue: value })}>
-                      <SelectTrigger className="bg-background/50 mt-2">
+                      <SelectTrigger className="bg-white border-gray-200 mt-2 hover:border-indigo-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all shadow-sm hover:shadow-md">
                         <SelectValue placeholder="Select revenue range" />
                       </SelectTrigger>
                       <SelectContent>
@@ -823,9 +850,9 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>Main challenges in monetizing your ad spaces?</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Main challenges in monetizing your ad spaces?</Label>
                     <Textarea
-                      className="bg-background/50 mt-2"
+                      className="bg-white border-gray-200 mt-2 hover:border-indigo-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all shadow-sm hover:shadow-md resize-none"
                       rows={4}
                       placeholder="Share your challenges..."
                       value={getStringValue(adSpaceData, 'challenges')}
@@ -834,10 +861,10 @@ const SurveyPageClient = () => {
                   </div>
 
                   <div>
-                    <Label>Email (Optional)</Label>
+                    <Label className="text-sm font-semibold text-gray-700">Email (Optional)</Label>
                     <Input
                       type="email"
-                      className="bg-background/50 mt-2"
+                      className="bg-white border-gray-200 mt-2 hover:border-indigo-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all shadow-sm hover:shadow-md"
                       placeholder="your@email.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -849,9 +876,16 @@ const SurveyPageClient = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full btn-glow bg-gradient-to-r from-[#00D9FF] to-[#A855F7]"
+                    className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 py-6 text-base"
                   >
-                    {isSubmitting ? 'Submitting...' : 'Submit Survey'}
+                    {isSubmitting ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                        Submitting...
+                      </span>
+                    ) : (
+                      'Submit Survey'
+                    )}
                   </Button>
                 </form>
               </div>

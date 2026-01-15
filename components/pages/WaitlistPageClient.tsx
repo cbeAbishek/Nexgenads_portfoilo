@@ -217,19 +217,18 @@ export default function WaitlistPageClient() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background/80 to-background">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50">
       <section className="section-padding">
         <div className="container-custom max-w-4xl">
-          <div className="glass-effect-strong rounded-3xl p-10 md:p-14 space-y-10">
-            <header className="space-y-4 text-center">
-              <div className="inline-flex items-center gap-2 glass-effect px-4 py-2 rounded-full">
-                <Sparkles className="w-4 h-4 text-[#00D9FF]" />
-                <span className="text-sm text-white/80">Built for Tamil Nadu businesses</span>
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl pt-16 p-5 md:p-12 lg:p-14 space-y-10 border border-blue-100 shadow-xl">
+            <header className="space-y-6 text-center">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 px-5 py-2.5 rounded-full shadow-sm">
+                <span className="text-sm font-medium text-gray-700">Built for Tamil Nadu businesses</span>
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold text-balance">
-                Power your next campaign across Tamil Nadu with <span className="text-gradient">NexGenAds</span>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance leading-tight text-gray-900">
+                Power your next campaign across Tamil Nadu with <span className="text-blue-600">Nex</span><span className="text-red-600">Gen</span><span className="text-yellow-500">Ads</span>
               </h1>
-              <p className="text-white/70 text-base md:text-lg max-w-2xl mx-auto">
+              <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                 Share a few details so we can send you product updates, launch invites, and partner opportunities tailored for Tamil Nadu brands and creatives.
               </p>
             </header>
@@ -237,18 +236,18 @@ export default function WaitlistPageClient() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm text-white/80">Full name</label>
+                  <label className="text-sm font-semibold text-gray-700">Full name <span className="text-red-500">*</span></label>
                   <Input
                     value={fullName}
                     onChange={(event) => setFullName(event.target.value)}
                     placeholder="Enter your first and last name"
                     required
                     disabled={isSubmitting}
-                    className="bg-white/5 border-white/20 text-white placeholder:text-white/50"
+                    className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm text-white/80">Email</label>
+                  <label className="text-sm font-semibold text-gray-700">Email <span className="text-red-500">*</span></label>
                   <Input
                     type="email"
                     value={email}
@@ -256,11 +255,11 @@ export default function WaitlistPageClient() {
                     placeholder="name@example.com"
                     required
                     disabled={isSubmitting}
-                    className="bg-white/5 border-white/20 text-white placeholder:text-white/50"
+                    className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
                   />
                   {emailSuggestion && (
-                    <p className="text-xs text-amber-200">
-                      Did you mean <button type="button" className="underline" onClick={() => setEmail(emailSuggestion)}>{emailSuggestion}</button>?
+                    <p className="text-xs text-amber-600 font-medium">
+                      Did you mean <button type="button" className="underline text-blue-600 hover:text-blue-800" onClick={() => setEmail(emailSuggestion)}>{emailSuggestion}</button>?
                     </p>
                   )}
                 </div>
@@ -268,26 +267,26 @@ export default function WaitlistPageClient() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm text-white/80">How do you identify?</label>
+                  <label className="text-sm font-semibold text-gray-700">How do you identify? <span className="text-red-500">*</span></label>
                   <div className="relative">
                     <select
                       value={userType}
                       onChange={(event) => setUserType(event.target.value)}
                       disabled={isSubmitting}
-                      className="w-full appearance-none bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00D9FF]"
+                      className="w-full appearance-none bg-white border border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-xl px-4 py-3 text-gray-900 transition-all shadow-sm hover:shadow-md focus:outline-none"
                     >
                       {userTypes.map((type) => (
-                        <option key={type.value} value={type.value} className="text-black">
+                        <option key={type.value} value={type.value} className="text-gray-900">
                           {type.label}
                         </option>
                       ))}
                     </select>
-                    <Sparkles className="w-4 h-4 text-[#00D9FF] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <Sparkles className="w-4 h-4 text-blue-600 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm text-white/80 flex items-center gap-2">
-                    <MapPin className="w-4 h-4" />
+                  <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-pink-500" />
                     Which district are you from?
                   </label>
                   <Input
@@ -295,13 +294,13 @@ export default function WaitlistPageClient() {
                     onChange={(event) => setDistrict(event.target.value)}
                     placeholder="Coimbatore, Chennai, Madurai..."
                     disabled={isSubmitting}
-                    className="bg-white/5 border-white/20 text-white placeholder:text-white/50"
+                    className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
                   />
-                  <div className="min-h-[1.25rem] text-xs text-white/60 flex items-center gap-2">
-                    {isLocating && <Loader2 className="h-4 w-4 animate-spin" />}
-                    {locationStatus === 'success' && !isLocating && 'Location detected automatically. Feel free to adjust.'}
+                  <div className="min-h-[1.25rem] text-xs text-gray-500 flex items-center gap-2">
+                    {isLocating && <Loader2 className="h-4 w-4 animate-spin text-blue-500" />}
+                    {locationStatus === 'success' && !isLocating && <span className="text-green-600">✓ Location detected automatically. Feel free to adjust.</span>}
                     {locationStatus === 'denied' && !isLocating && (
-                      <span className="flex items-center gap-1 text-amber-200">
+                      <span className="flex items-center gap-1 text-amber-600">
                         <ShieldAlert className="h-3 w-3" /> Location access denied. You can still enter your district manually.
                       </span>
                     )}
@@ -312,8 +311,8 @@ export default function WaitlistPageClient() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm text-white/80 flex items-center gap-2">
-                    <Phone className="w-4 h-4" />
+                  <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                    <Phone className="w-4 h-4 text-purple-500" />
                     Contact number (optional)
                   </label>
                   <Input
@@ -322,53 +321,53 @@ export default function WaitlistPageClient() {
                     onChange={(event) => setPhone(event.target.value)}
                     placeholder="10 digit mobile"
                     disabled={isSubmitting}
-                    className="bg-white/5 border-white/20 text-white placeholder:text-white/50"
+                    className="bg-white border-gray-200 hover:border-purple-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all shadow-sm hover:shadow-md"
                   />
                   {phoneSuggestion && (
-                    <p className="text-xs text-amber-200">
-                      Tip: try <button type="button" className="underline" onClick={() => setPhone(phoneSuggestion)}>{phoneSuggestion}</button> as your 10-digit mobile.
+                    <p className="text-xs text-amber-600 font-medium">
+                      Tip: try <button type="button" className="underline text-blue-600 hover:text-blue-800" onClick={() => setPhone(phoneSuggestion)}>{phoneSuggestion}</button> as your 10-digit mobile.
                     </p>
                   )}
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm text-white/80">Business or brand name (optional)</label>
+                  <label className="text-sm font-semibold text-gray-700">Business or brand name (optional)</label>
                   <Input
                     value={businessName}
                     onChange={(event) => setBusinessName(event.target.value)}
                     placeholder="Tell us the name people know you by"
                     disabled={isSubmitting}
-                    className="bg-white/5 border-white/20 text-white placeholder:text-white/50"
+                    className="bg-white border-gray-200 hover:border-purple-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all shadow-sm hover:shadow-md"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm text-white/80">What support are you looking for? (optional)</label>
+                <label className="text-sm font-semibold text-gray-700">What support are you looking for? (optional)</label>
                 <Textarea
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
                   placeholder="Share campaign goals, marketing needs, or ad spaces you want to fill..."
                   rows={4}
                   disabled={isSubmitting}
-                  className="bg-white/5 border-white/20 text-white placeholder:text-white/50"
+                  className="bg-white border-gray-200 hover:border-pink-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all shadow-sm hover:shadow-md resize-none"
                 />
               </div>
 
               {feedback && (
                 <div
-                  className={`rounded-xl border px-4 py-4 text-sm flex items-start gap-2 ${
+                  className={`rounded-xl border-2 px-5 py-4 text-sm font-medium flex items-start gap-3 shadow-md ${
                     feedback.type === 'success'
-                      ? 'border-green-400/40 bg-green-400/10 text-green-100'
-                      : 'border-red-400/40 bg-red-400/10 text-red-100'
+                      ? 'border-green-500 bg-green-50 text-green-700'
+                      : 'border-red-500 bg-red-50 text-red-700'
                   }`}
                 >
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-xl flex-shrink-0">{feedback.type === 'success' ? '✅' : '⚠️'}</span>
                   <span>{feedback.message}</span>
                 </div>
               )}
 
               {validationErrors.length > 0 && (
-                <div className="rounded-xl border border-amber-400/40 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
+                <div className="rounded-xl border-2 border-amber-500 bg-amber-50 px-5 py-4 text-sm text-amber-700 font-medium">
                   <ul className="list-disc space-y-1 pl-5">
                     {validationErrors.map((error) => (
                       <li key={error}>{error}</li>
@@ -380,21 +379,20 @@ export default function WaitlistPageClient() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full btn-glow bg-gradient-to-r from-[#00D9FF] to-[#A855F7] text-lg py-6"
+                className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold text-lg py-6 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
               >
-                {isSubmitting ? 'Submitting your details...' : 'Join the priority waitlist'}
+                {isSubmitting ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                    Submitting your details...
+                  </span>
+                ) : (
+                  <span className="flex items-center justify-center gap-2">
+                    Join the priority waitlist
+                  </span>
+                )}
               </Button>
             </form>
-
-            {/* <PushSubscriptionPrompt
-              className="mt-6"
-              metadata={{ source: 'waitlist_page', coordinates }}
-              interests={[userType]}
-            /> */}
-
-            <footer className="text-center text-xs text-white/50">
-              Your responses are stored securely in Supabase and used only for NexGenAds launch updates.
-            </footer>
           </div>
         </div>
       </section>
