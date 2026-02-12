@@ -38,21 +38,21 @@ type SocialLink = {
 const contactInfo: ContactInfo[] = [
   {
     icon: Mail,
-    title: 'Email',
-    value: 'hello@nexgenads.space',
-    link: 'mailto:hello@nexgenads.space',
+    title: "Email",
+    value: "contact@nexgenads.space",
+    link: "mailto:contact@nexgenads.space",
   },
   {
     icon: Phone,
-    title: 'Phone',
-    value: '+91 95663 72450',
-    link: 'tel:+919876543210',
+    title: "Phone",
+    value: "+91 95663 72450",
+    link: "tel:+919876543210",
   },
   {
     icon: MapPin,
-    title: 'Location',
-    value: 'Coimbatore, Tamil Nadu, India',
-    link: '#map',
+    title: "Location",
+    value: "Coimbatore, Tamil Nadu, India",
+    link: "#map",
   },
 ];
 
