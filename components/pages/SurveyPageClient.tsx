@@ -492,7 +492,7 @@ const SurveyPageClient = () => {
       <section className="section-padding bg-gradient-to-br from-brand-50/80 via-white to-gold-500/10">
         <div className="container-custom text-center pt-20 md:pt-2">
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 text-foreground tracking-tight" style={{ fontFamily: 'var(--font-neue-machina)' }}>
-            Help Us <span className="bg-gradient-to-r from-[#008dec] via-[#1d36bf] to-[#f30a29] bg-clip-text text-transparent">Build Better</span>
+            Help Us <span className="text-[#1d36bf]">Build Better</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Your feedback shapes the future of NexGenAds. Take our survey and be part of the journey.

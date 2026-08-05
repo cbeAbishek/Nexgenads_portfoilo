@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = getPortfolioById(id);
   if (!item) return {};
   return {
-    title: `${item.title} | NexGen Case Study`,
+    title: `${item.title} | NexGenAds Case Study`,
     description: item.summary,
     keywords: `${item.industry}, ${item.category}, case study, NexGen`,
     alternates: { canonical: `/portfolio/${id}` },

@@ -24,20 +24,20 @@ export const metadata = {
 
 export default function CookiePolicyPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50 text-gray-900">
+    <div className="min-h-screen bg-gradient-to-b from-brand-50 via-white to-background text-gray-900">
       <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl space-y-12">
           <header className="space-y-6 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 to-orange-100 px-5 py-2.5 text-sm font-medium text-amber-800 shadow-sm">
+            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-100 to-gold-50 px-5 py-2.5 text-sm font-medium text-gold-600 shadow-sm">
               <span className="text-base">🍪</span>
               <span className="tracking-wide">Cookies & Storage</span>
             </div>
 
             <h1 className="text-3xl font-bold md:text-5xl lg:text-6xl leading-tight">
               Cookie Policy for{' '}
-              <span className="text-blue-600">Nex</span>
-              <span className="text-red-600">Gen</span>
-              <span className="text-yellow-500">Ads</span>
+              <span className="text-[#008dec]">Nex</span>
+              <span className="text-[#f30a29]">Gen</span>
+              <span className="text-[#f3a800]">Ads</span>
             </h1>
 
             <p className="mx-auto max-w-3xl text-base text-gray-600 md:text-lg leading-relaxed">

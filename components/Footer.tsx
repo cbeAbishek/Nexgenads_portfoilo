@@ -99,20 +99,23 @@ const Footer = () => {
       />
       <div className="container-shell relative z-10 pb-10 pt-16 md:pt-20">
         {/* Top CTA strip */}
-        <div className="relative mb-14 flex flex-col items-start justify-between gap-6 overflow-hidden rounded-3xl border border-brand-500/20 bg-brand-gradient p-8 text-white shadow-xl shadow-brand-500/20 sm:p-10 lg:flex-row lg:items-center">
-          <div className="absolute inset-x-0 top-0 h-1" style={{ background: "linear-gradient(90deg,#f30a29,#f3a800,#008dec,#1d36bf)" }} aria-hidden />
+        <div className="relative mb-14 flex flex-col items-start justify-between gap-6 overflow-hidden rounded-3xl border border-white/80 bg-white/75 p-8 shadow-xl shadow-brand-500/10 backdrop-blur-xl sm:p-10 lg:flex-row lg:items-center">
+          <div
+            className="absolute inset-x-0 top-0 h-1 bg-brand-500"
+            aria-hidden
+          />
           <div>
-            <h2 className="font-display text-2xl font-bold sm:text-3xl">
+            <h2 className="font-display text-2xl font-bold text-ink-700 sm:text-3xl">
               Ready to build, automate &amp; scale?
             </h2>
-            <p className="mt-2 max-w-xl text-sm text-white/85 sm:text-base">
+            <p className="mt-2 max-w-xl text-sm text-muted-foreground sm:text-base">
               Book a free consultation and get a tailored roadmap from
               NexGen&apos;s engineering team.
             </p>
           </div>
           <Button
             asChild
-            className="shrink-0 rounded-full bg-white font-semibold text-ink-700 shadow-lg hover:bg-brand-50"
+            className="shrink-0 rounded-full bg-brand-500 font-semibold text-white shadow-lg shadow-brand-500/25 transition-all hover:scale-[1.02] hover:bg-brand-600"
           >
             <Link href="/contact">
               Book a Consultation <ArrowRight className="h-4 w-4" />
@@ -125,7 +128,7 @@ const Footer = () => {
           <div className="col-span-2 space-y-5">
             <Logo />
             <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
-              NexGen is an AI-driven technology company helping businesses
+              NexGenAds is an AI-driven technology company helping businesses
               build, automate, and scale through software, AI, and intelligent
               marketing.
             </p>

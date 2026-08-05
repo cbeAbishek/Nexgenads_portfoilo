@@ -33,7 +33,7 @@
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
 
-  /* Brand palette - old NexGen light theme (blue) */
+  /* Brand palette - old NexGenAds light theme (blue) */
   --color-brand-50: oklch(0.97 0.02 215);
   --color-brand-100: oklch(0.94 0.05 215);
   --color-brand-200: oklch(0.88 0.09 215);
@@ -72,7 +72,7 @@
 :root {
   --radius: 0.75rem;
 
-  /* Light theme - old NexGen palette */
+  /* Light theme - old NexGenAds palette */
   --background: oklch(0.99 0.003 215); /* near-white blue tint */
   --foreground: oklch(0.16 0.02 240); /* near-black with blue cast */
   --card: oklch(1 0 0);
@@ -165,11 +165,10 @@
   }
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(100deg, var(--glow-a), var(--glow-b) 55%, var(--glow-c));
+    background-image: linear-gradient(100deg, #008dec, #1d36bf);
   }
   .text-gradient-brand {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(95deg, #f30a29 0%, #f3a800 30%, #008dec 62%, #1d36bf 100%);
+    color: #008dec;
   }
   .glass {
     background: oklch(1 0 0 / 0.72);
@@ -200,23 +199,23 @@
     mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
   }
 
-  /* ---- 4-colour brand helpers ---- */
+  /* ---- brand helpers (single colour per use - professional, no rainbow) ---- */
   .brand-bar {
     height: 3px;
     width: 4.5rem;
     border-radius: 9999px;
-    background: linear-gradient(90deg, #f30a29, #f3a800, #008dec, #1d36bf);
+    background: #008dec;
   }
   .brand-bar-wide {
     height: 3px;
     border-radius: 9999px;
-    background: linear-gradient(90deg, #f30a29, #f3a800, #008dec, #1d36bf);
+    background: linear-gradient(90deg, #008dec, #1d36bf);
   }
   .bg-brand-gradient {
-    background-image: linear-gradient(100deg, #f30a29, #f3a800 30%, #008dec 65%, #1d36bf);
+    background-color: #008dec;
   }
   .text-brand-gradient-soft {
-    background-image: linear-gradient(90deg, #1d36bf, #008dec 55%, #f30a29);
+    color: #1d36bf;
   }
 
   /* ---- Legacy utilities (kept for existing pages) ---- */
@@ -250,7 +249,7 @@
 
   .btn-glow::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-r from-[#008dec] via-[#f3a800] to-[#f30a29] opacity-0 transition-opacity duration-300;
+    @apply absolute inset-0 bg-gradient-to-r from-[#008dec] to-[#1d36bf] opacity-0 transition-opacity duration-300;
   }
 
   .btn-glow:hover::before {
@@ -273,12 +272,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #008dec, #1d36bf 55%, #f30a29);
+  background: linear-gradient(to bottom, #008dec, #1d36bf);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #f30a29, #1d36bf);
+  background: #1d36bf;
 }
 
 /* Loading spinner */
@@ -322,12 +321,7 @@ html {
 }
 
 .text-gradient-animated {
-  background: linear-gradient(90deg, #f30a29, #f3a800, #008dec, #1d36bf, #f30a29);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 8s ease-in-out infinite;
+  color: #008dec;
 }
 
 @keyframes blob {
@@ -441,10 +435,7 @@ html {
 
 .spinner {
   border: 3px solid rgba(0, 141, 236, 0.2);
-  border-top-color: #f30a29;
-  border-right-color: #f3a800;
-  border-bottom-color: #008dec;
-  border-left-color: #1d36bf;
+  border-top-color: #008dec;
   border-radius: 50%;
   width: 40px;
   height: 40px;

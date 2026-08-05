@@ -177,14 +177,14 @@ const Navigation = () => {
                       </p>
                       <Link
                         href="/products/1grow"
-                        className="group block overflow-hidden rounded-xl border border-brand-500/20 bg-brand-gradient p-4 text-white shadow-lg shadow-brand-500/25 transition-transform hover:-translate-y-0.5"
+                        className="group block overflow-hidden rounded-xl border border-brand-500/25 bg-white/80 p-4 shadow-lg shadow-brand-500/10 backdrop-blur transition-transform hover:-translate-y-0.5"
                       >
-                        <p className="text-sm font-bold">1Grow</p>
-                        <p className="mt-1 text-xs leading-snug text-white/85">
+                        <p className="text-sm font-bold text-ink-700">1Grow</p>
+                        <p className="mt-1 text-xs leading-snug text-muted-foreground">
                           The all-in-one sales &amp; marketing OS built by
                           NexGen.
                         </p>
-                        <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold">
+                        <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand-600">
                           Explore product
                           <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                         </span>

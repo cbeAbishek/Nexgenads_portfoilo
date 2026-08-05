@@ -112,7 +112,7 @@ export default function ContactPageClient() {
       <section className="section-padding relative overflow-hidden bg-gradient-to-br from-brand-50/60 via-white to-gold-500/10 border-b border-border">
         <div className="container-custom text-center pt-20 md:pt-2">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-foreground tracking-tight">
-            Get in <span className="bg-gradient-to-r from-[#008dec] via-[#1d36bf] to-[#f30a29] bg-clip-text text-transparent">Touch</span>
+            Get in <span className="text-[#1d36bf]">Touch</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Have questions or want to collaborate with <span className="text-[#008dec] font-semibold">Nex</span><span className="text-[#f30a29] font-semibold">Gen</span><span className="text-[#f3a800] font-semibold">Ads</span>? We&apos;d love to hear from you.
@@ -248,7 +248,7 @@ export default function ContactPageClient() {
 
               <div className="bg-white/80 backdrop-blur-sm p-8 rounded-xl border border-gold-200 shadow-lg">
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="w-10 h-10 rounded-xl bg-gradient-to-r from-[#f3a800] to-[#f30a29] flex items-center justify-center text-white text-lg font-bold shadow-md">2</span>
+                  <span className="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-white text-lg font-bold shadow-md">2</span>
                   <h3 className="text-xl font-bold text-gray-900">Connect with Us</h3>
                 </div>
                 <div className="flex space-x-4">

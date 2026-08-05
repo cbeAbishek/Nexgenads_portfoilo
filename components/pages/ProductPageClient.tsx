@@ -506,24 +506,24 @@ export default function ProductPageClient() {
 
       {/* CTA */}
       <section className="container-shell pb-8">
-        <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-10 text-center text-white sm:p-14">
-          <div className="absolute inset-x-0 top-0 h-1" style={{ background: "linear-gradient(90deg,#f30a29,#f3a800,#008dec,#1d36bf)" }} aria-hidden />
+        <div className="relative overflow-hidden rounded-3xl border border-white/80 bg-white/75 p-10 text-center shadow-2xl shadow-brand-500/10 backdrop-blur-xl sm:p-14">
+          <div className="absolute inset-x-0 top-0 h-1 bg-brand-500" aria-hidden />
           <div
             className="pointer-events-none absolute inset-0 bg-grid opacity-20"
             aria-hidden
           />
           <div className="relative">
-            <h2 className="text-3xl font-bold sm:text-4xl">
+            <h2 className="text-3xl font-bold text-ink-700 sm:text-4xl">
               See 1Grow in action
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-white/85">
+            <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
               Book a personalised demo with our team and see how 1Grow fits your
               sales process.
             </p>
             <Button
               asChild
               size="lg"
-              className="mt-8 rounded-full bg-white px-8 font-semibold text-ink-700 shadow-xl hover:bg-brand-50"
+              className="mt-8 rounded-full bg-brand-500 px-8 font-semibold text-white shadow-xl shadow-brand-500/25 transition-all hover:scale-[1.02] hover:bg-brand-600"
             >
               <Link href="/contact">
                 Schedule a Demo <ArrowRight className="h-4 w-4" />

@@ -47,7 +47,7 @@ export default function ServicesPageClient() {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-pretty text-muted-foreground md:text-lg">
             From websites and mobile apps to ERP/CRM, AI automation, and
-            AI-search-ready marketing - NexGen delivers end-to-end technology
+            AI-search-ready marketing - NexGenAds delivers end-to-end technology
             and growth services.
           </p>
         </div>
@@ -111,18 +111,21 @@ export default function ServicesPageClient() {
         </motion.div>
 
         {/* CTA */}
-        <div className="relative mt-16 overflow-hidden rounded-3xl border border-brand-500/20 bg-brand-gradient p-10 text-center text-white sm:p-14">
-          <div className="absolute inset-x-0 top-0 h-1" style={{ background: "linear-gradient(90deg,#f30a29,#f3a800,#008dec,#1d36bf)" }} aria-hidden />
-          <h2 className="text-2xl font-bold sm:text-3xl">
+        <div className="relative mt-16 overflow-hidden rounded-3xl border border-white/80 bg-white/75 p-10 text-center shadow-2xl shadow-brand-500/10 backdrop-blur-xl sm:p-14">
+          <div
+            className="absolute inset-x-0 top-0 h-1 bg-brand-500"
+            aria-hidden
+          />
+          <h2 className="text-2xl font-bold text-ink-700 sm:text-3xl">
             Not sure where to start?
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-white/85">
+          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
             Tell us your goal and we&apos;ll recommend the right mix of services
             - free, no obligation.
           </p>
           <Link
             href="/contact"
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-ink-700 shadow-xl transition-transform hover:scale-[1.02]"
+            className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-500 px-7 py-3 text-sm font-semibold text-white shadow-xl shadow-brand-500/25 transition-all hover:scale-[1.02] hover:bg-brand-600"
           >
             Get a free consultation <ArrowRight className="h-4 w-4" />
           </Link>

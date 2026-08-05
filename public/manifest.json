@@ -1,5 +1,5 @@
 {
-  "name": "NexGen - AI-Driven Technology Company",
+  "name": "NexGenAds - AI-Driven Technology Company",
   "short_name": "NexGen",
   "description": "AI-driven technology company building software, AI automation, and intelligent marketing solutions.",
   "start_url": "/",
@@ -26,7 +26,7 @@
     {
       "name": "Services",
       "short_name": "Services",
-      "description": "Explore NexGen services",
+      "description": "Explore NexGenAds services",
       "url": "/services"
     },
     {

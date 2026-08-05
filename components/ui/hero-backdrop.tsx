@@ -24,10 +24,10 @@ export function HeroBackdrop() {
       {/* bottom fade into page background */}
       <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background to-transparent" />
 
-      {/* 4-colour brand edge */}
+      {/* brand edge */}
       <div
         className="absolute inset-x-0 bottom-0 h-[3px]"
-        style={{ background: "linear-gradient(90deg,#f30a29,#f3a800,#008dec,#1d36bf)" }}
+        style={{ background: "linear-gradient(90deg,#008dec,#1d36bf)" }}
       />
     </div>
   );

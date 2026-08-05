@@ -126,24 +126,24 @@ export default function ServicePageClient({ service }: { service: Service }) {
 
       {/* CTA */}
       <section className="container-shell py-14 md:py-16">
-        <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-10 text-center text-white sm:p-14">
-          <div className="absolute inset-x-0 top-0 h-1" style={{ background: "linear-gradient(90deg,#f30a29,#f3a800,#008dec,#1d36bf)" }} aria-hidden />
+        <div className="relative overflow-hidden rounded-3xl border border-white/80 bg-white/75 p-10 text-center shadow-2xl shadow-brand-500/10 backdrop-blur-xl sm:p-14">
+          <div className="absolute inset-x-0 top-0 h-1 bg-brand-500" aria-hidden />
           <div className="pointer-events-none absolute inset-0 bg-grid opacity-20" aria-hidden />
           <div className="relative">
-            <h2 className="text-2xl font-bold sm:text-3xl">Let&apos;s scope your {service.title.toLowerCase()} project</h2>
-            <p className="mx-auto mt-3 max-w-xl text-white/85">
+            <h2 className="text-2xl font-bold text-ink-700 sm:text-3xl">Let&apos;s scope your {service.title.toLowerCase()} project</h2>
+            <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
               Book a free consultation and get a written plan and estimate within days.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button asChild className="rounded-full bg-white px-7 font-semibold text-ink-700 shadow-xl hover:bg-brand-50">
+              <Button asChild className="rounded-full bg-brand-500 px-7 font-semibold text-white shadow-xl shadow-brand-500/25 hover:bg-brand-600">
                 <Link href="/contact">Get a free quote</Link>
               </Button>
-              <Button asChild variant="outline" className="rounded-full border-white/40 bg-white/10 text-white backdrop-blur hover:bg-white/20">
+              <Button asChild variant="outline" className="rounded-full border-brand-500/30 bg-white/80 text-brand-600 backdrop-blur hover:bg-brand-50">
                 <Link href="/services">Browse other services</Link>
               </Button>
             </div>
-            <p className="mt-6 flex items-center justify-center gap-2 text-sm text-white/75">
-              <ShieldCheck className="h-4 w-4" /> No obligation · Response within 1 business day
+            <p className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+              <ShieldCheck className="h-4 w-4 text-brand-500" /> No obligation · Response within 1 business day
               <Zap className="ml-3 h-4 w-4" />
             </p>
           </div>

@@ -35,7 +35,7 @@ export default function BlogPostClient({ post }: Props) {
               <span className="px-3 py-1.5 bg-crimson-500/10 rounded-lg text-crimson-600 font-medium">By {post.author}</span>
             </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-[#008dec] via-[#1d36bf] to-[#f30a29] bg-clip-text text-transparent leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-[#1d36bf] leading-tight">
               {post.title}
             </h1>
             {post.subtitle && (

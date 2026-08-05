@@ -17,7 +17,7 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className={`mb-8 ${centered ? "text-center" : ""} ${className}`}>
-      <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#008dec] via-[#1d36bf] to-[#f3a800] bg-clip-text text-transparent">
+      <h2 className="text-3xl md:text-4xl font-bold text-[#1d36bf]">
         {title}
       </h2>
       {subtitle && (
@@ -59,7 +59,7 @@ export function Badge({ children, variant = "default", className = "" }: BadgePr
   const variants = {
     default: "bg-[#008dec]/10 text-[#008dec] border border-[#008dec]/20",
     outline: "border border-[#1d36bf]/30 text-[#333333]",
-    gradient: "bg-gradient-to-r from-[#008dec]/20 to-[#f3a800]/20 text-[#1d36bf] border border-[#008dec]/30",
+    gradient: "bg-[#1d36bf]/10 text-[#1d36bf] border border-[#1d36bf]/25",
   };
 
   return (

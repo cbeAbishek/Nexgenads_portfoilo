@@ -20,9 +20,9 @@ const SITE_URL = "https://nexgenads.space";
 
 export const metadata: Metadata = {
   title:
-    "NexGen | AI-Driven Technology Company - Software, AI Automation & Digital Growth",
+    "NexGenAds | AI-Driven Technology Company - Software, AI Automation & Digital Growth",
   description:
-    "NexGen is an AI-driven technology company helping businesses build, automate, and scale through software, AI, digital transformation, and intelligent marketing. Website & app development, ERP/CRM, AI automation, SaaS, SEO, GEO & AEO.",
+    "NexGenAds is an AI-driven technology company helping businesses build, automate, and scale through software, AI, digital transformation, and intelligent marketing. Website & app development, ERP/CRM, AI automation, SaaS, SEO, GEO & AEO.",
   keywords: [
     "AI technology company",
     "software development company",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "Answer Engine Optimization",
     "UI UX design",
     "cloud solutions India",
-    "NexGen Coimbatore",
+    "NexGenAds Coimbatore",
   ].join(", "),
   authors: [{ name: "NexGen" }],
   creator: "NexGen",
@@ -52,16 +52,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: SITE_URL,
-    title: "NexGen | AI-Driven Technology Company",
+    title: "NexGenAds | AI-Driven Technology Company",
     description:
-      "Build, automate, and scale with NexGen - software, AI, digital transformation, and intelligent marketing solutions.",
+      "Build, automate, and scale with NexGenAds - software, AI, digital transformation, and intelligent marketing solutions.",
     siteName: "NexGen",
     images: [
       {
         url: "/logo.png",
         width: 512,
         height: 512,
-        alt: "NexGen - AI-Driven Technology Company",
+        alt: "NexGenAds - AI-Driven Technology Company",
       },
     ],
   },
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NexGen | AI-Driven Technology Company",
+    title: "NexGenAds | AI-Driven Technology Company",
     description:
       "Software, AI automation, SaaS, and intelligent marketing - build, automate, and scale with NexGen.",
     images: ["/logo.png"],
@@ -129,7 +129,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "NexGen",
-              alternateName: "NexGen Technologies",
+              alternateName: "NexGenAds Technologies",
               url: SITE_URL,
               logo: `${SITE_URL}/logo.png`,
               description:

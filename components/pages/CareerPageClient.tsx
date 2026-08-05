@@ -49,7 +49,7 @@ export default function CareerPageClient({ jobOpenings }: CareerPageClientProps)
             </Badge>
 
             <h1 className="mb-6 text-4xl md:text-6xl font-bold leading-tight">
-              <span className="bg-gradient-to-r from-[#008dec] via-[#1d36bf] to-[#f30a29] bg-clip-text text-transparent">
+              <span className="text-[#1d36bf]">
                 Build the Future
               </span>
               <br />

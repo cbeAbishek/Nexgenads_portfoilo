@@ -23,7 +23,7 @@ export default function BlogListingClient() {
             </Badge>
             
             <h1 className="mb-6 text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              <span className="bg-gradient-to-r from-[#008dec] via-[#1d36bf] to-[#f30a29] bg-clip-text text-transparent">
+              <span className="text-[#1d36bf]">
                 OOH Advertising
               </span>
               <br />

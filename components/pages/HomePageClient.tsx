@@ -155,7 +155,7 @@ function Hero() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mx-auto mt-7 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-              NexGen is an AI-driven technology company. We design software,
+              NexGenAds is an AI-driven technology company. We design software,
               deploy AI automation, and engineer growth systems that move your
               business forward - from web apps and ERP/CRM to AI chatbots and
               intelligent marketing.
@@ -372,7 +372,7 @@ function CompanyOverview() {
               <span className="text-gradient-brand">not an agency</span>
             </>
           }
-          subtitle="NexGen pairs deep software engineering with AI and growth expertise. One team - from architecture and build to automation and marketing."
+          subtitle="NexGenAds pairs deep software engineering with AI and growth expertise. One team - from architecture and build to automation and marketing."
         />
         <div className="grid gap-6 md:grid-cols-3">
           {items.map((it, i) => (
@@ -643,7 +643,9 @@ function CaseStudies() {
                     "flex h-36 items-end justify-between p-5",
                     c.gradient,
                   )}
-                >                  <span className="rounded-full bg-white/20 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-widest text-white backdrop-blur">
+                >
+                  {" "}
+                  <span className="rounded-full bg-white/20 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-widest text-white backdrop-blur">
                     {c.category}
                   </span>
                   <ArrowUpRight className="h-5 w-5 text-white/80 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -780,9 +782,9 @@ function TechStack() {
   );
 }
 
-/* -------------------------------- Why NexGen ------------------------------- */
+/* -------------------------------- Why NexGenAds ------------------------------- */
 
-const whyNexGen = [
+const whyNexGenAds = [
   {
     icon: ShieldCheck,
     title: "Enterprise-grade",
@@ -830,7 +832,7 @@ function WhyNexGen() {
           subtitle="We combine engineering depth, AI capability, and growth expertise - so you get one accountable partner, not five vendors."
         />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {whyNexGen.map((it, i) => (
+          {whyNexGenAds.map((it, i) => (
             <Reveal key={it.title} delay={(i % 3) * 0.05}>
               <div className="card-border flex h-full gap-4 rounded-2xl bg-card p-6">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600">
@@ -856,7 +858,7 @@ function WhyNexGen() {
 const testimonials = [
   {
     quote:
-      "NexGen rebuilt our ERP and automated our order workflows. We cut manual data entry by over 40% in the first quarter.",
+      "NexGenAds rebuilt our ERP and automated our order workflows. We cut manual data entry by over 40% in the first quarter.",
     name: "Operations Head",
     role: "Manufacturing group, Coimbatore",
   },
@@ -933,7 +935,7 @@ function BlogPreview() {
             title={
               <>
                 Latest from the{" "}
-                <span className="text-gradient-brand">NexGen blog</span>
+                <span className="text-gradient-brand">NexGenAds blog</span>
               </>
             }
           />
@@ -988,24 +990,25 @@ function FinalCTA() {
     <section className="section-pad">
       <div className="container-shell">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-10 text-center text-white shadow-2xl shadow-brand-500/30 sm:p-16">
-          <div className="absolute inset-x-0 top-0 h-1" style={{ background: "linear-gradient(90deg,#f30a29,#f3a800,#008dec,#1d36bf)" }} aria-hidden />
+          <div className="relative overflow-hidden rounded-3xl border border-white/80 bg-white/75 p-10 text-center shadow-2xl shadow-brand-500/10 backdrop-blur-xl sm:p-16">
+            <div
+              className="absolute inset-x-0 top-0 h-1 bg-brand-500"
+              aria-hidden
+            />
             <div
               className="pointer-events-none absolute inset-0 bg-grid opacity-20"
               aria-hidden
             />
             <div
-              className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-white/10 blur-3xl"
+              className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-brand-500/10 blur-3xl"
               aria-hidden
             />
             <div className="relative">
-              <Eyebrow>
-                <span className="text-white">Let&apos;s talk</span>
-              </Eyebrow>
-              <h2 className="mx-auto max-w-2xl text-balance text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+              <Eyebrow>Let&apos;s talk</Eyebrow>
+              <h2 className="mx-auto max-w-2xl text-balance text-3xl font-bold leading-tight text-ink-700 sm:text-4xl md:text-5xl">
                 Ready to build, automate, and scale?
               </h2>
-              <p className="mx-auto mt-5 max-w-xl text-white/85 md:text-lg">
+              <p className="mx-auto mt-5 max-w-xl text-muted-foreground md:text-lg">
                 Book a free consultation, request a proposal, or schedule a
                 1Grow demo. We respond within one business day.
               </p>
@@ -1013,7 +1016,7 @@ function FinalCTA() {
                 <Button
                   asChild
                   size="lg"
-                  className="w-full rounded-full bg-white px-8 font-semibold text-ink-700 shadow-xl hover:bg-brand-50 sm:w-auto"
+                  className="w-full rounded-full bg-brand-500 px-8 font-semibold text-white shadow-xl shadow-brand-500/25 transition-all hover:scale-[1.02] hover:bg-brand-600 sm:w-auto"
                 >
                   <Link href="/contact">Book a Consultation</Link>
                 </Button>
@@ -1021,14 +1024,14 @@ function FinalCTA() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="w-full rounded-full border-white/40 bg-white/10 px-8 font-semibold text-white backdrop-blur hover:bg-white/20 sm:w-auto"
+                  className="w-full rounded-full border-brand-500/30 bg-white/80 px-8 font-semibold text-brand-600 backdrop-blur hover:bg-brand-50 sm:w-auto"
                 >
                   <Link href="/products/1grow">Schedule a Demo</Link>
                 </Button>
               </div>
-              <p className="mt-6 flex items-center justify-center gap-2 text-sm text-white/75">
-                <Phone className="h-4 w-4" /> +91 95663 72450 · Coimbatore,
-                Tamil Nadu
+              <p className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                <Phone className="h-4 w-4 text-brand-500" /> +91 95663 72450 ·
+                Coimbatore, Tamil Nadu
               </p>
             </div>
           </div>

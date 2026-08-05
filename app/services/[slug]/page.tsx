@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const service = getServiceBySlug(slug);
   if (!service) return {};
   return {
-    title: `${service.title} | NexGen Services`,
+    title: `${service.title} | NexGenAds Services`,
     description: service.short,
     keywords: `${service.title}, ${service.category}, NexGen`,
     alternates: { canonical: `/services/${slug}` },
