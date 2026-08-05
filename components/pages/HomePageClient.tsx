@@ -323,8 +323,8 @@ function DashboardMock() {
 /* ------------------------------- Stats strip ------------------------------ */
 
 const stats = [
-  { value: "120+", label: "Projects delivered" },
-  { value: "40+", label: "Industries served" },
+  { value: "12+", label: "Projects delivered" },
+  { value: "10+", label: "Industries served" },
   { value: "98%", label: "Client satisfaction" },
   { value: "24/7", label: "Dedicated support" },
 ];
@@ -509,7 +509,7 @@ function FeaturedSaaS() {
                 alt="1Grow logo"
                 width={44}
                 height={44}
-                className="h-11 w-11 rounded-xl object-cover shadow-md shadow-brand-500/15"
+                className="h-11 w-11 rounded-xl object-cover shadow-brand-500/15"
               />
             </div>
             <SectionHeading
@@ -1162,9 +1162,9 @@ const HomePageClient = () => {
       <ServicesOverview />
       <FeaturedSaaS />
       <Industries />
-      <CaseStudies />
+      {/* <CaseStudies /> */}
       <Process />
-      <TechStack />
+      {/* <TechStack /> */}
       <WhyNexGen />
       <Testimonials />
       <BlogPreview />

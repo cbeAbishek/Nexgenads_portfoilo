@@ -20,7 +20,7 @@ const SITE_URL = "https://nexgenads.space";
 
 export const metadata: Metadata = {
   title:
-    "NexGenAds | AI-Driven Technology Company - Software, AI Automation & Digital Growth",
+    "NexGenAds | AI-Driven Technology Company - Software, AI Automation and Digital Growth",
   description:
     "NexGenAds is an AI-driven technology company helping businesses build, automate, and scale through software, AI, digital transformation, and intelligent marketing. Website & app development, ERP/CRM, AI automation, SaaS, SEO, GEO & AEO.",
   keywords: [

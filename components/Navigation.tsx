@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/portfolio", label: "Portfolio" },
+  // { href: "/portfolio", label: "Portfolio" },
   { href: "/blog", label: "Blog" },
   { href: "/career", label: "Career" },
   { href: "/contact", label: "Contact" },
@@ -82,7 +82,7 @@ const Navigation = () => {
           className={cn(
             "mt-3 sm:mt-4 flex items-center justify-between gap-4 rounded-2xl border px-4 py-2.5 transition-all duration-300 sm:px-5",
             isScrolled
-              ? "glass border-brand-500/25 shadow-[0_8px_32px_rgba(0,141,236,0.12)]"
+              ? "bg-white border-brand-500/25 shadow-[0_8px_32px_rgba(0,141,236,0.12)]"
               : "border-transparent bg-transparent",
           )}
         >

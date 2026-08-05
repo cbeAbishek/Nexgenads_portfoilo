@@ -36,15 +36,15 @@ const teamMembers = [
     description:
       "Leads operations, partnerships, and go-to-market strategy for NexGen's services and products.",
     image: "/team/jubair.png",
-    linkedin: "https://linkedin.com/in/mohammedjubair",
+    linkedin: "https://www.linkedin.com/in/mohammed-jubair-572862334/",
     badgeClass: "bg-gold-500/10 text-gold-600 border-gold-500/25",
     barClass: "bg-gold-500",
   },
 ];
 
 const stats = [
-  { value: "120+", label: "Projects delivered", accent: "#008dec" },
-  { value: "40+", label: "Industries served", accent: "#1d36bf" },
+  { value: "12+", label: "Projects delivered", accent: "#008dec" },
+  { value: "10+", label: "Industries served", accent: "#1d36bf" },
   { value: "98%", label: "Client satisfaction", accent: "#f3a800" },
   { value: "2024", label: "Founded in Coimbatore", accent: "#f30a29" },
 ];
@@ -162,8 +162,10 @@ const AboutPageClient = () => {
           </Reveal>
           <Reveal delay={0.12}>
             <h1 className="mx-auto max-w-4xl text-balance text-5xl font-bold leading-[1.06] tracking-tight text-ink-700 sm:text-6xl md:text-7xl">
-              We build, automate &amp; scale{" "}
-              <span className="text-gradient-brand">intelligent businesses</span>
+              We build, automate and scale{" "}
+              <span className="text-gradient-brand">
+                intelligent businesses
+              </span>
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
@@ -345,71 +347,87 @@ const AboutPageClient = () => {
       </section>
 
       {/* Team */}
-      <section className="bg-white/50 py-14 md:py-20">
+      <section className="bg-white/50 py-16 md:py-24">
         <div className="container-shell">
-          <Reveal className="mb-12 text-center">
+          <Reveal className="mb-10 text-center md:mb-14">
             <Eyebrow>Leadership</Eyebrow>
-            <h2 className="text-3xl font-bold tracking-tight text-ink-700 sm:text-4xl">
+
+            <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-ink-700 sm:text-4xl">
               The people behind NexGenAds
             </h2>
-            <div className="mx-auto mt-4 h-[3px] w-20 rounded-full bg-brand-500" />
+
+            <div
+              className="mx-auto mt-4 h-1 w-20 rounded-full bg-brand-500"
+              aria-hidden="true"
+            />
           </Reveal>
-          <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
-            {teamMembers.map((member, i) => (
-              <Reveal key={member.name} delay={i * 0.12} className="w-full">
-                <motion.div
-                  whileHover={{ y: -10 }}
+
+          <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+            {teamMembers.map((member, index) => (
+              <Reveal key={member.name} delay={index * 0.1} className="h-full">
+                <motion.article
+                  whileHover={{ y: -8 }}
                   transition={{
                     type: "spring",
                     stiffness: 260,
-                    damping: 20,
+                    damping: 22,
                   }}
-                  className="group relative h-full overflow-hidden rounded-2xl border border-white/70 bg-white/75 shadow-lg shadow-brand-500/5 backdrop-blur-xl transition-shadow duration-300 hover:shadow-2xl hover:shadow-brand-500/20"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/70 bg-white/80 shadow-lg shadow-brand-500/5 backdrop-blur-xl transition-shadow duration-300 hover:shadow-2xl hover:shadow-brand-500/15 focus-within:ring-2 focus-within:ring-brand-500/40"
                 >
                   <div
                     className={`absolute inset-x-0 top-0 z-10 h-1 ${member.barClass}`}
-                    aria-hidden
+                    aria-hidden="true"
                   />
-                  <div className="relative aspect-[6/9] overflow-hidden">
+
+                  {/* Image ratio: 9:6 */}
+                  <div className="relative aspect-[9/6] w-full overflow-hidden">
                     <Image
                       src={member.image}
-                      alt={`${member.name} portrait`}
+                      alt={`Portrait of ${member.name}`}
                       fill
-                      sizes="(min-width:768px) 360px, 100vw"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                      sizes="(min-width: 1024px) 520px, (min-width: 768px) 46vw, 100vw"
+                      className="object-cover object-top transition-transform duration-700 ease-out motion-safe:group-hover:scale-105"
                     />
+
+                    {/* Bottom gradient for better contrast */}
                     <div
-                      className="absolute inset-0 bg-gradient-to-t from-ink-900/70 via-ink-900/5 to-transparent"
-                      aria-hidden
+                      className="absolute inset-0 bg-gradient-to-t from-ink-900/60 via-ink-900/5 to-transparent"
+                      aria-hidden="true"
                     />
+
+                    {/* Subtle shine effect */}
                     <div
-                      className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
-                      aria-hidden
+                      className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out motion-safe:group-hover:translate-x-full"
+                      aria-hidden="true"
                     />
+
                     <a
                       href={member.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${member.name} on LinkedIn`}
-                      className="absolute bottom-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/15 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-white hover:text-brand-500"
+                      className="absolute bottom-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-white/20 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
                     >
-                      <Linkedin className="h-4 w-4" />
+                      <Linkedin className="h-5 w-5" aria-hidden="true" />
                     </a>
                   </div>
-                  <div className="p-6 text-center">
-                    <h3 className="text-xl font-bold text-ink-700">
+
+                  <div className="flex flex-1 flex-col p-5 text-center sm:p-6">
+                    <h3 className="text-lg font-bold tracking-tight text-ink-700 sm:text-xl">
                       {member.name}
                     </h3>
+
                     <span
-                      className={`mt-2 inline-block rounded-full border px-3 py-1 text-xs font-semibold ${member.badgeClass}`}
+                      className={`mx-auto mt-3 inline-block w-fit rounded-full border px-3 py-1 text-xs font-semibold ${member.badgeClass}`}
                     >
                       {member.role}
                     </span>
-                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-[0.925rem]">
                       {member.description}
                     </p>
                   </div>
-                </motion.div>
+                </motion.article>
               </Reveal>
             ))}
           </div>
