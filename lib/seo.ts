@@ -14,10 +14,9 @@ export interface SEOConfig {
 }
 
 const SITE_URL = "https://nexgenads.space";
-const SITE_NAME = "NexGen";
+const SITE_NAME = "NexGenAds";
 
-const DEFAULT_OG_IMAGE = "https://nexgenads.space/logo.png";
-const TWITTER_HANDLE = "@nexgen";
+const DEFAULT_OG_IMAGE = "https://nexgenads.space/NexGenAds_meta.jpg";
 
 /**
  * Generate comprehensive SEO metadata for pages
@@ -37,7 +36,9 @@ export function generateSEO(config: SEOConfig): Metadata {
   } = config;
 
   const canonicalUrl = canonical ? `${SITE_URL}${canonical}` : undefined;
-  const imageUrl = ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`;
+  const imageUrl = ogImage.startsWith("http")
+    ? ogImage
+    : `${SITE_URL}${ogImage}`;
 
   const metadata: Metadata = {
     title,
@@ -81,8 +82,6 @@ export function generateSEO(config: SEOConfig): Metadata {
       title,
       description,
       images: [imageUrl],
-      creator: TWITTER_HANDLE,
-      site: TWITTER_HANDLE,
     },
   };
 
@@ -94,7 +93,7 @@ export function generateSEO(config: SEOConfig): Metadata {
       publishedTime,
       modifiedTime: modifiedTime || publishedTime,
       authors: author ? [author] : undefined,
-      section: "Outdoor Advertising",
+      section: "Technology",
       tags: keywords,
     };
   }
@@ -165,7 +164,9 @@ export function generatePersonSchema(config: {
 /**
  * Generate JSON-LD structured data for breadcrumbs
  */
-export function generateBreadcrumbSchema(items: { name: string; url: string }[]) {
+export function generateBreadcrumbSchema(
+  items: { name: string; url: string }[],
+) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

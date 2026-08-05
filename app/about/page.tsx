@@ -26,5 +26,36 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return <AboutPageClient />;
+  const SITE_URL = "https://nexgenads.space";
+
+  const foundersSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        name: "Abishek G.",
+        jobTitle: "Founder & CEO",
+        worksFor: { "@id": `${SITE_URL}/#organization` },
+        url: `${SITE_URL}/about`,
+        email: "abishek@nexgenads.space",
+      },
+      {
+        "@type": "Person",
+        name: "Mohammed Jubair",
+        jobTitle: "Co-founder & COO",
+        worksFor: { "@id": `${SITE_URL}/#organization` },
+        url: `${SITE_URL}/about`,
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(foundersSchema) }}
+      />
+      <AboutPageClient />
+    </>
+  );
 }

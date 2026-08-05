@@ -44,9 +44,9 @@ export const metadata: Metadata = {
     "cloud solutions India",
     "NexGenAds Coimbatore",
   ].join(", "),
-  authors: [{ name: "NexGen" }],
-  creator: "NexGen",
-  publisher: "NexGen",
+  authors: [{ name: "NexGenAds" }],
+  creator: "NexGenAds",
+  publisher: "NexGenAds",
   metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
@@ -55,12 +55,12 @@ export const metadata: Metadata = {
     title: "NexGenAds | AI-Driven Technology Company",
     description:
       "Build, automate, and scale with NexGenAds - software, AI, digital transformation, and intelligent marketing solutions.",
-    siteName: "NexGen",
+    siteName: "NexGenAds",
     images: [
       {
-        url: "/logo.png",
-        width: 512,
-        height: 512,
+        url: "/og.png",
+        width: 1200,
+        height: 630,
         alt: "NexGenAds - AI-Driven Technology Company",
       },
     ],
@@ -73,9 +73,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "NexGenAds | AI-Driven Technology Company",
     description:
-      "Software, AI automation, SaaS, and intelligent marketing - build, automate, and scale with NexGen.",
-    images: ["/logo.png"],
-    creator: "@nexgen",
+      "Software, AI automation, SaaS, and intelligent marketing - build, automate, and scale with NexGenAds.",
+    images: ["/og.png"],
   },
   robots: {
     index: true,
@@ -128,23 +127,45 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
+              "@id": `${SITE_URL}/#organization`,
               name: "NexGenAds",
               legalName: "NexGenAds Technologies Private Limited",
               alternateName: "NexGenAds Technologies",
               url: SITE_URL,
               logo: `${SITE_URL}/logo.png`,
+              slogan:
+                "We build, automate, and scale intelligent businesses with software, AI, and intelligent marketing.",
+              foundingDate: "2024",
+              email: "contact@nexgenads.space",
+              telephone: "+91-95663-72450",
               description:
                 "AI-driven technology company building software, AI automation, and intelligent marketing solutions.",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Coimbatore",
+                streetAddress:
+                  "1/53, Keerthy Complex, opp to Police station, Periyanayackanpalayam",
                 addressLocality: "Coimbatore",
                 addressRegion: "Tamil Nadu",
+                postalCode: "641020",
                 addressCountry: "IN",
+              },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: 11.016844,
+                longitude: 76.955833,
+              },
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "customer service",
+                telephone: "+91-95663-72450",
+                email: "contact@nexgenads.space",
+                areaServed: "IN",
+                availableLanguage: "en",
               },
               sameAs: [
                 "https://www.linkedin.com/company/nexgenads-ai/",
                 "https://www.instagram.com/nexgenads.ai",
+                "https://www.facebook.com/share/1aP2yyEf6U/",
               ],
             }),
           }}
@@ -155,16 +176,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "NexGen",
+              name: "NexGenAds",
               url: SITE_URL,
-              potentialAction: {
-                "@type": "SearchAction",
-                target: {
-                  "@type": "EntryPoint",
-                  urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
-                },
-                "query-input": "required name=search_term_string",
-              },
             }),
           }}
         />

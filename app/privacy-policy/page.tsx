@@ -123,9 +123,9 @@ export default function PrivacyPolicyPage() {
               or call{" "}
               <a
                 className="font-semibold text-brand-600 hover:text-brand-700 underline-offset-4 hover:underline"
-                href="tel:+914223516677"
+                href="tel:+919566372450"
               >
-                +91-422-351-6677
+                +91 95663 72450
               </a>
               .
             </p>

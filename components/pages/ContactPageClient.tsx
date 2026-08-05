@@ -55,7 +55,7 @@ const contactInfo: ContactInfo[] = [
     icon: Phone,
     title: "Phone",
     value: "+91 95663 72450",
-    link: "tel:+919876543210",
+    link: "tel:+919566372450",
   },
   {
     icon: MapPin,
