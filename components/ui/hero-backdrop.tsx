@@ -16,7 +16,7 @@ export function HeroBackdrop() {
       />
 
       {/* four-colour brand glows */}
-      <div className="absolute -top-40 left-1/2 h-[30rem] w-[52rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-brand-500/25 via-ink-600/15 to-brand-400/20 blur-3xl" />
+      <div className="absolute -top-40 left-1/2 h-[30rem] w-[52rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-crimson-500/20 via-gold-500/15 to-brand-500/25 blur-3xl" />
       <div className="absolute -top-20 left-[2%] h-72 w-72 rounded-full bg-gold-500/10 blur-3xl animate-float-slow" />
       <div className="absolute -top-24 right-[4%] h-72 w-72 rounded-full bg-crimson-500/10 blur-3xl animate-float-medium" />
       <div className="absolute bottom-0 left-1/2 h-40 w-[60%] -translate-x-1/2 rounded-full bg-ink-600/5 blur-3xl" />

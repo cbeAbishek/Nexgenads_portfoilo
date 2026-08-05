@@ -125,20 +125,20 @@ export default function ContactPageClient() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 mb-12 md:mb-16">
             {contactInfo.map((info, index) => {
               const gradients = [
-              'from-blue-500 to-cyan-500',
-              'from-purple-500 to-pink-500',
-              'from-pink-500 to-red-500'
+              'from-[#008dec] to-[#1d36bf]',
+              'from-[#f30a29] to-[#f30a29]/80',
+              'from-[#f3a800] to-[#f3a800]/80'
               ];
               return (
               <a
                 key={info.title}
                 href={info.link}
-                className="bg-white/80 backdrop-blur-sm p-4 md:p-8 rounded-xl border border-blue-100 shadow-sm hover:shadow-lg hover:border-blue-200 transition-all duration-300 group text-center"
+                className="bg-white/80 backdrop-blur-sm p-4 md:p-8 rounded-xl border border-brand-200 shadow-sm hover:shadow-lg hover:border-brand-300 transition-all duration-300 group text-center"
               >
                 <div className={`w-12 h-12 md:w-16 md:h-16 rounded-xl bg-gradient-to-br ${gradients[index]} flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform shadow-md`}>
                 <info.icon className="w-6 h-6 md:w-8 md:h-8 text-white" />
                 </div>
-                <h3 className="text-base md:text-lg font-bold text-gray-900 mb-1 md:mb-2 group-hover:text-blue-600 transition-colors">{info.title}</h3>
+                <h3 className="text-base md:text-lg font-bold text-gray-900 mb-1 md:mb-2 group-hover:text-brand-600 transition-colors">{info.title}</h3>
                 <p className="text-sm md:text-base text-gray-600 leading-relaxed">{info.value}</p>
               </a>
               );
@@ -146,9 +146,9 @@ export default function ContactPageClient() {
             </div>
 
           <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-white/80 backdrop-blur-sm p-8 rounded-xl border border-blue-100 shadow-lg">
+            <div className="bg-white/80 backdrop-blur-sm p-8 rounded-xl border border-brand-200 shadow-lg">
               <div className="flex items-center gap-3 mb-6">
-                <span className="w-10 h-10 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center text-white text-lg font-bold shadow-md">1</span>
+                <span className="w-10 h-10 rounded-xl bg-brand-gradient flex items-center justify-center text-white text-lg font-bold shadow-md">1</span>
                 <h2 className="text-2xl font-bold text-gray-900">Send us a Message</h2>
               </div>
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -158,7 +158,7 @@ export default function ContactPageClient() {
                   value={formData.fullName}
                   onChange={(event) => setFormData({ ...formData, fullName: event.target.value })}
                   required
-                  className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
+                  className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md"
                 />
                 <Input
                   type="email"
@@ -166,17 +166,17 @@ export default function ContactPageClient() {
                   value={formData.email}
                   onChange={(event) => setFormData({ ...formData, email: event.target.value })}
                   required
-                  className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
+                  className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md"
                 />
                 <Input
                   type="tel"
                   placeholder="Phone Number"
                   value={formData.phone}
                   onChange={(event) => setFormData({ ...formData, phone: event.target.value })}
-                  className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
+                  className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md"
                 />
                 <Select onValueChange={(value) => setFormData({ ...formData, inquiryType: value })}>
-                  <SelectTrigger className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md">
+                  <SelectTrigger className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md">
                     <SelectValue placeholder="Inquiry Type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -192,7 +192,7 @@ export default function ContactPageClient() {
                   value={formData.subject}
                   onChange={(event) => setFormData({ ...formData, subject: event.target.value })}
                   required
-                  className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
+                  className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md"
                 />
                 <Textarea
                   placeholder="Your Message *"
@@ -200,7 +200,7 @@ export default function ContactPageClient() {
                   onChange={(event) => setFormData({ ...formData, message: event.target.value })}
                   required
                   rows={5}
-                  className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md resize-none"
+                  className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md resize-none"
                 />
                 <Button
                   type="submit"
@@ -233,7 +233,7 @@ export default function ContactPageClient() {
             </div>
 
             <div className="space-y-8">
-              <div id="map" className="bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-blue-100 shadow-lg h-80">
+              <div id="map" className="bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-brand-200 shadow-lg h-80">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125618.23272836075!2d76.98785994335938!3d11.016844600000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859af2f971cb5%3A0x2fc1c81e183ed282!2sCoimbatore%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1234567890123"
                   width="100%"
@@ -246,9 +246,9 @@ export default function ContactPageClient() {
                 ></iframe>
               </div>
 
-              <div className="bg-white/80 backdrop-blur-sm p-8 rounded-xl border border-purple-100 shadow-lg">
+              <div className="bg-white/80 backdrop-blur-sm p-8 rounded-xl border border-gold-200 shadow-lg">
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="w-10 h-10 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-lg font-bold shadow-md">2</span>
+                  <span className="w-10 h-10 rounded-xl bg-gradient-to-r from-[#f3a800] to-[#f30a29] flex items-center justify-center text-white text-lg font-bold shadow-md">2</span>
                   <h3 className="text-xl font-bold text-gray-900">Connect with Us</h3>
                 </div>
                 <div className="flex space-x-4">
@@ -258,10 +258,10 @@ export default function ContactPageClient() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center border border-blue-100 hover:border-blue-300 hover:shadow-md transition-all group"
+                      className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-50 to-gold-50 flex items-center justify-center border border-brand-200 hover:border-brand-400 hover:shadow-md transition-all group"
                       aria-label={social.label}
                     >
-                      <social.icon className="w-6 h-6 text-gray-600 group-hover:text-blue-600 group-hover:scale-110 transition-all" />
+                      <social.icon className="w-6 h-6 text-gray-600 group-hover:text-brand-600 group-hover:scale-110 transition-all" />
                     </a>
                   ))}
                 </div>

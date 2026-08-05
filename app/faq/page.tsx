@@ -72,28 +72,28 @@ export default function FAQPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50 text-gray-900">
+    <div className="min-h-screen bg-gradient-to-b from-brand-50 via-white to-background text-gray-900">
       <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto space-y-12">
           <header className="space-y-6 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 px-5 py-2.5 text-sm font-medium text-blue-700 shadow-sm">
-              <HelpCircle className="h-4 w-4 text-blue-600" /> 
+            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-100 to-gold-100 px-5 py-2.5 text-sm font-medium text-brand-700 shadow-sm">
+              <HelpCircle className="h-4 w-4 text-brand-600" /> 
               <span className="tracking-wide">Frequently Asked Questions</span>
             </div>
             <h1 className="text-3xl font-bold md:text-5xl lg:text-6xl leading-tight">
               Answers for Tamil Nadu advertisers, mediators, designers, and venue owners exploring{' '}
-              <span className="text-blue-600">Nex</span>
-              <span className="text-red-600">Gen</span>
-              <span className="text-yellow-500">Ads</span>.
+              <span className="text-[#008dec]">Nex</span>
+              <span className="text-[#f30a29]">Gen</span>
+              <span className="text-[#f3a800]">Ads</span>.
             </h1>
             <p className="mx-auto max-w-3xl text-base text-gray-600 md:text-lg lg:text-xl leading-relaxed">
-              We update this page with every cohort intake. Ask your question at the bottom and our team will email you back within <span className="font-semibold text-blue-600">two business days</span>.
+              We update this page with every cohort intake. Ask your question at the bottom and our team will email you back within <span className="font-semibold text-brand-600">two business days</span>.
             </p>
             <div className="flex flex-wrap justify-center gap-3 pt-2">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
                 <CheckCircle2 className="h-3.5 w-3.5" /> Updated Weekly
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-purple-100 px-3 py-1 text-xs font-medium text-purple-700">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-crimson-100 px-3 py-1 text-xs font-medium text-crimson-700">
                 <MessageCircle className="h-3.5 w-3.5" /> {faqs.length} Questions Answered
               </span>
             </div>
@@ -107,15 +107,15 @@ export default function FAQPage() {
               >
                 <summary className="flex cursor-pointer items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-gray-50">
                   <div className="flex items-start gap-4">
-                    <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white text-sm font-bold shadow-sm">
+                    <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-brand-gradient text-white text-sm font-bold shadow-sm">
                       {index + 1}
                     </span>
-                    <span className="text-base md:text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug">{faq.question}</span>
+                    <span className="text-base md:text-lg font-semibold text-gray-900 group-hover:text-brand-600 transition-colors leading-snug">{faq.question}</span>
                   </div>
-                  <ChevronDown className="flex-shrink-0 h-5 w-5 text-blue-500 transition-transform duration-300 group-open:rotate-180" />
+                  <ChevronDown className="flex-shrink-0 h-5 w-5 text-brand-500 transition-transform duration-300 group-open:rotate-180" />
                 </summary>
                 <div className="px-6 pb-6 pl-[4.5rem]">
-                  <div className="text-sm md:text-base leading-relaxed text-gray-600 border-l-2 border-blue-200 pl-4">
+                  <div className="text-sm md:text-base leading-relaxed text-gray-600 border-l-2 border-brand-200 pl-4">
                     {faq.answer}
                   </div>
                 </div>
@@ -123,7 +123,7 @@ export default function FAQPage() {
             ))}
           </div>
 
-          <section className="rounded-2xl border border-gray-200 bg-gradient-to-br from-purple-50 via-white to-blue-50 p-6 md:p-10 shadow-lg">
+          <section className="rounded-2xl border border-gray-200 bg-gradient-to-br from-gold-50 via-white to-brand-50 p-6 md:p-10 shadow-lg">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div className="max-w-xl space-y-4">
                
@@ -139,20 +139,20 @@ export default function FAQPage() {
             <form onSubmit={handleSubmit} className="mt-8 grid gap-5 md:grid-cols-2">
               <div className="space-y-2">
                 <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                  <User className="h-4 w-4 text-blue-500" />
+                  <User className="h-4 w-4 text-brand-500" />
                   Full Name
                 </label>
                 <Input
                   value={fullName}
                   onChange={(event) => setFullName(event.target.value)}
                   placeholder="Enter your name"
-                  className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-xl shadow-sm hover:shadow-md focus:ring-2 focus:ring-blue-200 focus:border-blue-400 transition-all duration-200"
+                  className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-xl shadow-sm hover:shadow-md focus:ring-2 focus:ring-brand-200 focus:border-brand-400 transition-all duration-200"
                   disabled={isSubmitting}
                 />
               </div>
               <div className="space-y-2">
                 <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                  <Mail className="h-4 w-4 text-purple-500" />
+                  <Mail className="h-4 w-4 text-crimson-500" />
                   Email Address <span className="text-red-500">*</span>
                 </label>
                 <Input
@@ -161,13 +161,13 @@ export default function FAQPage() {
                   onChange={(event) => setEmail(event.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-xl shadow-sm hover:shadow-md focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition-all duration-200"
+                  className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-xl shadow-sm hover:shadow-md focus:ring-2 focus:ring-crimson-200 focus:border-crimson-400 transition-all duration-200"
                   disabled={isSubmitting}
                 />
               </div>
               <div className="md:col-span-2 space-y-2">
                 <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                  <HelpCircle className="h-4 w-4 text-pink-500" />
+                  <HelpCircle className="h-4 w-4 text-gold-600" />
                   Your Question <span className="text-red-500">*</span>
                 </label>
                 <Textarea
@@ -177,7 +177,7 @@ export default function FAQPage() {
                   rows={4}
                   minLength={10}
                   required
-                  className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-xl shadow-sm hover:shadow-md focus:ring-2 focus:ring-pink-200 focus:border-pink-400 transition-all duration-200 resize-none"
+                  className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-xl shadow-sm hover:shadow-md focus:ring-2 focus:ring-gold-200 focus:border-gold-400 transition-all duration-200 resize-none"
                   disabled={isSubmitting}
                 />
               </div>

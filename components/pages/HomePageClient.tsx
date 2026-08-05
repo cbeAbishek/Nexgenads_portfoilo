@@ -297,11 +297,13 @@ function DashboardMock() {
             {[35, 55, 40, 62, 48, 70, 58, 82, 66, 90, 74, 100].map((h, i) => (
               <div
                 key={i}
-                style={{ height: `${h}%` }}
-                className={cn(
-                  "flex-1 rounded-t-md bg-gradient-to-t from-brand-500 to-brand-300",
-                  i >= 8 && "from-ink-600 to-brand-400",
-                )}
+                style={{
+                  height: `${h}%`,
+                  background: `linear-gradient(to top, ${
+                    ["#f3a800", "#f30a29", "#1d36bf", "#008dec"][i % 4]
+                  }, ${["#f3a800", "#f30a29", "#1d36bf", "#008dec"][i % 4]}cc)`,
+                }}
+                className="flex-1 rounded-t-md"
               />
             ))}
           </div>
@@ -418,7 +420,7 @@ function ServicesOverview() {
                   href={`/services/${s.slug}`}
                   className="group card-border flex h-full flex-col rounded-2xl bg-card p-6 transition-transform hover:-translate-y-1"
                 >
-                  <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600 transition-colors group-hover:bg-gradient-to-br group-hover:from-brand-500 group-hover:to-ink-600 group-hover:text-white">
+                  <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600 transition-colors group-hover:bg-brand-gradient group-hover:text-white">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="font-semibold">{s.title}</h3>

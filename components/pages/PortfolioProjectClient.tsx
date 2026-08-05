@@ -139,7 +139,7 @@ export default function PortfolioProjectClient({
 
       {/* CTA */}
       <section className="container-shell py-14 md:py-16">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-500 via-ink-600 to-brand-600 p-10 text-center text-white sm:p-14">
+        <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-10 text-center text-white sm:p-14">
           <div className="absolute inset-x-0 top-0 h-1" style={{ background: "linear-gradient(90deg,#f30a29,#f3a800,#008dec,#1d36bf)" }} aria-hidden />
           <div
             className="pointer-events-none absolute inset-0 bg-grid opacity-20"

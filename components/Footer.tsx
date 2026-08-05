@@ -99,7 +99,7 @@ const Footer = () => {
       />
       <div className="container-shell relative z-10 pb-10 pt-16 md:pt-20">
         {/* Top CTA strip */}
-        <div className="relative mb-14 flex flex-col items-start justify-between gap-6 overflow-hidden rounded-3xl border border-brand-500/20 bg-gradient-to-r from-brand-500 to-ink-600 p-8 text-white shadow-xl shadow-brand-500/20 sm:p-10 lg:flex-row lg:items-center">
+        <div className="relative mb-14 flex flex-col items-start justify-between gap-6 overflow-hidden rounded-3xl border border-brand-500/20 bg-brand-gradient p-8 text-white shadow-xl shadow-brand-500/20 sm:p-10 lg:flex-row lg:items-center">
           <div className="absolute inset-x-0 top-0 h-1" style={{ background: "linear-gradient(90deg,#f30a29,#f3a800,#008dec,#1d36bf)" }} aria-hidden />
           <div>
             <h2 className="font-display text-2xl font-bold sm:text-3xl">
@@ -214,7 +214,7 @@ const Footer = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full rounded-xl bg-gradient-to-r from-brand-500 to-ink-600 font-semibold text-white"
+                className="w-full rounded-xl bg-brand-gradient font-semibold text-white"
               >
                 {isSubmitting ? "Subscribing…" : "Subscribe"}
               </Button>

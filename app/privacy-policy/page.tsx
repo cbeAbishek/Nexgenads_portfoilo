@@ -43,20 +43,20 @@ export const metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50 text-gray-900">
+    <div className="min-h-screen bg-gradient-to-b from-brand-50 via-white to-background text-gray-900">
       <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl space-y-12">
           <header className="space-y-6 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 px-5 py-2.5 text-sm font-medium text-blue-700 shadow-sm">
+            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-100 to-gold-100 px-5 py-2.5 text-sm font-medium text-brand-700 shadow-sm">
               <span className="text-base">🔒</span>
               <span className="tracking-wide">Privacy & Data Protection</span>
             </div>
 
             <h1 className="text-3xl font-bold md:text-5xl lg:text-6xl leading-tight">
               Privacy Policy for{' '}
-              <span className="text-blue-600">Nex</span>
-              <span className="text-red-600">Gen</span>
-              <span className="text-yellow-500">Ads</span>
+              <span className="text-[#008dec]">Nex</span>
+              <span className="text-[#f30a29]">Gen</span>
+              <span className="text-[#f3a800]">Ads</span>
             </h1>
 
             <p className="mx-auto max-w-3xl text-base text-gray-600 md:text-lg leading-relaxed">
@@ -75,7 +75,7 @@ export default function PrivacyPolicyPage() {
                   className="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 text-white font-bold shadow-sm">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white font-bold shadow-sm">
                       {number}
                     </div>
                     <div className="min-w-0 flex-1">
@@ -83,7 +83,7 @@ export default function PrivacyPolicyPage() {
                       <ul className="mt-4 space-y-3 text-sm md:text-base text-gray-600">
                         {section.items.map((item) => (
                           <li key={item} className="flex gap-3">
-                            <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-700 text-xs font-bold">
+                            <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700 text-xs font-bold">
                               ✓
                             </span>
                             <span className="leading-relaxed">{item}</span>
@@ -97,15 +97,15 @@ export default function PrivacyPolicyPage() {
             })}
           </div>
 
-          <section className="rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-blue-50 p-6 md:p-8 shadow-lg">
+          <section className="rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-brand-50 p-6 md:p-8 shadow-lg">
             <h2 className="text-lg md:text-xl font-bold text-gray-900">Contact us</h2>
             <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed">
               For privacy questions, data export requests, or clarification on this policy, write to{' '}
-              <a className="font-semibold text-blue-600 hover:text-blue-700 underline-offset-4 hover:underline" href="mailto:privacy@nexgenads.space">
+              <a className="font-semibold text-brand-600 hover:text-brand-700 underline-offset-4 hover:underline" href="mailto:privacy@nexgenads.space">
                 privacy@nexgenads.space
               </a>{' '}
               or call{' '}
-              <a className="font-semibold text-blue-600 hover:text-blue-700 underline-offset-4 hover:underline" href="tel:+914223516677">
+              <a className="font-semibold text-brand-600 hover:text-brand-700 underline-offset-4 hover:underline" href="tel:+914223516677">
                 +91-422-351-6677
               </a>
               .

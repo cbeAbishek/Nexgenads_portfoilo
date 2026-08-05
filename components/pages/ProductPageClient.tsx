@@ -69,7 +69,7 @@ function DashboardMock() {
       <div className="grid sm:grid-cols-[1fr_2fr]">
         <div className="hidden border-r border-border bg-muted/30 p-5 sm:block">
           <div className="mb-6 flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-brand-500 to-ink-600" />
+            <div className="h-8 w-8 rounded-lg bg-brand-gradient" />
             <div>
               <p className="text-sm font-bold leading-none">1Grow</p>
               <p className="text-[10px] text-muted-foreground">
@@ -134,11 +134,13 @@ function DashboardMock() {
             {[35, 55, 40, 62, 48, 70, 58, 82, 66, 90, 74, 100].map((h, i) => (
               <div
                 key={i}
-                style={{ height: `${h}%` }}
-                className={cn(
-                  "flex-1 rounded-t-md bg-gradient-to-t from-brand-500 to-brand-300",
-                  i >= 8 && "from-ink-600 to-brand-400",
-                )}
+                style={{
+                  height: `${h}%`,
+                  background: `linear-gradient(to top, ${
+                    ["#f3a800", "#f30a29", "#1d36bf", "#008dec"][i % 4]
+                  }, ${["#f3a800", "#f30a29", "#1d36bf", "#008dec"][i % 4]}cc)`,
+                }}
+                className="flex-1 rounded-t-md"
               />
             ))}
           </div>
@@ -288,7 +290,7 @@ export default function ProductPageClient() {
               <Button
                 asChild
                 size="lg"
-                className="w-full rounded-full bg-gradient-to-r from-brand-500 to-ink-600 px-8 text-base font-semibold shadow-xl shadow-brand-500/25 sm:w-auto"
+                className="w-full rounded-full bg-brand-gradient px-8 text-base font-semibold shadow-xl shadow-brand-500/25 sm:w-auto"
               >
                 <Link href="/contact">
                   Book a Demo <ArrowRight className="h-4 w-4" />
@@ -310,7 +312,7 @@ export default function ProductPageClient() {
           </div>
           <div className="relative mx-auto mt-14 max-w-5xl">
             <div
-              className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-r from-brand-500/25 via-ink-600/20 to-brand-400/25 blur-2xl"
+              className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-r from-crimson-500/20 via-gold-500/15 to-brand-500/25 blur-2xl"
               aria-hidden
             />
             <DashboardMock />
@@ -367,7 +369,7 @@ export default function ProductPageClient() {
           {featureGroups.map((f, i) => (
             <Reveal key={f.title} delay={(i % 3) * 0.05}>
               <div className="card-border h-full rounded-2xl bg-card p-7">
-                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-ink-600 text-white shadow-lg shadow-brand-500/25">
+                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-lg shadow-brand-500/25">
                   <f.icon className="h-6 w-6" />
                 </div>
                 <h3 className="text-lg font-semibold">{f.title}</h3>
@@ -410,7 +412,7 @@ export default function ProductPageClient() {
                 className={cn(
                   "relative flex flex-col rounded-3xl border p-8",
                   p.featured
-                    ? "border-brand-500 bg-gradient-to-b from-brand-500 to-ink-600 text-white shadow-2xl shadow-brand-500/30"
+                    ? "border-brand-500 bg-brand-gradient text-white shadow-2xl shadow-brand-500/30"
                     : "border-border bg-card",
                 )}
               >
@@ -504,7 +506,7 @@ export default function ProductPageClient() {
 
       {/* CTA */}
       <section className="container-shell pb-8">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-500 via-ink-600 to-brand-600 p-10 text-center text-white sm:p-14">
+        <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-10 text-center text-white sm:p-14">
           <div className="absolute inset-x-0 top-0 h-1" style={{ background: "linear-gradient(90deg,#f30a29,#f3a800,#008dec,#1d36bf)" }} aria-hidden />
           <div
             className="pointer-events-none absolute inset-0 bg-grid opacity-20"

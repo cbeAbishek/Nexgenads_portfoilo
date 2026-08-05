@@ -28,7 +28,7 @@ export default function ServicePageClient({ service }: { service: Service }) {
             {service.description}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button asChild className="rounded-full bg-gradient-to-r from-brand-500 to-ink-600 px-7 font-semibold shadow-lg shadow-brand-500/25">
+            <Button asChild className="rounded-full bg-brand-gradient px-7 font-semibold shadow-lg shadow-brand-500/25">
               <Link href="/contact">Discuss this service <ArrowRight className="h-4 w-4" /></Link>
             </Button>
             <Button asChild variant="outline" className="rounded-full border-border bg-card">
@@ -126,7 +126,7 @@ export default function ServicePageClient({ service }: { service: Service }) {
 
       {/* CTA */}
       <section className="container-shell py-14 md:py-16">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-500 via-ink-600 to-brand-600 p-10 text-center text-white sm:p-14">
+        <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-10 text-center text-white sm:p-14">
           <div className="absolute inset-x-0 top-0 h-1" style={{ background: "linear-gradient(90deg,#f30a29,#f3a800,#008dec,#1d36bf)" }} aria-hidden />
           <div className="pointer-events-none absolute inset-0 bg-grid opacity-20" aria-hidden />
           <div className="relative">

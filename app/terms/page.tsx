@@ -42,20 +42,20 @@ export const metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50 text-gray-900">
+    <div className="min-h-screen bg-gradient-to-b from-brand-50 via-white to-background text-gray-900">
       <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl space-y-12">
           <header className="space-y-6 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-100 to-pink-100 px-5 py-2.5 text-sm font-medium text-purple-700 shadow-sm">
+            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-100 to-crimson-100 px-5 py-2.5 text-sm font-medium text-crimson-700 shadow-sm">
               <span className="text-base">📄</span>
               <span className="tracking-wide">Terms & Conditions</span>
             </div>
 
             <h1 className="text-3xl font-bold md:text-5xl lg:text-6xl leading-tight">
               Terms of Service for{' '}
-              <span className="text-blue-600">Nex</span>
-              <span className="text-red-600">Gen</span>
-              <span className="text-yellow-500">Ads</span>
+              <span className="text-[#008dec]">Nex</span>
+              <span className="text-[#f30a29]">Gen</span>
+              <span className="text-[#f3a800]">Ads</span>
             </h1>
 
             <p className="mx-auto max-w-3xl text-base text-gray-600 md:text-lg leading-relaxed">
@@ -74,7 +74,7 @@ export default function TermsPage() {
                   className="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 text-white font-bold shadow-sm">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white font-bold shadow-sm">
                       {number}
                     </div>
                     <div className="min-w-0 flex-1">
@@ -90,7 +90,7 @@ export default function TermsPage() {
                         <ul className="mt-4 space-y-3 text-sm md:text-base text-gray-600">
                           {section.bullets.map((item) => (
                             <li key={item} className="flex gap-3">
-                              <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-purple-100 text-purple-700 text-xs font-bold">
+                              <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-crimson-100 text-crimson-700 text-xs font-bold">
                                 •
                               </span>
                               <span className="leading-relaxed">{item}</span>
@@ -105,10 +105,10 @@ export default function TermsPage() {
             })}
           </div>
 
-          <section className="rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-purple-50 p-6 md:p-8 shadow-lg">
+          <section className="rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-brand-50 p-6 md:p-8 shadow-lg">
             <p className="text-sm md:text-base text-gray-600 leading-relaxed">
               Questions about these terms? Email{' '}
-              <a className="font-semibold text-purple-700 hover:text-purple-800 underline-offset-4 hover:underline" href="mailto:legal@nexgenads.space">
+              <a className="font-semibold text-brand-600 hover:text-brand-800 underline-offset-4 hover:underline" href="mailto:legal@nexgenads.space">
                 legal@nexgenads.space
               </a>{' '}
               so we can address them promptly.

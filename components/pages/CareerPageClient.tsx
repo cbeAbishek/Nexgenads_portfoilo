@@ -68,7 +68,7 @@ export default function CareerPageClient({ jobOpenings }: CareerPageClientProps)
             <p className="mt-4 text-sm text-gray-600">
               HR contact:{" "}
               <a
-                className="font-semibold text-blue-600 hover:underline"
+                className="font-semibold text-brand-600 hover:underline"
                 href="mailto:hr@nexgenads.space"
               >
                 hr@nexgenads.space
@@ -76,24 +76,24 @@ export default function CareerPageClient({ jobOpenings }: CareerPageClientProps)
             </p>
 
             <div className="mt-10 flex flex-wrap justify-center gap-8">
-              <div className="text-center px-6 py-4 bg-white/50 backdrop-blur-sm rounded-xl border border-blue-100 shadow-sm hover:shadow-md transition-all">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              <div className="text-center px-6 py-4 bg-white/50 backdrop-blur-sm rounded-xl border border-brand-200 shadow-sm hover:shadow-md transition-all">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#008dec] to-[#1d36bf] bg-clip-text text-transparent">
                   {jobOpenings.length}
                 </div>
                 <div className="text-sm text-gray-500 font-medium mt-1">
                   Open Positions
                 </div>
               </div>
-              <div className="text-center px-6 py-4 bg-white/50 backdrop-blur-sm rounded-xl border border-purple-100 shadow-sm hover:shadow-md transition-all">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <div className="text-center px-6 py-4 bg-white/50 backdrop-blur-sm rounded-xl border border-crimson-200 shadow-sm hover:shadow-md transition-all">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#f30a29] to-[#f30a29]/70 bg-clip-text text-transparent">
                   4+
                 </div>
                 <div className="text-sm text-gray-500 font-medium mt-1">
                   Departments
                 </div>
               </div>
-              <div className="text-center px-6 py-4 bg-white/50 backdrop-blur-sm rounded-xl border border-pink-100 shadow-sm hover:shadow-md transition-all">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-600 to-red-600 bg-clip-text text-transparent">
+              <div className="text-center px-6 py-4 bg-white/50 backdrop-blur-sm rounded-xl border border-gold-200 shadow-sm hover:shadow-md transition-all">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#f3a800] to-[#f3a800]/70 bg-clip-text text-transparent">
                   3
                 </div>
                 <div className="text-sm text-gray-500 font-medium mt-1">
@@ -119,7 +119,7 @@ export default function CareerPageClient({ jobOpenings }: CareerPageClientProps)
               {jobOpenings.map((job) => (
                 <GlassCard
                   key={job.id}
-                  className="p-6 md:p-8 bg-white/80 border-blue-100 hover:border-blue-200 hover:shadow-xl transition-all duration-300"
+                  className="p-6 md:p-8 bg-white/80 border-brand-200 hover:border-brand-300 hover:shadow-xl transition-all duration-300"
                   hover
                 >
                   <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
@@ -131,13 +131,13 @@ export default function CareerPageClient({ jobOpenings }: CareerPageClientProps)
                         </Badge>
                         <Badge
                           variant="outline"
-                          className="border-blue-200 text-blue-700 hover:bg-blue-50 transition-colors"
+                          className="border-brand-200 text-brand-700 hover:bg-brand-50 transition-colors"
                         >
                           {job.employmentType}
                         </Badge>
                       </div>
 
-                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
+                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 hover:text-brand-600 transition-colors">
                         {job.title}
                       </h3>
 
@@ -179,7 +179,7 @@ export default function CareerPageClient({ jobOpenings }: CareerPageClientProps)
                                 key={index}
                                 className="flex items-start gap-2 group"
                               >
-                                <ChevronRight className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5 group-hover:translate-x-0.5 transition-transform" />
+                                <ChevronRight className="w-4 h-4 text-brand-500 flex-shrink-0 mt-0.5 group-hover:translate-x-0.5 transition-transform" />
                                 <span className="leading-relaxed">{resp}</span>
                               </li>
                             ))}

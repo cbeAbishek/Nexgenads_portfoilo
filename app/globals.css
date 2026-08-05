@@ -50,10 +50,16 @@
   --color-ink-600: oklch(0.42 0.17 265);
   --color-ink-700: oklch(0.36 0.15 265);
   /* Accent yellow (#f3a800) */
+  --color-gold-50: oklch(0.98 0.02 76.6);
+  --color-gold-100: oklch(0.95 0.05 76.6);
+  --color-gold-200: oklch(0.9 0.09 76.6);
   --color-gold-400: oklch(0.78 0.16 76.6);
   --color-gold-500: oklch(0.72 0.16 76.6);
   --color-gold-600: oklch(0.63 0.15 76.6);
   /* Accent red (#f30a29) */
+  --color-crimson-50: oklch(0.97 0.03 25.3);
+  --color-crimson-100: oklch(0.94 0.06 25.3);
+  --color-crimson-200: oklch(0.88 0.11 25.3);
   --color-crimson-400: oklch(0.68 0.21 25.3);
   --color-crimson-500: oklch(0.61 0.24 25.3);
   --color-crimson-600: oklch(0.52 0.22 25.3);

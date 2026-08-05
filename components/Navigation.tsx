@@ -177,7 +177,7 @@ const Navigation = () => {
                       </p>
                       <Link
                         href="/products/1grow"
-                        className="group block overflow-hidden rounded-xl border border-brand-500/20 bg-gradient-to-br from-brand-500 via-ink-600 to-brand-600 p-4 text-white shadow-lg shadow-brand-500/25 transition-transform hover:-translate-y-0.5"
+                        className="group block overflow-hidden rounded-xl border border-brand-500/20 bg-brand-gradient p-4 text-white shadow-lg shadow-brand-500/25 transition-transform hover:-translate-y-0.5"
                       >
                         <p className="text-sm font-bold">1Grow</p>
                         <p className="mt-1 text-xs leading-snug text-white/85">
@@ -244,7 +244,7 @@ const Navigation = () => {
             <Button
               asChild
               size="sm"
-              className="rounded-full bg-gradient-to-r from-brand-500 to-ink-600 font-semibold shadow-lg shadow-brand-500/25 hover:shadow-xl hover:shadow-brand-500/35"
+              className="rounded-full bg-brand-gradient font-semibold shadow-lg shadow-brand-500/25 hover:shadow-xl hover:shadow-brand-500/35"
             >
               <Link href="/contact">Book a Demo</Link>
             </Button>
@@ -341,7 +341,7 @@ const Navigation = () => {
           <Button
             asChild
             size="sm"
-            className="mt-2 w-full rounded-xl bg-gradient-to-r from-brand-500 to-ink-600 font-semibold"
+            className="mt-2 w-full rounded-xl bg-brand-gradient font-semibold"
           >
             <Link href="/contact">Book a Demo</Link>
           </Button>
@@ -372,7 +372,7 @@ function DesktopLink({
     >
       {label}
       {active && (
-        <span className="absolute inset-x-3.5 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-brand-500 to-ink-600" />
+        <span className="absolute inset-x-3.5 -bottom-0.5 h-0.5 rounded-full bg-brand-gradient" />
       )}
     </Link>
   );

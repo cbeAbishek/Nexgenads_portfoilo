@@ -108,9 +108,9 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-gradient-to-b from-blue-50 via-white to-purple-50/30 border-blue-200 text-gray-900 shadow-2xl [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-gradient-to-b from-brand-50 via-white to-gold-500/10 border-brand-200 text-gray-900 shadow-2xl [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         <DialogHeader>
-          <DialogTitle className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <DialogTitle className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#008dec] via-[#1d36bf] to-[#f30a29] bg-clip-text text-transparent">
             Apply for {job.title}
           </DialogTitle>
           <DialogDescription className="text-gray-600 font-medium text-base mt-2">

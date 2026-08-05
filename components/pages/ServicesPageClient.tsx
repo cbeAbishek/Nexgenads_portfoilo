@@ -90,7 +90,7 @@ export default function ServicesPageClient() {
                 className="group card-border flex h-full flex-col rounded-2xl bg-card p-7 transition-transform hover:-translate-y-1"
               >
                 <div className="mb-5 flex items-center justify-between">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-ink-600 font-mono text-lg text-white shadow-lg shadow-brand-500/25 transition-transform group-hover:scale-105">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient font-mono text-lg text-white shadow-lg shadow-brand-500/25 transition-transform group-hover:scale-105">
                     {iconMap[s.icon] ?? "◈"}
                   </span>
                   <span className="rounded-full border border-brand-500/25 bg-brand-50 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-brand-600">
@@ -111,7 +111,7 @@ export default function ServicesPageClient() {
         </motion.div>
 
         {/* CTA */}
-        <div className="relative mt-16 overflow-hidden rounded-3xl border border-brand-500/20 bg-gradient-to-r from-brand-500 to-ink-600 p-10 text-center text-white sm:p-14">
+        <div className="relative mt-16 overflow-hidden rounded-3xl border border-brand-500/20 bg-brand-gradient p-10 text-center text-white sm:p-14">
           <div className="absolute inset-x-0 top-0 h-1" style={{ background: "linear-gradient(90deg,#f30a29,#f3a800,#008dec,#1d36bf)" }} aria-hidden />
           <h2 className="text-2xl font-bold sm:text-3xl">
             Not sure where to start?

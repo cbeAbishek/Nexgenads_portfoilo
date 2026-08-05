@@ -217,16 +217,16 @@ export default function WaitlistPageClient() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-brand-50 via-white to-background">
       <section className="section-padding">
         <div className="container-custom max-w-4xl">
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl pt-16 p-5 md:p-12 lg:p-14 space-y-10 border border-blue-100 shadow-xl">
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl pt-16 p-5 md:p-12 lg:p-14 space-y-10 border border-brand-200 shadow-xl">
             <header className="space-y-6 text-center">
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 px-5 py-2.5 rounded-full shadow-sm">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-50 to-gold-500/10 border border-brand-200 px-5 py-2.5 rounded-full shadow-sm">
                 <span className="text-sm font-medium text-gray-700">Built for Tamil Nadu businesses</span>
               </div>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance leading-tight text-gray-900">
-                Power your next campaign across Tamil Nadu with <span className="text-blue-600">Nex</span><span className="text-red-600">Gen</span><span className="text-yellow-500">Ads</span>
+                Power your next campaign across Tamil Nadu with <span className="text-[#008dec]">Nex</span><span className="text-[#f30a29]">Gen</span><span className="text-[#f3a800]">Ads</span>
               </h1>
               <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                 Share a few details so we can send you product updates, launch invites, and partner opportunities tailored for Tamil Nadu brands and creatives.
@@ -243,7 +243,7 @@ export default function WaitlistPageClient() {
                     placeholder="Enter your first and last name"
                     required
                     disabled={isSubmitting}
-                    className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
+                    className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md"
                   />
                 </div>
                 <div className="space-y-2">
@@ -255,11 +255,11 @@ export default function WaitlistPageClient() {
                     placeholder="name@example.com"
                     required
                     disabled={isSubmitting}
-                    className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
+                    className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md"
                   />
                   {emailSuggestion && (
                     <p className="text-xs text-amber-600 font-medium">
-                      Did you mean <button type="button" className="underline text-blue-600 hover:text-blue-800" onClick={() => setEmail(emailSuggestion)}>{emailSuggestion}</button>?
+                      Did you mean <button type="button" className="underline text-brand-600 hover:text-brand-800" onClick={() => setEmail(emailSuggestion)}>{emailSuggestion}</button>?
                     </p>
                   )}
                 </div>
@@ -273,7 +273,7 @@ export default function WaitlistPageClient() {
                       value={userType}
                       onChange={(event) => setUserType(event.target.value)}
                       disabled={isSubmitting}
-                      className="w-full appearance-none bg-white border border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-xl px-4 py-3 text-gray-900 transition-all shadow-sm hover:shadow-md focus:outline-none"
+                      className="w-full appearance-none bg-white border border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 rounded-xl px-4 py-3 text-gray-900 transition-all shadow-sm hover:shadow-md focus:outline-none"
                     >
                       {userTypes.map((type) => (
                         <option key={type.value} value={type.value} className="text-gray-900">
@@ -286,7 +286,7 @@ export default function WaitlistPageClient() {
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-pink-500" />
+                    <MapPin className="w-4 h-4 text-gold-500" />
                     Which district are you from?
                   </label>
                   <Input
@@ -294,10 +294,10 @@ export default function WaitlistPageClient() {
                     onChange={(event) => setDistrict(event.target.value)}
                     placeholder="Coimbatore, Chennai, Madurai..."
                     disabled={isSubmitting}
-                    className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
+                    className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md"
                   />
                   <div className="min-h-[1.25rem] text-xs text-gray-500 flex items-center gap-2">
-                    {isLocating && <Loader2 className="h-4 w-4 animate-spin text-blue-500" />}
+                    {isLocating && <Loader2 className="h-4 w-4 animate-spin text-brand-500" />}
                     {locationStatus === 'success' && !isLocating && <span className="text-green-600">✓ Location detected automatically. Feel free to adjust.</span>}
                     {locationStatus === 'denied' && !isLocating && (
                       <span className="flex items-center gap-1 text-amber-600">
@@ -312,7 +312,7 @@ export default function WaitlistPageClient() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                    <Phone className="w-4 h-4 text-purple-500" />
+                    <Phone className="w-4 h-4 text-crimson-500" />
                     Contact number (optional)
                   </label>
                   <Input
@@ -321,11 +321,11 @@ export default function WaitlistPageClient() {
                     onChange={(event) => setPhone(event.target.value)}
                     placeholder="10 digit mobile"
                     disabled={isSubmitting}
-                    className="bg-white border-gray-200 hover:border-purple-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all shadow-sm hover:shadow-md"
+                    className="bg-white border-gray-200 hover:border-crimson-400 focus:border-crimson-500 focus:ring-2 focus:ring-crimson-200 transition-all shadow-sm hover:shadow-md"
                   />
                   {phoneSuggestion && (
                     <p className="text-xs text-amber-600 font-medium">
-                      Tip: try <button type="button" className="underline text-blue-600 hover:text-blue-800" onClick={() => setPhone(phoneSuggestion)}>{phoneSuggestion}</button> as your 10-digit mobile.
+                      Tip: try <button type="button" className="underline text-brand-600 hover:text-brand-800" onClick={() => setPhone(phoneSuggestion)}>{phoneSuggestion}</button> as your 10-digit mobile.
                     </p>
                   )}
                 </div>
@@ -336,7 +336,7 @@ export default function WaitlistPageClient() {
                     onChange={(event) => setBusinessName(event.target.value)}
                     placeholder="Tell us the name people know you by"
                     disabled={isSubmitting}
-                    className="bg-white border-gray-200 hover:border-purple-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all shadow-sm hover:shadow-md"
+                    className="bg-white border-gray-200 hover:border-crimson-400 focus:border-crimson-500 focus:ring-2 focus:ring-crimson-200 transition-all shadow-sm hover:shadow-md"
                   />
                 </div>
               </div>
@@ -349,7 +349,7 @@ export default function WaitlistPageClient() {
                   placeholder="Share campaign goals, marketing needs, or ad spaces you want to fill..."
                   rows={4}
                   disabled={isSubmitting}
-                  className="bg-white border-gray-200 hover:border-pink-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all shadow-sm hover:shadow-md resize-none"
+                  className="bg-white border-gray-200 hover:border-gold-400 focus:border-gold-500 focus:ring-2 focus:ring-gold-200 transition-all shadow-sm hover:shadow-md resize-none"
                 />
               </div>
 

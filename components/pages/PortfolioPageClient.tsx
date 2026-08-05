@@ -86,7 +86,7 @@ export default function PortfolioPageClient() {
         </motion.div>
 
         {/* CTA */}
-        <div className="relative mt-16 overflow-hidden rounded-3xl border border-brand-500/20 bg-gradient-to-r from-brand-500 to-ink-600 p-10 text-center text-white sm:p-14">
+        <div className="relative mt-16 overflow-hidden rounded-3xl border border-brand-500/20 bg-brand-gradient p-10 text-center text-white sm:p-14">
           <div className="absolute inset-x-0 top-0 h-1" style={{ background: "linear-gradient(90deg,#f30a29,#f3a800,#008dec,#1d36bf)" }} aria-hidden />
           <h2 className="text-2xl font-bold sm:text-3xl">Want results like these?</h2>
           <p className="mx-auto mt-3 max-w-xl text-white/85">
