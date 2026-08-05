@@ -120,9 +120,9 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
 
         <form onSubmit={handleSubmit} className="space-y-6 mt-6">
           {/* Personal Information */}
-          <div className="space-y-4 p-6 bg-white/80 rounded-xl border border-blue-100 shadow-sm">
+          <div className="space-y-4 p-6 bg-white/80 rounded-xl border border-brand-100 shadow-sm">
             <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-              <span className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center text-white text-sm font-bold">1</span>
+              <span className="w-8 h-8 rounded-lg bg-gradient-to-r bg-brand-500 flex items-center justify-center text-white text-sm font-bold">1</span>
               Personal Information
             </h3>
             
@@ -136,7 +136,7 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
                 value={formData.fullName}
                 onChange={handleInputChange}
                 required
-                className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
+                className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md"
                 placeholder="Your full name"
               />
             </div>
@@ -153,7 +153,7 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
+                  className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md"
                   placeholder="your.email@example.com"
                 />
               </div>
@@ -169,7 +169,7 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
                   value={formData.phone}
                   onChange={handleInputChange}
                   required
-                  className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
+                  className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md"
                   placeholder="+91 98765 43210"
                 />
               </div>
@@ -185,16 +185,16 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
                 value={formData.currentLocation}
                 onChange={handleInputChange}
                 required
-                className="bg-white border-gray-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm hover:shadow-md"
+                className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md"
                 placeholder="City, State"
               />
             </div>
           </div>
 
           {/* Professional Information */}
-          <div className="space-y-4 p-6 bg-white/80 rounded-xl border border-purple-100 shadow-sm">
+          <div className="space-y-4 p-6 bg-white/80 rounded-xl border border-crimson-100 shadow-sm">
             <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-              <span className="w-8 h-8 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm font-bold">2</span>
+              <span className="w-8 h-8 rounded-lg bg-gradient-to-r bg-crimson-500 flex items-center justify-center text-white text-sm font-bold">2</span>
               Professional Information
             </h3>
             
@@ -209,7 +209,7 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
                   value={formData.experience}
                   onChange={handleInputChange}
                   required
-                  className="bg-white border-gray-200 hover:border-purple-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all shadow-sm hover:shadow-md"
+                  className="bg-white border-gray-200 hover:border-crimson-400 focus:border-crimson-500 focus:ring-2 focus:ring-crimson-200 transition-all shadow-sm hover:shadow-md"
                   placeholder="e.g., 3 years"
                 />
               </div>
@@ -223,7 +223,7 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
                   name="currentCompany"
                   value={formData.currentCompany}
                   onChange={handleInputChange}
-                  className="bg-white border-gray-200 hover:border-purple-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all shadow-sm hover:shadow-md"
+                  className="bg-white border-gray-200 hover:border-crimson-400 focus:border-crimson-500 focus:ring-2 focus:ring-crimson-200 transition-all shadow-sm hover:shadow-md"
                   placeholder="Current employer"
                 />
               </div>
@@ -240,7 +240,7 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
                 value={formData.resumeLink}
                 onChange={handleInputChange}
                 required
-                className="bg-white border-gray-200 hover:border-purple-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all shadow-sm hover:shadow-md"
+                className="bg-white border-gray-200 hover:border-crimson-400 focus:border-crimson-500 focus:ring-2 focus:ring-crimson-200 transition-all shadow-sm hover:shadow-md"
                 placeholder="https://drive.google.com/..."
               />
               <p className="text-xs text-gray-500 flex items-center gap-1">
@@ -260,7 +260,7 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
                   type="url"
                   value={formData.linkedinProfile}
                   onChange={handleInputChange}
-                  className="bg-white border-gray-200 hover:border-purple-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all shadow-sm hover:shadow-md"
+                  className="bg-white border-gray-200 hover:border-crimson-400 focus:border-crimson-500 focus:ring-2 focus:ring-crimson-200 transition-all shadow-sm hover:shadow-md"
                   placeholder="https://linkedin.com/in/..."
                 />
               </div>
@@ -275,7 +275,7 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
                   type="url"
                   value={formData.portfolioLink}
                   onChange={handleInputChange}
-                  className="bg-white border-gray-200 hover:border-purple-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all shadow-sm hover:shadow-md"
+                  className="bg-white border-gray-200 hover:border-crimson-400 focus:border-crimson-500 focus:ring-2 focus:ring-crimson-200 transition-all shadow-sm hover:shadow-md"
                   placeholder="https://yourportfolio.com"
                 />
               </div>
@@ -283,9 +283,9 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
           </div>
 
           {/* Cover Letter */}
-          <div className="space-y-4 p-6 bg-white/80 rounded-xl border border-pink-100 shadow-sm">
+          <div className="space-y-4 p-6 bg-white/80 rounded-xl border border-gold-100 shadow-sm">
             <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-              <span className="w-8 h-8 rounded-lg bg-gradient-to-r from-pink-500 to-red-500 flex items-center justify-center text-white text-sm font-bold">3</span>
+              <span className="w-8 h-8 rounded-lg bg-gold-500 flex items-center justify-center text-ink-700 text-sm font-bold">3</span>
               Cover Letter
             </h3>
             
@@ -300,7 +300,7 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
                 onChange={handleInputChange}
                 required
                 rows={6}
-                className="bg-white border-gray-200 hover:border-pink-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all shadow-sm hover:shadow-md resize-none"
+                className="bg-white border-gray-200 hover:border-gold-400 focus:border-gold-500 focus:ring-2 focus:ring-gold-200 transition-all shadow-sm hover:shadow-md resize-none"
                 placeholder="Tell us about your interest in this role and what makes you a great fit..."
               />
             </div>

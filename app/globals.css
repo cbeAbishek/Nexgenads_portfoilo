@@ -53,9 +53,11 @@
   --color-gold-50: oklch(0.98 0.02 76.6);
   --color-gold-100: oklch(0.95 0.05 76.6);
   --color-gold-200: oklch(0.9 0.09 76.6);
+  --color-gold-300: oklch(0.85 0.12 76.6);
   --color-gold-400: oklch(0.78 0.16 76.6);
   --color-gold-500: oklch(0.72 0.16 76.6);
   --color-gold-600: oklch(0.63 0.15 76.6);
+  --color-gold-700: oklch(0.53 0.13 76.6);
   /* Accent red (#f30a29) */
   --color-crimson-50: oklch(0.97 0.03 25.3);
   --color-crimson-100: oklch(0.94 0.06 25.3);

@@ -32,11 +32,11 @@ export default function ServicesPageClient() {
     active === "All" ? services : services.filter((s) => s.category === active);
 
   return (
-    <div className="pb-16 pt-32 md:pb-24 md:pt-40">
+    <div className="pb-16 md:pb-24">
       {/* Header */}
       <header className="relative overflow-hidden border-b border-border">
         <HeroBackdrop />
-        <div className="container-shell pb-14 pt-6 text-center">
+        <div className="container-shell pb-14 pt-14 text-center md:pt-24">
           <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-brand-500/25 bg-brand-50 px-4 py-1.5 font-mono text-xs font-medium uppercase tracking-widest text-brand-600">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-500" /> Our
             Services

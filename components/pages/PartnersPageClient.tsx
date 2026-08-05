@@ -116,7 +116,7 @@ export default function PartnersPageClient() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-b from-background to-card/30">
+      <section className="px-4 pt-28 pb-16 md:px-6 md:pt-36 md:pb-24 bg-gradient-to-b from-background to-card/30 lg:px-8">
         <div className="container-custom text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Partner <span className="text-gradient">With Us</span>

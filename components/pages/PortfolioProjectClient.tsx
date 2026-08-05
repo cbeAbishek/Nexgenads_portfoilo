@@ -13,11 +13,11 @@ export default function PortfolioProjectClient({
   item: PortfolioItem;
 }) {
   return (
-    <div className="pb-16 pt-32 md:pb-24 md:pt-40">
+    <div className="pb-16 md:pb-24">
       {/* Header */}
       <header className="relative overflow-hidden border-b border-border">
         <HeroBackdrop />
-        <div className="container-shell pb-14">
+        <div className="container-shell pb-14 pt-14 md:pt-24">
           <Link
             href="/portfolio"
             className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-brand-600"

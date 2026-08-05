@@ -16,8 +16,8 @@ export default function BlogPostClient({ post }: Props) {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-brand-50/60 via-white to-gold-500/10">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
-        <div className="container-custom section-padding relative">
-          <div className="mx-auto max-w-4xl py-12 md:py-20">
+        <div className="container-custom relative px-4 pt-28 pb-12 md:px-6 md:pt-36 md:pb-16 lg:px-8">
+          <div className="mx-auto max-w-4xl">
             <div className="mb-4 flex flex-wrap items-center gap-3 text-sm">
               <Badge variant="gradient" className="shadow-sm">{post.category}</Badge>
               <span className="flex items-center gap-1.5 px-3 py-1.5 bg-brand-50 rounded-lg text-brand-600 font-medium">

@@ -44,7 +44,7 @@ const incidentSteps = [
 export default function SupportPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-background/90 to-background text-[#000000]">
-      <section className="section-padding">
+      <section className="px-4 pt-28 pb-16 md:px-6 md:pt-36 md:pb-24 lg:px-8">
         <div className="container-custom max-w-5xl space-y-16">
           <header className="space-y-4 text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#1d36bf]/15 bg-[#008dec]/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[#333333]/80">
@@ -62,14 +62,14 @@ export default function SupportPage() {
             {supportChannels.map((channel) => (
               <article
                 key={channel.title}
-                className="flex h-full flex-col rounded-3xl border border-[#1d36bf]/15 bg-white p-6 transition-transform hover:-translate-y-1 hover:border-[#00D9FF]/40"
+                className="flex h-full flex-col rounded-3xl border border-[#1d36bf]/15 bg-white p-6 transition-transform hover:-translate-y-1 hover:border-brand-500/40"
               >
-                <channel.icon className="h-10 w-10 text-[#00D9FF]" />
+                <channel.icon className="h-10 w-10 text-brand-600" />
                 <h2 className="mt-4 text-xl font-semibold text-[#000000]">{channel.title}</h2>
                 <p className="mt-2 flex-1 text-sm text-[#333333]">{channel.description}</p>
                 <Link
                   href={channel.href}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#00D9FF]"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-600"
                 >
                   {channel.cta}
                   <span aria-hidden>&rarr;</span>
@@ -93,7 +93,7 @@ export default function SupportPage() {
             </div>
             <div className="rounded-3xl border border-[#1d36bf]/15 bg-white p-6">
               <h3 className="text-lg font-semibold text-[#000000]">Live status</h3>
-              <p className="mt-2 flex items-center gap-2 text-sm text-emerald-600">
+              <p className="mt-2 flex items-center gap-2 text-sm text-brand-600">
                 <Zap className="h-4 w-4" /> All systems operational for survey uploads, waitlist enrolment, and push notifications.
               </p>
               <p className="mt-4 text-xs text-[#333333]">

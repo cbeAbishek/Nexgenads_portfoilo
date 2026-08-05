@@ -53,7 +53,7 @@ const Footer = () => {
       { label: "Contact", href: "/contact" },
     ],
     products: [
-      { label: "1Grow - Sales & Marketing SaaS", href: "/products/1grow" },
+      { label: "1Grow - Sales & Marketing SaaS", href: "https://1grow.in" },
       { label: "Websites", href: "/services/website-development" },
       { label: "ERP / CRM", href: "/services/crm-development" },
       { label: "AI Automation", href: "/services/ai-automation" },
@@ -132,10 +132,14 @@ const Footer = () => {
               build, automate, and scale through software, AI, and intelligent
               marketing.
             </p>
+            <p className="text-xs text-muted-foreground">
+              NexGenAds Technologies Private Limited
+            </p>
             <div className="space-y-2.5 text-sm text-muted-foreground">
               <p className="flex items-center gap-2.5">
-                <MapPin className="h-4 w-4 shrink-0 text-brand-500" />{" "}
-                Coimbatore, Tamil Nadu, India
+                <MapPin className="h-4 w-4 shrink-0 text-brand-500" /> 1/53,
+                Keerthy Complex, opp to Police station, Periyanayackanpalayam,
+                Coimbatore-641020
               </p>
               <p className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 shrink-0 text-brand-500" />
@@ -187,6 +191,8 @@ const Footer = () => {
                   <li key={link.label}>
                     <Link
                       href={link.href}
+                      target={link.href.startsWith("http") ? "_blank" : undefined}
+                      rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       className="text-sm text-muted-foreground transition-colors hover:text-brand-600"
                     >
                       {link.label}
@@ -198,7 +204,7 @@ const Footer = () => {
           ))}
 
           {/* Newsletter */}
-          <div className="col-span-2 lg:col-span-1">
+          {/* <div className="col-span-2 lg:col-span-1">
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
               Stay Updated
             </h3>
@@ -225,13 +231,14 @@ const Footer = () => {
                 <p className="text-xs text-muted-foreground">{message}</p>
               )}
             </form>
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-center sm:flex-row sm:text-left">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} NexGen. All rights reserved.
+            © {new Date().getFullYear()} NexGenAds Technologies Pvt. Ltd. All
+            rights reserved.
           </p>
           <p className="flex flex-wrap items-center justify-center gap-1.5 text-xs text-muted-foreground">
             {services.slice(0, 4).map((s) => (

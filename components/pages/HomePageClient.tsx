@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -134,17 +135,17 @@ const serviceIcons: Record<string, React.ElementType> = {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden pb-20 pt-36 md:pb-28 md:pt-44">
+    <section className="relative overflow-hidden pb-20 pt-16 md:pb-28 md:pt-24">
       {/* Background */}
       <HeroBackdrop />
 
       <div className="container-shell">
-        <div className="mx-auto max-w-4xl text-center">
-          <Reveal>
+        <div className="mx-auto max-w-4xl text-center pt-10 md:pt-16">
+          {/* <Reveal>
             <span className="glass mb-7 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-foreground/80">
               AI-driven software, automation &amp; digital growth
             </span>
-          </Reveal>
+          </Reveal> */}
           <Reveal delay={0.05}>
             <h1 className="text-balance text-4xl font-bold leading-[1.06] tracking-tight sm:text-6xl md:text-7xl">
               We build, automate, and scale{" "}
@@ -224,14 +225,20 @@ function DashboardMock() {
         <span className="h-3 w-3 rounded-full bg-brand-400" />
         <span className="h-3 w-3 rounded-full bg-ink-600/70" />
         <div className="ml-4 hidden items-center gap-2 rounded-lg bg-card px-3 py-1 text-xs text-muted-foreground sm:flex">
-          <Globe className="h-3.5 w-3.5 text-brand-500" /> app.nexgen.ai/growth
+          <Globe className="h-3.5 w-3.5 text-brand-500" /> app.1grow.in/growth
         </div>
       </div>
       <div className="grid gap-0 sm:grid-cols-[1fr_2fr]">
         {/* sidebar */}
         <div className="hidden border-r border-border bg-muted/30 p-5 sm:block">
           <div className="mb-6 flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-brand-gradient" />
+            <Image
+              src="/1grow/logo.png"
+              alt="1Grow logo"
+              width={32}
+              height={32}
+              className="h-8 w-8 rounded-lg object-cover"
+            />
             <div>
               <p className="text-sm font-bold leading-none">1Grow</p>
               <p className="text-[10px] text-muted-foreground">
@@ -268,7 +275,7 @@ function DashboardMock() {
                 ₹12.4L
               </p>
             </div>
-            <div className="flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-600">
+            <div className="flex items-center gap-2 rounded-full bg-brand-500/10 px-3 py-1.5 text-xs font-semibold text-brand-700">
               <TrendingUp className="h-3.5 w-3.5" /> +38% MoM
             </div>
           </div>
@@ -496,6 +503,15 @@ function FeaturedSaaS() {
       <div className="container-shell">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
+            <div className="mb-4">
+              <Image
+                src="/1grow/logo.png"
+                alt="1Grow logo"
+                width={44}
+                height={44}
+                className="h-11 w-11 rounded-xl object-cover shadow-md shadow-brand-500/15"
+              />
+            </div>
             <SectionHeading
               center={false}
               eyebrow="Flagship product"
@@ -527,7 +543,11 @@ function FeaturedSaaS() {
                 asChild
                 className="rounded-full bg-brand-gradient px-7 font-semibold shadow-lg shadow-brand-500/25"
               >
-                <Link href="/products/1grow">
+                <Link
+                  href="https://1grow.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Explore 1Grow <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
@@ -652,7 +672,7 @@ function CaseStudies() {
                 </div>
                 <div className="p-6">
                   <h3 className="font-semibold leading-snug">{c.title}</h3>
-                  <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-600">
+                  <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-brand-500/10 px-3 py-1 text-xs font-bold text-brand-700">
                     <TrendingUp className="h-3.5 w-3.5" /> {c.result}
                   </p>
                 </div>
@@ -1026,7 +1046,13 @@ function FinalCTA() {
                   variant="outline"
                   className="w-full rounded-full border-brand-500/30 bg-white/80 px-8 font-semibold text-brand-600 backdrop-blur hover:bg-brand-50 sm:w-auto"
                 >
-                  <Link href="/products/1grow">Schedule a Demo</Link>
+                  <Link
+                    href="https://1grow.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Schedule a Demo
+                  </Link>
                 </Button>
               </div>
               <p className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">

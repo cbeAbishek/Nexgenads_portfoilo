@@ -144,7 +144,7 @@ function GlassCard({
 
 const AboutPageClient = () => {
   return (
-    <div className="pb-16 pt-40 md:pb-24 md:pt-48">
+    <div className="pb-16  md:pb-24 ">
       {/* Header */}
       <header className="relative overflow-hidden border-b border-brand-500/10">
         <HeroBackdrop />
@@ -158,7 +158,7 @@ const AboutPageClient = () => {
         />
         <div className="container-shell relative py-16 text-center md:py-24">
           <Reveal delay={0.05}>
-            <Eyebrow>About NexGen</Eyebrow>
+            <Eyebrow>About NexGenAds</Eyebrow>
           </Reveal>
           <Reveal delay={0.12}>
             <h1 className="mx-auto max-w-4xl text-balance text-5xl font-bold leading-[1.06] tracking-tight text-ink-700 sm:text-6xl md:text-7xl">

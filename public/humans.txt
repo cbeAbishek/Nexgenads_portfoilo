@@ -1,7 +1,7 @@
 /* TEAM */
 Founder & CEO: Abhishek
 Contact: abishek@nexgenads.space
-From: Coimbatore, Tamil Nadu, India
+From: 1/53, Keerthy Complex, opp to Police station, Periyanayackanpalayam, Coimbatore-641020
 
 /* TECHNOLOGY */
 Frontend: Next.js, React, Tailwind CSS

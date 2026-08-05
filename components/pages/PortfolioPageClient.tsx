@@ -13,11 +13,11 @@ export default function PortfolioPageClient() {
   const list = active === "All" ? portfolio : portfolio.filter((p) => p.category === active);
 
   return (
-    <div className="pb-16 pt-32 md:pb-24 md:pt-40">
+    <div className="pb-16 md:pb-24">
       {/* Header */}
       <header className="relative overflow-hidden border-b border-border">
         <HeroBackdrop />
-        <div className="container-shell pb-14 pt-6 text-center">
+        <div className="container-shell pb-14 pt-14 text-center md:pt-24">
           <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-brand-500/25 bg-brand-50 px-4 py-1.5 font-mono text-xs font-medium uppercase tracking-widest text-brand-600">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-500" /> Portfolio
           </span>
@@ -74,7 +74,7 @@ export default function PortfolioPageClient() {
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">{item.summary}</p>
                   <div className="mt-5 flex flex-wrap gap-2 border-t border-border/60 pt-4">
                     {item.results.map((r) => (
-                      <span key={r.kpi} className="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-600">
+                      <span key={r.kpi} className="rounded-full bg-brand-500/10 px-2.5 py-1 text-[11px] font-bold text-brand-700">
                         {r.value} · {r.kpi}
                       </span>
                     ))}

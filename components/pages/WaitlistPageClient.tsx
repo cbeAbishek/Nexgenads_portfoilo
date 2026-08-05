@@ -226,7 +226,7 @@ export default function WaitlistPageClient() {
                 <span className="text-sm font-medium text-gray-700">Built for Tamil Nadu businesses</span>
               </div>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance leading-tight text-gray-900">
-                Power your next campaign across Tamil Nadu with <span className="text-[#008dec]">Nex</span><span className="text-[#f30a29]">Gen</span><span className="text-[#f3a800]">Ads</span>
+                Power your next campaign across Tamil Nadu with <span className="text-[#008dec]">NexGenAds</span>
               </h1>
               <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                 Share a few details so we can send you product updates, launch invites, and partner opportunities tailored for Tamil Nadu brands and creatives.

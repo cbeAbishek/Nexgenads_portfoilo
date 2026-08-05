@@ -25,23 +25,21 @@ export const metadata = {
 export default function CookiePolicyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-brand-50 via-white to-background text-gray-900">
-      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="px-4 pt-28 pb-16 md:px-6 md:pt-36 md:pb-24 lg:px-8">
         <div className="mx-auto max-w-4xl space-y-12">
           <header className="space-y-6 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-100 to-gold-50 px-5 py-2.5 text-sm font-medium text-gold-600 shadow-sm">
+            <div className="inline-flex items-center gap-2 rounded-full bg-gold-100 px-5 py-2.5 text-sm font-medium text-gold-600 shadow-sm">
               <span className="text-base">🍪</span>
               <span className="tracking-wide">Cookies & Storage</span>
             </div>
 
             <h1 className="text-3xl font-bold md:text-5xl lg:text-6xl leading-tight">
               Cookie Policy for{' '}
-              <span className="text-[#008dec]">Nex</span>
-              <span className="text-[#f30a29]">Gen</span>
-              <span className="text-[#f3a800]">Ads</span>
+              <span className="text-[#008dec]">NexGenAds</span>
             </h1>
 
             <p className="mx-auto max-w-3xl text-base text-gray-600 md:text-lg leading-relaxed">
-              Effective date: <span className="font-semibold text-gray-900">22 January 2025</span>. We use cookies and service worker storage to keep your NexGenAds experience fast, secure, and tailored to the Tamil Nadu advertising ecosystem.
+              Effective date: <span className="font-semibold text-gray-900">22 January 2025</span>. This policy applies to the website and services operated by NexGenAds Technologies Private Limited (&quot;NexGenAds&quot;). We use cookies and service worker storage to keep your NexGenAds experience fast, secure, and tailored to the Tamil Nadu advertising ecosystem.
             </p>
           </header>
 
@@ -52,7 +50,7 @@ export default function CookiePolicyPage() {
                 className="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 text-white font-bold shadow-sm">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br bg-gold-500 text-white font-bold shadow-sm">
                     {index + 1}
                   </div>
                   <div className="min-w-0 flex-1">

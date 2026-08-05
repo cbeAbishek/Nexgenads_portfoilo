@@ -10,11 +10,11 @@ import HeroBackdrop from "@/components/ui/hero-backdrop";
 
 export default function ServicePageClient({ service }: { service: Service }) {
   return (
-    <div className="pb-16 pt-32 md:pb-24 md:pt-40">
+    <div className="pb-16 md:pb-24">
       {/* Header */}
       <header className="relative overflow-hidden border-b border-border">
         <HeroBackdrop />
-        <div className="container-shell pb-14">
+        <div className="container-shell pb-14 pt-14 md:pt-24">
           <Link href="/services" className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-brand-600">
             <ArrowLeft className="h-4 w-4" /> All services
           </Link>
@@ -51,7 +51,7 @@ export default function ServicePageClient({ service }: { service: Service }) {
               transition={{ delay: i * 0.04 }}
               className="flex items-start gap-3 rounded-2xl border border-border bg-card p-5"
             >
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-brand-700">
                 <Check className="h-3.5 w-3.5" />
               </span>
               <p className="text-sm font-medium leading-relaxed text-foreground/90">{b}</p>

@@ -489,8 +489,8 @@ const SurveyPageClient = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-brand-50 via-white to-background">
-      <section className="section-padding bg-gradient-to-br from-brand-50/80 via-white to-gold-500/10">
-        <div className="container-custom text-center pt-20 md:pt-2">
+      <section className="bg-gradient-to-br from-brand-50/80 via-white to-gold-500/10">
+        <div className="container-custom px-4 pt-28 pb-16 md:px-6 md:pt-36 md:pb-24 text-center lg:px-8">
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 text-foreground tracking-tight" style={{ fontFamily: 'var(--font-neue-machina)' }}>
             Help Us <span className="text-[#1d36bf]">Build Better</span>
           </h1>

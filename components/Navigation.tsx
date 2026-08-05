@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   ArrowRight,
@@ -176,11 +177,22 @@ const Navigation = () => {
                         Featured
                       </p>
                       <Link
-                        href="/products/1grow"
+                        href="https://1grow.in"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="group block overflow-hidden rounded-xl border border-brand-500/25 bg-white/80 p-4 shadow-lg shadow-brand-500/10 backdrop-blur transition-transform hover:-translate-y-0.5"
                       >
-                        <p className="text-sm font-bold text-ink-700">1Grow</p>
-                        <p className="mt-1 text-xs leading-snug text-muted-foreground">
+                        <div className="flex items-center gap-2.5">
+                          <Image
+                            src="/1grow/logo.png"
+                            alt="1Grow logo"
+                            width={32}
+                            height={32}
+                            className="h-8 w-8 rounded-lg object-cover"
+                          />
+                          <p className="text-sm font-bold text-ink-700">1Grow</p>
+                        </div>
+                        <p className="mt-1.5 text-xs leading-snug text-muted-foreground">
                           The all-in-one sales &amp; marketing OS built by
                           NexGen.
                         </p>
@@ -231,12 +243,12 @@ const Navigation = () => {
           {/* Products link + CTA (desktop) */}
           <div className="hidden items-center gap-2 lg:flex">
             <Link
-              href="/products/1grow"
+              href="https://1grow.in"
+              target="_blank"
+              rel="noopener noreferrer"
               className={cn(
                 "rounded-xl px-3.5 py-2 text-sm font-semibold transition-colors",
-                isActiveRoute("/products")
-                  ? "text-brand-600"
-                  : "text-foreground/80 hover:bg-brand-50 hover:text-brand-600",
+                "text-foreground/80 hover:bg-brand-50 hover:text-brand-600",
               )}
             >
               Products
@@ -333,9 +345,18 @@ const Navigation = () => {
             </div>
           )}
           <Link
-            href="/products/1grow"
-            className="block rounded-xl px-4 py-3 text-sm font-medium text-foreground/80 hover:bg-brand-50"
+            href="https://1grow.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2.5 rounded-xl px-4 py-3 text-sm font-medium text-foreground/80 hover:bg-brand-50"
           >
+            <Image
+              src="/1grow/logo.png"
+              alt="1Grow logo"
+              width={28}
+              height={28}
+              className="h-7 w-7 rounded-md object-cover"
+            />
             Products — 1Grow
           </Link>
           <Button

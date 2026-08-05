@@ -128,7 +128,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "NexGen",
+              name: "NexGenAds",
+              legalName: "NexGenAds Technologies Private Limited",
               alternateName: "NexGenAds Technologies",
               url: SITE_URL,
               logo: `${SITE_URL}/logo.png`,
@@ -136,6 +137,7 @@ export default function RootLayout({
                 "AI-driven technology company building software, AI automation, and intelligent marketing solutions.",
               address: {
                 "@type": "PostalAddress",
+                streetAddress: "Coimbatore",
                 addressLocality: "Coimbatore",
                 addressRegion: "Tamil Nadu",
                 addressCountry: "IN",

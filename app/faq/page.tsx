@@ -73,18 +73,16 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-brand-50 via-white to-background text-gray-900">
-      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="px-4 pt-28 pb-16 md:px-6 md:pt-36 md:pb-24 lg:px-8">
         <div className="max-w-5xl mx-auto space-y-12">
           <header className="space-y-6 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-100 to-gold-100 px-5 py-2.5 text-sm font-medium text-brand-700 shadow-sm">
+            <div className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-5 py-2.5 text-sm font-medium text-brand-700 shadow-sm">
               <HelpCircle className="h-4 w-4 text-brand-600" /> 
               <span className="tracking-wide">Frequently Asked Questions</span>
             </div>
             <h1 className="text-3xl font-bold md:text-5xl lg:text-6xl leading-tight">
               Answers for Tamil Nadu advertisers, mediators, designers, and venue owners exploring{' '}
-              <span className="text-[#008dec]">Nex</span>
-              <span className="text-[#f30a29]">Gen</span>
-              <span className="text-[#f3a800]">Ads</span>.
+              <span className="text-[#008dec]">NexGenAds</span>.
             </h1>
             <p className="mx-auto max-w-3xl text-base text-gray-600 md:text-lg lg:text-xl leading-relaxed">
               We update this page with every cohort intake. Ask your question at the bottom and our team will email you back within <span className="font-semibold text-brand-600">two business days</span>.
