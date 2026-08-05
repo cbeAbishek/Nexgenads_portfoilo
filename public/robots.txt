@@ -9,26 +9,14 @@ Disallow: /private/
 # Allow crawling of important pages
 Allow: /$
 Allow: /about
+Allow: /services
+Allow: /portfolio
+Allow: /products
 Allow: /blog
+Allow: /career
 Allow: /contact
-Allow: /investors
-Allow: /partners
-Allow: /survey
-Allow: /waitlist
 Allow: /faq
-
-# Block bad bots
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: SemrushBot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
-
-# Crawl delay for all bots
-Crawl-delay: 1
+Allow: /support
 
 # Sitemap
 Sitemap: https://nexgenads.space/sitemap.xml

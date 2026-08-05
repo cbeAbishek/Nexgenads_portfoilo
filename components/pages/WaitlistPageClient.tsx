@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { CheckCircle2, Loader2, MapPin, Phone, ShieldAlert, Sparkles } from 'lucide-react';
+import { CheckCircle2, Loader2, MapPin, Phone, ShieldAlert } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -281,7 +281,7 @@ export default function WaitlistPageClient() {
                         </option>
                       ))}
                     </select>
-                    <Sparkles className="w-4 h-4 text-blue-600 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    
                   </div>
                 </div>
                 <div className="space-y-2">

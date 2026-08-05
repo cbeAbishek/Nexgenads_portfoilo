@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { CheckCircle2, Loader2, MapPin, Phone, ShieldAlert, Sparkles } from 'lucide-react';
+import { CheckCircle2, Loader2, MapPin, Phone, ShieldAlert } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -223,7 +223,7 @@ export default function WaitlistPageClient() {
           <div className="glass-effect-strong rounded-3xl p-10 md:p-14 space-y-10">
             <header className="space-y-4 text-center">
               <div className="inline-flex items-center gap-2 glass-effect px-4 py-2 rounded-full">
-                <Sparkles className="w-4 h-4 text-[#008dec]" />
+               
                 <span className="text-sm text-[#000000]/80">Built for Tamil Nadu businesses</span>
               </div>
               <h1 className="text-3xl md:text-4xl font-bold text-balance">
@@ -282,7 +282,7 @@ export default function WaitlistPageClient() {
                         </option>
                       ))}
                     </select>
-                    <Sparkles className="w-4 h-4 text-[#008dec] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    
                   </div>
                 </div>
                 <div className="space-y-2">

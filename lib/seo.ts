@@ -14,9 +14,10 @@ export interface SEOConfig {
 }
 
 const SITE_URL = "https://nexgenads.space";
-const SITE_NAME = "NexGenAds";
-const DEFAULT_OG_IMAGE = "https://nexgenads.space/NexGenAds_meta.jpg";
-const TWITTER_HANDLE = "@nexgenads";
+const SITE_NAME = "NexGen";
+
+const DEFAULT_OG_IMAGE = "https://nexgenads.space/logo.png";
+const TWITTER_HANDLE = "@nexgen";
 
 /**
  * Generate comprehensive SEO metadata for pages

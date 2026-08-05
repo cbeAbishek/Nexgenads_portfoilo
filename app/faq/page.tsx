@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { CheckCircle2, HelpCircle, Loader2, Sparkles, ChevronDown, MessageCircle, User, Mail, AlertCircle } from 'lucide-react';
+import { CheckCircle2, HelpCircle, Loader2, ChevronDown, MessageCircle, User, Mail, AlertCircle } from 'lucide-react';
 
 const faqs = [
   {
@@ -126,9 +126,7 @@ export default function FAQPage() {
           <section className="rounded-2xl border border-gray-200 bg-gradient-to-br from-purple-50 via-white to-blue-50 p-6 md:p-10 shadow-lg">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div className="max-w-xl space-y-4">
-                <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-100 to-pink-100 px-4 py-2 text-sm font-medium text-purple-700 shadow-sm">
-                  <Sparkles className="h-4 w-4 text-purple-500" /> Something not covered?
-                </div>
+               
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
                   Tell us what you want to know about the launch experience 🚀
                 </h2>

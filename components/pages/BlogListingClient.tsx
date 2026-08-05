@@ -11,9 +11,9 @@ export default function BlogListingClient() {
   const regularPosts = blogPosts.filter(post => !post.featured);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50 text-gray-900">
+    <div className="min-h-screen bg-gradient-to-b from-brand-50 via-white to-background text-foreground">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-blue-100 bg-gradient-to-br from-blue-50/50 via-white to-purple-50/30">
+      <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-brand-50/60 via-white to-gold-500/10">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
         
         <div className="container-custom section-padding relative">
@@ -23,15 +23,15 @@ export default function BlogListingClient() {
             </Badge>
             
             <h1 className="mb-6 text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#008dec] via-[#1d36bf] to-[#f30a29] bg-clip-text text-transparent">
                 OOH Advertising
               </span>
               <br />
-              <span className="text-gray-900">Insights & Trends</span>
+              <span className="text-foreground">Insights & Trends</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl leading-relaxed">
-              Expert perspectives on outdoor advertising, DOOH strategies, billboard optimization, and the future of out-of-home media in India by <span className="text-blue-600 font-semibold">Nex</span><span className="text-red-600 font-semibold">Gen</span><span className="text-yellow-500 font-semibold">Ads</span>.
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              Expert perspectives on outdoor advertising, DOOH strategies, billboard optimization, and the future of out-of-home media in India by <span className="text-[#008dec] font-semibold">Nex</span><span className="text-[#f30a29] font-semibold">Gen</span><span className="text-[#f3a800] font-semibold">Ads</span>.
             </p>
           </div>
         </div>
@@ -39,14 +39,14 @@ export default function BlogListingClient() {
 
       {/* Featured Posts */}
       {featuredPosts.length > 0 && (
-        <section className="section-padding border-b border-blue-100 bg-white">
+        <section className="section-padding border-b border-border bg-card">
           <div className="container-custom">
             <SectionHeading title="Featured Articles" subtitle="In-depth guides and industry analysis" />
             
             <div className="grid gap-8 md:grid-cols-2">
               {featuredPosts.map((post, index) => (
                 <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
-                  <GlassCard className="h-full p-6 md:p-8 bg-white/80 border-blue-100 hover:border-blue-300 hover:shadow-xl transition-all duration-300" hover>
+                  <GlassCard className="h-full p-6 md:p-8 bg-white/80 border-brand-500/15 hover:border-brand-500/40 hover:shadow-xl transition-all duration-300" hover>
                     {/* Cover Image */}
                     <div className={`mb-6 h-48 md:h-56 overflow-hidden rounded-xl bg-gradient-to-br ${index === 0 ? 'from-blue-500/20 via-purple-500/20 to-pink-500/20' : 'from-pink-500/20 via-purple-500/20 to-blue-500/20'} flex items-center justify-center`}>
                       <span className="text-6xl">📰</span>

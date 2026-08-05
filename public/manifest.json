@@ -1,11 +1,11 @@
 {
-  "name": "NexGenAds - Intelligent Advertising Platform",
-  "short_name": "NexGenAds",
-  "description": "Bridging the gap between advertisers, mediators, designers, and ad space owners through intelligent digital ecosystem",
+  "name": "NexGen - AI-Driven Technology Company",
+  "short_name": "NexGen",
+  "description": "AI-driven technology company building software, AI automation, and intelligent marketing solutions.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0A0A0A",
-  "theme_color": "#00D9FF",
+  "background_color": "#ffffff",
+  "theme_color": "#008dec",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -21,21 +21,19 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["business", "productivity"],
+  "categories": ["business", "productivity", "technology"],
   "shortcuts": [
     {
-      "name": "Join Waitlist",
-      "short_name": "Waitlist",
-      "description": "Join our waitlist",
-      "url": "/#waitlist",
-      "icons": [{ "src": "/logo.png", "sizes": "192x192" }]
+      "name": "Services",
+      "short_name": "Services",
+      "description": "Explore NexGen services",
+      "url": "/services"
     },
     {
-      "name": "Take Survey",
-      "short_name": "Survey",
-      "description": "Share your feedback",
-      "url": "/survey",
-      "icons": [{ "src": "/logo.png", "sizes": "192x192" }]
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Contact NexGen",
+      "url": "/contact"
     }
   ]
 }

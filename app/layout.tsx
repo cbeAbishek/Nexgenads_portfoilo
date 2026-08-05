@@ -3,7 +3,6 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import Preloader from "@/components/Preloader";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -17,27 +16,52 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
+const SITE_URL = "https://nexgenads.space";
+
 export const metadata: Metadata = {
-  title: "NexGenAds - Intelligent Advertising Intermediary Platform | Coming Soon",
-  description: "Bridging the gap between advertisers, mediators, designers, and ad space owners through one intelligent, transparent digital ecosystem. Based in Coimbatore, India.",
-  keywords: "advertising platform, ad intermediary, Coimbatore startup, digital advertising, AI advertising, ad marketplace",
-  authors: [{ name: "NexGenAds Team" }],
-  creator: "NexGenAds",
-  publisher: "NexGenAds",
-  metadataBase: new URL('https://nexgenads.space'),
+  title:
+    "NexGen | AI-Driven Technology Company - Software, AI Automation & Digital Growth",
+  description:
+    "NexGen is an AI-driven technology company helping businesses build, automate, and scale through software, AI, digital transformation, and intelligent marketing. Website & app development, ERP/CRM, AI automation, SaaS, SEO, GEO & AEO.",
+  keywords: [
+    "AI technology company",
+    "software development company",
+    "AI automation",
+    "SaaS development",
+    "ERP development",
+    "CRM development",
+    "mobile app development",
+    "web application development",
+    "digital transformation",
+    "AI chatbots",
+    "WhatsApp automation",
+    "workflow automation",
+    "digital marketing agency",
+    "SEO company",
+    "Generative Engine Optimization",
+    "Answer Engine Optimization",
+    "UI UX design",
+    "cloud solutions India",
+    "NexGen Coimbatore",
+  ].join(", "),
+  authors: [{ name: "NexGen" }],
+  creator: "NexGen",
+  publisher: "NexGen",
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: "https://nexgenads.space",
-    title: "NexGenAds - Intelligent Advertising Platform",
-    description: "Revolutionary advertising intermediary platform connecting advertisers, mediators, designers, and ad space owners.",
-    siteName: "NexGenAds",
+    locale: "en_IN",
+    url: SITE_URL,
+    title: "NexGen | AI-Driven Technology Company",
+    description:
+      "Build, automate, and scale with NexGen - software, AI, digital transformation, and intelligent marketing solutions.",
+    siteName: "NexGen",
     images: [
       {
-        url: "/NexGenAds_meta.jpg",
-        width: 1200,
-        height: 630,
-        alt: "NexGenAds Platform",
+        url: "/logo.png",
+        width: 512,
+        height: 512,
+        alt: "NexGen - AI-Driven Technology Company",
       },
     ],
   },
@@ -47,10 +71,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NexGenAds - Coming Soon",
-    description: "Revolutionary advertising intermediary platform from Coimbatore",
-    images: ["/NexGenAds_meta.jpg"],
-    creator: "@nexgenads",
+    title: "NexGen | AI-Driven Technology Company",
+    description:
+      "Software, AI automation, SaaS, and intelligent marketing - build, automate, and scale with NexGen.",
+    images: ["/logo.png"],
+    creator: "@nexgen",
   },
   robots: {
     index: true,
@@ -58,18 +83,15 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-    // yandex: 'your-yandex-verification-code',
-    // yahoo: 'your-yahoo-verification-code',
+  alternates: {
+    canonical: SITE_URL,
   },
 };
-
 
 export default function RootLayout({
   children,
@@ -77,19 +99,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/logo.ico" />
         <link rel="apple-touch-icon" href="/logo.png" />
-        <link rel="alternate" hrefLang="en-IN" href="https://nexgenads.space/en-IN" />
-        <link rel="alternate" hrefLang="ta-IN" href="https://nexgenads.space/ta-IN" />
-        <link rel="alternate" hrefLang="x-default" href="https://nexgenads.space" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
-        <meta name="theme-color" content="#00D9FF" />
+        <meta name="theme-color" content="#008dec" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WB1RJ9JHG3"></script>
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-WB1RJ9JHG3"
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -100,106 +122,29 @@ export default function RootLayout({
             `,
           }}
         />
-
-        {/* Security Script - Disable DevTools */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                // Disable right-click
-    `,
-          }}
-        />
-
-        {/* Security Script - Disable DevTools */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                // Disable right-click
-                document.addEventListener('contextmenu', function(e) {
-                  e.preventDefault();
-                  return false;
-                }, false);
-
-                // Disable keyboard shortcuts
-                document.addEventListener('keydown', function(e) {
-                  // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+Shift+C
-                  if (
-                    e.keyCode === 123 ||
-                    (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
-                    (e.ctrlKey && e.shiftKey && e.keyCode === 74) ||
-                    (e.ctrlKey && e.shiftKey && e.keyCode === 67) ||
-                    (e.ctrlKey && e.keyCode === 85)
-                  ) {
-                    e.preventDefault();
-                    return false;
-                  }
-                }, false);
-
-                // Detect DevTools open
-                let devtoolsOpen = false;
-                const threshold = 160;
-                
-                setInterval(function() {
-                  if (
-                    window.outerWidth - window.innerWidth > threshold ||
-                    window.outerHeight - window.innerHeight > threshold
-                  ) {
-                    if (!devtoolsOpen) {
-                      devtoolsOpen = true;
-                      document.body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:system-ui;background:linear-gradient(135deg,#0A0A0A,#1A1A1A);color:white;text-align:center;padding:20px;"><div style="font-size:48px;margin-bottom:20px;">⚠️</div><h1 style="font-size:32px;margin-bottom:10px;background:linear-gradient(to right,#00D9FF,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Developer Tools Detected</h1><p style="font-size:18px;color:#999;">For security reasons, developer tools are disabled on this site.</p></div>';
-                    }
-                  } else {
-                    devtoolsOpen = false;
-                  }
-                }, 500);
-
-                // Disable console
-                console.log = console.warn = console.error = console.info = console.debug = function() {};
-              })();
-            `,
-          }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "NexGenAds",
-              "url": "https://nexgenads.space",
-              "logo": "https://nexgenads.space/logo.png",
-              "sameAs": [
-                "https://twitter.com/nexgenads"
-              ]
-            })
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "NexGenAds",
-              "address": {
+              name: "NexGen",
+              alternateName: "NexGen Technologies",
+              url: SITE_URL,
+              logo: `${SITE_URL}/logo.png`,
+              description:
+                "AI-driven technology company building software, AI automation, and intelligent marketing solutions.",
+              address: {
                 "@type": "PostalAddress",
-                "streetAddress": "Coimbatore",
-                "addressLocality": "Coimbatore",
-                "addressRegion": "TN",
-                "postalCode": "641001",
-                "addressCountry": "IN"
+                addressLocality: "Coimbatore",
+                addressRegion: "Tamil Nadu",
+                addressCountry: "IN",
               },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "11.0168",
-                "longitude": "76.9558"
-              },
-              "url": "https://nexgenads.space",
-              "telephone": "+91-999-999-9999",
-              "priceRange": "$$$"
-            })
+              sameAs: [
+                "https://www.linkedin.com/company/nexgenads-ai/",
+                "https://www.instagram.com/nexgenads.ai",
+              ],
+            }),
           }}
         />
         <script
@@ -208,27 +153,25 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "url": "https://nexgenads.space/",
-              "potentialAction": {
+              name: "NexGen",
+              url: SITE_URL,
+              potentialAction: {
                 "@type": "SearchAction",
-                "target": {
+                target: {
                   "@type": "EntryPoint",
-                  "urlTemplate": "https://nexgenads.space/search?q={search_term_string}"
+                  urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
                 },
-                "query-input": "required name=search_term_string"
-              }
-            })
+                "query-input": "required name=search_term_string",
+              },
+            }),
           }}
         />
       </head>
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
       >
-        {/* <Preloader /> */}
         <Navigation />
-        <main className="min-h-screen">
-          {children}
-        </main>
+        <main className="min-h-screen">{children}</main>
         <Footer />
       </body>
     </html>

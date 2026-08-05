@@ -36,9 +36,9 @@ export default function CareerPageClient({ jobOpenings }: CareerPageClientProps)
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50 text-gray-900">
+    <div className="min-h-screen bg-gradient-to-b from-brand-50 via-white to-background text-foreground">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-blue-100 bg-gradient-to-br from-blue-50/50 via-white to-purple-50/30">
+      <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-brand-50/60 via-white to-gold-500/10">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
 
         <div className="container-custom section-padding relative">
@@ -49,18 +49,18 @@ export default function CareerPageClient({ jobOpenings }: CareerPageClientProps)
             </Badge>
 
             <h1 className="mb-6 text-4xl md:text-6xl font-bold leading-tight">
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#008dec] via-[#1d36bf] to-[#f30a29] bg-clip-text text-transparent">
                 Build the Future
               </span>
               <br />
-              <span className="text-gray-900">of OOH Advertising at </span>
-              <span className="text-blue-600">Nex</span>
-              <span className="text-red-600">Gen</span>
-              <span className="text-yellow-500">Ads</span>
+              <span className="text-foreground">of OOH Advertising at </span>
+              <span className="text-[#008dec]">Nex</span>
+              <span className="text-[#f30a29]">Gen</span>
+              <span className="text-[#f3a800]">Ads</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Join us and help revolutionize outdoor advertising in India. We're
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Join us and help revolutionize outdoor advertising in India. We&apos;re
               looking for passionate individuals to transform how brands connect
               with audiences.
             </p>

@@ -12,15 +12,15 @@ interface Props {
 
 export default function BlogPostClient({ post }: Props) {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50 text-gray-900">
+    <div className="min-h-screen bg-gradient-to-b from-brand-50 via-white to-background text-foreground">
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-blue-100 bg-gradient-to-br from-blue-50/50 via-white to-purple-50/30">
+      <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-brand-50/60 via-white to-gold-500/10">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
         <div className="container-custom section-padding relative">
           <div className="mx-auto max-w-4xl py-12 md:py-20">
             <div className="mb-4 flex flex-wrap items-center gap-3 text-sm">
               <Badge variant="gradient" className="shadow-sm">{post.category}</Badge>
-              <span className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 rounded-lg text-blue-600 font-medium">
+              <span className="flex items-center gap-1.5 px-3 py-1.5 bg-brand-50 rounded-lg text-brand-600 font-medium">
                 <Calendar className="w-4 h-4" />
                 {new Date(post.publishDate).toLocaleDateString("en-US", {
                   year: "numeric",
@@ -28,18 +28,18 @@ export default function BlogPostClient({ post }: Props) {
                   day: "numeric",
                 })}
               </span>
-              <span className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 rounded-lg text-purple-600 font-medium">
+              <span className="flex items-center gap-1.5 px-3 py-1.5 bg-gold-500/10 rounded-lg text-gold-600 font-medium">
                 <Clock className="w-4 h-4" />
                 {post.readingTime} min read
               </span>
-              <span className="px-3 py-1.5 bg-pink-50 rounded-lg text-pink-600 font-medium">By {post.author}</span>
+              <span className="px-3 py-1.5 bg-crimson-500/10 rounded-lg text-crimson-600 font-medium">By {post.author}</span>
             </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-[#008dec] via-[#1d36bf] to-[#f30a29] bg-clip-text text-transparent leading-tight">
               {post.title}
             </h1>
             {post.subtitle && (
-              <p className="text-lg md:text-xl text-gray-600 max-w-3xl leading-relaxed">
+              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
                 {post.subtitle}
               </p>
             )}
@@ -47,7 +47,7 @@ export default function BlogPostClient({ post }: Props) {
             {/* Tags */}
             <div className="mt-6 flex flex-wrap gap-2">
               {post.tags.map((tag) => (
-                <Badge key={tag} variant="outline" className="text-xs border-blue-200 text-blue-700 hover:border-blue-400 transition-colors">
+                <Badge key={tag} variant="outline" className="text-xs border-brand-500/25 text-brand-700 hover:border-brand-500/60 transition-colors">
                   {tag}
                 </Badge>
               ))}

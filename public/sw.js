@@ -18,7 +18,7 @@ self.addEventListener('push', (event) => {
     }
   }
 
-  const title = data.title || 'NexGenAds';
+  const title = data.title || 'NexGen';
   const options = {
     body: data.body || 'Stay up to date with the latest campaigns and platform updates.',
     icon: data.icon || '/logo.png',

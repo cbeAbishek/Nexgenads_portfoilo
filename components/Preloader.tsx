@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Sparkles } from 'lucide-react';
 
 const Preloader = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +21,6 @@ const Preloader = () => {
       <div className="text-center space-y-6">
         {/* Animated Logo */}
         <div className="relative inline-block">
-          <Sparkles className="w-20 h-20 text-[#008dec] animate-pulse" />
           <div className="absolute inset-0 bg-[#008dec] blur-3xl opacity-50 animate-pulse"></div>
         </div>
 

@@ -108,14 +108,14 @@ export default function ContactPageClient() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50">
-      <section className="section-padding bg-gradient-to-br from-blue-50/50 via-white to-purple-50/30 border-b border-blue-100">
+    <div className="min-h-screen bg-gradient-to-b from-brand-50 via-white to-background">
+      <section className="section-padding relative overflow-hidden bg-gradient-to-br from-brand-50/60 via-white to-gold-500/10 border-b border-border">
         <div className="container-custom text-center pt-20 md:pt-2">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-gray-900 tracking-tight">
-            Get in <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">Touch</span>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-foreground tracking-tight">
+            Get in <span className="bg-gradient-to-r from-[#008dec] via-[#1d36bf] to-[#f30a29] bg-clip-text text-transparent">Touch</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Have questions or want to collaborate with <span className="text-blue-600 font-semibold">Nex</span><span className="text-red-600 font-semibold">Gen</span><span className="text-yellow-500 font-semibold">Ads</span>? We&apos;d love to hear from you.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Have questions or want to collaborate with <span className="text-[#008dec] font-semibold">Nex</span><span className="text-[#f30a29] font-semibold">Gen</span><span className="text-[#f3a800] font-semibold">Ads</span>? We&apos;d love to hear from you.
           </p>
         </div>
       </section>

@@ -1,309 +1,330 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Heart, Target, Eye, Award, Code, Rocket, Brain, Shield, Github, Linkedin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  Award,
+  Brain,
+  Eye,
+  Heart,
+  Linkedin,
+  Rocket,
+  Shield,
+  Target,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import HeroBackdrop from "@/components/ui/hero-backdrop";
+
+const teamMembers = [
+  {
+    name: "Abishek G.",
+    role: "Founder",
+    description:
+      "Sets the product and engineering vision, keeping the team focused on building intelligent software.",
+    image: "/team/ab123.webp",
+    linkedin: "https://linkedin.com/in/abishekg",
+  },
+  {
+    name: "Vishnu Dev T",
+    role: "Chief Executive Officer",
+    description:
+      "Leads operations, partnerships, and go-to-market strategy for NexGen's services and products.",
+    image: "/team/vishnu.jpeg",
+    linkedin: "https://linkedin.com/in/vishnudevt",
+  },
+];
+
+const values = [
+  {
+    icon: Shield,
+    title: "Transparency",
+    description: "Honest communication and clear estimates with every client.",
+  },
+  {
+    icon: Heart,
+    title: "Empathy",
+    description: "We design and build around the people who use our software.",
+  },
+  {
+    icon: Brain,
+    title: "Innovation",
+    description:
+      "Continuously pushing boundaries with AI and modern engineering.",
+  },
+  {
+    icon: Award,
+    title: "Excellence",
+    description: "Enterprise-grade quality in everything we ship.",
+  },
+];
+
+const timeline = [
+  {
+    year: "2024",
+    title: "Founded in Coimbatore",
+    body: "NexGen starts as a team of engineers building software and automation for local businesses.",
+  },
+  {
+    year: "2025",
+    title: "Product portfolio",
+    body: "Websites, apps, ERP/CRM, AI automation, and the 1Grow SaaS platform ship to clients across industries.",
+  },
+  {
+    year: "2026",
+    title: "AI-first company",
+    body: "GEO/AEO, AI agents, and intelligent automation become core offerings for growth-focused businesses.",
+  },
+];
+
+function Reveal({
+  children,
+  delay = 0,
+  className,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, delay }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-500/25 bg-brand-50 px-4 py-1.5 font-mono text-xs font-medium uppercase tracking-widest text-brand-600">
+      <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
+      {children}
+    </span>
+  );
+}
 
 const AboutPageClient = () => {
-  const teamMembers = [
-    {
-      name: 'Abishek G.',
-      role: 'Founder',
-      description: 'Sets the product vision and keeps the team focused on solving everyday marketing gaps',
-      image: '/team/ab123.webp',
-      github: 'https://github.com/abishekg',
-      linkedin: 'https://linkedin.com/in/abishekg',
-    },
-    {
-      name: 'Vishnu Dev T',
-      role: 'Chief Executive Officer',
-      description: 'Leads operations and partnerships while shaping the go-to-market strategy for regional brands.',
-      image: '/team/vishnu.jpeg',
-      github: 'https://github.com/vishnudevt',
-      linkedin: 'https://linkedin.com/in/vishnudevt',
-    },
-    
-    // {
-    //   name: 'Sarran M',
-    //   role: 'Co-Founder',
-    //   description: 'Drives product strategy, translating on-ground feedback from Tamil Nadu businesses into intuitive features.',
-    //   image: '/team/sarran.jpeg',
-    //   github: 'https://github.com/sarranm',
-    //   linkedin: 'https://linkedin.com/in/sarranm',
-    // },
-    // {
-    //   name: 'Gabriel Ebenezer',
-    //   role: 'Chief Marketing Officer',
-    //   description: 'Crafts storytelling and brand experiences that resonate with local communities and partners.',
-    //   image: '/team/gabi.jpeg',
-    //   github: 'https://github.com/gabrielebenezer',
-    //   linkedin: 'https://linkedin.com/in/gabrielebenezer',
-    // },
-    // {
-    //   name: 'Mathiazhagan A.R',
-    //   role: 'Chief Information Officer',
-    //   description: 'Owns platform reliability, security, and data infrastructure to keep campaigns running smoothly.',
-    //   image: '/team/mathi.png',
-    //   github: 'https://github.com/mathiazhaganar',
-    //   linkedin: 'https://linkedin.com/in/mathiazhaganar',
-    // },
-  ];
-
-  const techStack = [
-    { name: 'Next.js', category: 'Frontend' },
-    { name: 'React', category: 'Frontend' },
-    { name: 'TypeScript', category: 'Language' },
-    { name: 'Tailwind CSS', category: 'Styling' },
-    { name: 'Supabase', category: 'Backend' },
-    { name: 'PostgreSQL', category: 'Database' },
-    { name: 'Node.js', category: 'Runtime' },
-    { name: 'AI/ML Models', category: 'Intelligence' },
-  ];
-
-  const values = [
-    {
-      icon: Shield,
-      title: 'Transparency',
-      description: 'We believe in open, honest communication with all stakeholders',
-    },
-    {
-      icon: Heart,
-      title: 'Empathy',
-      description: 'Understanding and addressing the needs of every user',
-    },
-    {
-      icon: Brain,
-      title: 'Innovation',
-      description: 'Continuously pushing boundaries with cutting-edge technology',
-    },
-    {
-      icon: Award,
-      title: 'Excellence',
-      description: 'Committed to delivering the highest quality in everything we do',
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50">
-      <section className="section-padding bg-gradient-to-br from-blue-50/80 via-white to-red-50/30 pt">
-        <div className="container-custom text-center pt-16">
-          <h1 className="text-4xl  md:text-6xl font-extrabold mb-6 tracking-tight" style={{ fontFamily: 'var(--font-neue-machina)' }}>
-          <span className="text-blue-600">Nex</span><span className="text-red-600">Gen</span><span className="text-yellow-500">Ads</span>
+    <div className="pb-16 pt-32 md:pb-24 md:pt-40">
+      {/* Header */}
+      <header className="relative overflow-hidden border-b border-border">
+        <HeroBackdrop />
+        <div className="container-shell pb-14 text-center">
+          <Eyebrow>About NexGen</Eyebrow>
+          <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            We build, automate &amp; scale{" "}
+            <span className="text-gradient-brand">intelligent businesses</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Five passionate college tech students from Coimbatore with a vision to revolutionize
-            the advertising ecosystem in India
+          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">
+            NexGen is an AI-driven technology company helping businesses grow
+            through software, AI, digital transformation, and intelligent
+            marketing - founded in Coimbatore, built for the world.
           </p>
         </div>
-      </section>
+      </header>
 
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-                Our <span className="bg-gradient-to-r from-blue-600 via-red-600 to-yellow-500 bg-clip-text text-transparent">Story</span>
-              </h2>
-              <div className="space-y-4 text-gray-700 leading-relaxed">
-                <p>
-                  NexGenAds was born from a simple observation: the advertising industry in India
-                  is fragmented, with advertisers, mediators, designers, and ad space owners
-                  operating in silos, leading to inefficiencies and missed opportunities.
-                </p>
-                <p>
-                  As five tech students studying in Coimbatore, we witnessed firsthand the struggles
-                  local businesses faced in finding the right advertising channels and creative talent.
-                  We knew there had to be a better way.
-                </p>
-                <p>
-                  Armed with our technical skills and entrepreneurial spirit, we set out to build
-                  a platform that would bridge these gaps. Our goal is to create an intelligent,
-                  transparent ecosystem where all stakeholders can thrive together.
-                </p>
-                <p>
-                  Starting from Coimbatore, we&apos;re building a platform that understands local
-                  nuances while being scalable across India and beyond.
+      {/* Story + Mission/Vision */}
+      <section className="container-shell py-14 md:py-20">
+        <div className="grid items-start gap-12 lg:grid-cols-2">
+          <Reveal>
+            <Eyebrow>Our story</Eyebrow>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              From engineering problem-solvers to AI technology partner
+            </h2>
+            <div className="mt-6 space-y-4 leading-relaxed text-muted-foreground">
+              <p>
+                NexGen started with a simple belief: businesses shouldn&apos;t
+                have to choose between technology, automation, and growth - they
+                should get all three from one accountable partner.
+              </p>
+              <p>
+                We began by building websites, apps, and internal systems for
+                businesses in Coimbatore. As our clients grew, their problems
+                grew too: scattered data, manual workflows, and marketing that
+                couldn&apos;t be measured. So we expanded into ERP/CRM, AI
+                automation, and data-driven growth marketing.
+              </p>
+              <p>
+                Today NexGen is a full-stack technology company - engineering
+                enterprise-grade software, deploying AI agents and chatbots,
+                building SaaS platforms like 1Grow, and running SEO, GEO, and
+                AEO programmes that get brands found in the AI era.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="space-y-5">
+            <Reveal delay={0.05}>
+              <div className="card-border rounded-2xl bg-card p-7">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-ink-600 text-white shadow-lg shadow-brand-500/25">
+                  <Target className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-bold">Our Mission</h3>
+                <p className="mt-2 leading-relaxed text-muted-foreground">
+                  Empower businesses through intelligent software, automation,
+                  and digital innovation that accelerates sustainable growth.
                 </p>
               </div>
-            </div>
-            <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border border-blue-100 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0 shadow-md">
-                    <Rocket className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold mb-2 text-gray-900">Founded in 2024</h3>
-                    <p className="text-sm text-gray-600">
-                      Started by five college students in Coimbatore
-                    </p>
-                  </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="card-border rounded-2xl bg-card p-7">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-ink-600 to-brand-500 text-white shadow-lg shadow-brand-500/25">
+                  <Eye className="h-6 w-6" />
                 </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center flex-shrink-0 shadow-md">
-                    <Target className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold mb-2 text-gray-900">Our Mission</h3>
-                    <p className="text-sm text-gray-600">
-                      Connect every stakeholder in the advertising ecosystem seamlessly
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center flex-shrink-0 shadow-md">
-                    <Eye className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold mb-2 text-gray-900">Our Vision</h3>
-                    <p className="text-sm text-gray-600">
-                      Become India&apos;s leading AI-powered advertising platform
-                    </p>
-                  </div>
-                </div>
+                <h3 className="text-xl font-bold">Our Vision</h3>
+                <p className="mt-2 leading-relaxed text-muted-foreground">
+                  Build the world&apos;s largest AI-powered physical advertising
+                  ecosystem - seamlessly connecting digital marketing with
+                  intelligent real-world advertising infrastructure through
+                  software, automation, AI, IoT, and data intelligence.
+                </p>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-blue-50/30">
-        <div className="container-custom">
-          <div className="text-center mb-5">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-              Our <span className="bg-gradient-to-r from-blue-600 via-red-600 to-yellow-500 bg-clip-text text-transparent">Values</span>
+      {/* Timeline */}
+      <section className="bg-muted/40 py-14 md:py-20">
+        <div className="container-shell">
+          <Reveal className="mb-12 text-center">
+            <Eyebrow>Our journey</Eyebrow>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Milestones so far
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              The principles that guide everything we do
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <div
-                key={index}
-                className="bg-white p-6 rounded-xl text-center border border-gray-200 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
-              >
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  <value.icon className="w-8 h-8 text-white" />
+          </Reveal>
+          <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
+            {timeline.map((t, i) => (
+              <Reveal key={t.year} delay={i * 0.06}>
+                <div className="card-border h-full rounded-2xl bg-card p-6">
+                  <span className="font-display text-sm font-bold text-brand-500">
+                    {t.year}
+                  </span>
+                  <h3 className="mt-2 font-semibold">{t.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {t.body}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-gray-900">{value.title}</h3>
-                <p className="text-sm text-gray-600">{value.description}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Values */}
+      <section className="container-shell py-14 md:py-20">
+        <Reveal className="mb-12 text-center">
+          <Eyebrow>Values</Eyebrow>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            The principles that guide us
+          </h2>
+        </Reveal>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {values.map((v, i) => (
+            <Reveal key={v.title} delay={i * 0.05}>
+              <div className="card-border h-full rounded-2xl bg-card p-7 text-center">
+                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-ink-600 text-white shadow-lg shadow-brand-500/25">
+                  <v.icon className="h-7 w-7" />
+                </div>
+                <h3 className="text-lg font-semibold">{v.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {v.description}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Team */}
+      <section className="bg-muted/40 py-14 md:py-20">
+        <div className="container-shell">
+          <Reveal className="mb-12 text-center">
+            <Eyebrow>Leadership</Eyebrow>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Meet the team
+            </h2>
+          </Reveal>
+          <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-8">
+            {teamMembers.map((member) => (
+              <div
+                key={member.name}
+                className="card-border group w-full max-w-sm rounded-2xl bg-card p-8 text-center transition-transform hover:-translate-y-1"
+              >
+                <div className="relative mx-auto mb-6 h-28 w-28">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-500 to-ink-600 opacity-20 blur-lg" />
+                  <div className="relative h-full w-full overflow-hidden rounded-full border-4 border-white shadow-xl">
+                    <Image
+                      src={member.image}
+                      alt={`${member.name} portrait`}
+                      fill
+                      sizes="112px"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold">{member.name}</h3>
+                <span className="mt-1 inline-block rounded-full bg-brand-500/10 px-3 py-1 text-xs font-semibold text-brand-600">
+                  {member.role}
+                </span>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  {member.description}
+                </p>
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${member.name} on LinkedIn`}
+                  className="mx-auto mt-5 flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-brand-500/40 hover:bg-brand-500/10 hover:text-brand-600"
+                >
+                  <Linkedin className="h-4 w-4" />
+                </a>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-          Meet the <span className="bg-gradient-to-r from-blue-600 via-red-600 to-yellow-500 bg-clip-text text-transparent">Team</span>
-        </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-        passionate students building the future of advertising
-        </p>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-8">
-        {teamMembers.map((member, index) => (
+      {/* CTA */}
+      <section className="container-shell py-14 md:py-20">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-500 via-ink-600 to-brand-600 p-10 text-center text-white sm:p-14">
+          <div className="absolute inset-x-0 top-0 h-1" style={{ background: "linear-gradient(90deg,#f30a29,#f3a800,#008dec,#1d36bf)" }} aria-hidden />
           <div
-            key={index}
-            className="group relative bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm"
-          >
-            {/* Decorative gradient background on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-red-500/5 to-yellow-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
-            {/* Profile image with ring effect */}
-            <div className="relative z-10">
-          <div className="relative w-28 h-28 mx-auto mb-6">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-red-500 to-yellow-500 rounded-full animate-pulse opacity-20 group-hover:opacity-40 transition-opacity duration-300" />
-            <div className="absolute inset-1 bg-white rounded-full" />
-            <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-xl group-hover:scale-105 transition-transform duration-300">
-              <Image
-            src={member.image}
-            alt={`${member.name} portrait`}
-            fill
-            sizes="112px"
-            className="object-cover"
-              />
-            </div>
-          </div>
-          
-          {/* Name and role */}
-          <div className="text-center mb-4">
-            <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors duration-300">
-              {member.name}
-            </h3>
-            <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-gradient-to-r from-blue-600 to-red-500 rounded-full">
-              {member.role}
-            </span>
-          </div>
-          
-          {/* Description */}
-          <p className="text-sm text-gray-600 text-center leading-relaxed mb-6">
-            {member.description}
-          </p>
-          
-          {/* Social links */}
-          {/* <div className="flex items-center justify-center gap-3">
-            {member.github && (
-              <Link
-            href={member.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-900 hover:text-white transition-all duration-300 hover:scale-110"
-            aria-label={`${member.name} GitHub`}
-              >
-            <Github className="w-5 h-5" />
+            className="pointer-events-none absolute inset-0 bg-grid opacity-20"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-white/10 blur-3xl"
+            aria-hidden
+          />
+          <div className="relative">
+            <Rocket className="mx-auto mb-5 h-8 w-8 text-white/80" />
+            <h2 className="text-3xl font-bold sm:text-4xl">
+              Let&apos;s build the future together
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-white/85">
+              Whether you&apos;re looking for software, automation, or a growth
+              partner - the NexGen team is ready.
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="mt-8 rounded-full bg-white px-8 font-semibold text-ink-700 shadow-xl hover:bg-brand-50"
+            >
+              <Link href="/contact">
+                Book a Consultation <ArrowRight className="h-4 w-4" />
               </Link>
-            )}
-            {member.linkedin && (
-              <Link
-            href={member.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-110"
-            aria-label={`${member.name} LinkedIn`}
-              >
-            <Linkedin className="w-5 h-5" />
-              </Link>
-            )}
-          </div> */}
-            </div>
-          </div>
-        ))}
+            </Button>
           </div>
         </div>
       </section>
-
-      {/* <section className="section-padding">
-        <div className="container-custom">
-          <div className="glass-effect-strong p-12 rounded-2xl text-center space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">
-              Join Us on This <span className="text-gradient">Journey</span>
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Whether you&apos;re an investor, partner, or early user, we&apos;d love to have you with us
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/investors">
-                <Button size="lg" className="btn-glow bg-gradient-to-r from-[#008dec] to-[#1d36bf]">
-                  Invest in Us
-                </Button>
-              </Link>
-              <Link href="/partners">
-                <Button size="lg" variant="outline" className="glass-effect">
-                  Become a Partner
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section> */}
     </div>
   );
 };
