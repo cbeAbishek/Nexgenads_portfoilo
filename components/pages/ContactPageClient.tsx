@@ -108,6 +108,8 @@ export default function ContactPageClient() {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json().catch(() => ({}));
+
       if (response.ok) {
         setSubmitMessage("Thank you! We'll get back to you soon.");
         setFormData({
@@ -119,7 +121,15 @@ export default function ContactPageClient() {
           message: "",
         });
       } else {
-        setSubmitMessage("Something went wrong. Please try again.");
+        const missing = Array.isArray(data.missingFields)
+          ? data.missingFields.join(", ")
+          : null;
+        const baseMessage = missing
+          ? `Please fill in the required field${data.missingFields.length > 1 ? "s" : ""}: ${missing}.`
+          : data.error || "Something went wrong. Please try again.";
+        setSubmitMessage(
+          data.details && !missing ? `${baseMessage} (${data.details})` : baseMessage
+        );
       }
     } catch (error) {
       console.error("Contact form submission error:", error);

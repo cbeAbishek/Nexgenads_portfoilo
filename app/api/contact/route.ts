@@ -6,9 +6,26 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { fullName, email, phone, subject, inquiryType, message } = body;
 
-    if (!fullName || !email || !subject || !message) {
+    const missingFields = [
+      ['fullName', fullName],
+      ['email', email],
+      ['subject', subject],
+      ['message', message],
+    ]
+      .filter(([, value]) => !value)
+      .map(([name]) => name);
+
+    if (missingFields.length > 0) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { error: 'Missing required fields', missingFields },
+        { status: 400 }
+      );
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: 'Invalid email format' },
         { status: 400 }
       );
     }
@@ -39,8 +56,15 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error('Contact form error:', error);
+    const message =
+      error instanceof Error
+        ? error.message
+        : (error as { message?: string } | null)?.message;
     return NextResponse.json(
-      { error: 'Failed to submit. Please try again later.' },
+      {
+        error: 'Failed to submit. Please try again later.',
+        details: message || 'Unknown error',
+      },
       { status: 500 }
     );
   }

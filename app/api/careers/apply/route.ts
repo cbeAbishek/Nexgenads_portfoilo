@@ -92,7 +92,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Internal server error',
-        details: error instanceof Error ? error.message : 'Unknown error',
+        details:
+          error instanceof Error
+            ? error.message
+            : (error as { message?: string } | null)?.message || 'Unknown error',
       },
       { status: 500 }
     );
@@ -134,7 +137,10 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Internal server error',
-        details: error instanceof Error ? error.message : 'Unknown error',
+        details:
+          error instanceof Error
+            ? error.message
+            : (error as { message?: string } | null)?.message || 'Unknown error',
       },
       { status: 500 }
     );

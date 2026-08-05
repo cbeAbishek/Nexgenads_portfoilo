@@ -39,6 +39,7 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null;
     message: string;
+    details?: string;
   }>({ type: null, message: "" });
 
   const handleInputChange = (
@@ -94,6 +95,7 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
         setSubmitStatus({
           type: "error",
           message: data.error || "Failed to submit application. Please try again.",
+          details: data.details,
         });
       }
     } catch (error) {
@@ -319,6 +321,9 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
                 <span className="text-xl">{submitStatus.type === "success" ? "✅" : "⚠️"}</span>
                 {submitStatus.message}
               </div>
+              {submitStatus.details && (
+                <p className="mt-2 text-xs opacity-80">{submitStatus.details}</p>
+              )}
             </div>
           )}
 
