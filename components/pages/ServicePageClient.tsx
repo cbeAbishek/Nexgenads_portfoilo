@@ -168,8 +168,7 @@ function SectionTitle({
 export default function ServicePageClient({ service }: { service: Service }) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const ServiceIcon = iconMap[service.icon] ?? Code2;
-  const accent =
-    palette[Math.max(0, categoryOrder.indexOf(service.category)) % palette.length];
+  const accent = palette[0];
   const related = services
     .filter((s) => s.category === service.category && s.slug !== service.slug)
     .slice(0, 3);
@@ -180,11 +179,11 @@ export default function ServicePageClient({ service }: { service: Service }) {
       <header className="relative overflow-hidden border-b border-brand-500/10">
         <HeroBackdrop />
         <div
-          className="pointer-events-none absolute -right-24 -top-32 h-80 w-80 rounded-full bg-crimson-500/10 blur-3xl"
+          className="pointer-events-none absolute -right-24 -top-32 h-80 w-80 rounded-full bg-brand-500/10 blur-3xl"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-gold-500/10 blur-3xl"
+          className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-brand-500/10 blur-3xl"
           aria-hidden
         />
         <div className="container-shell relative pb-14 pt-14 md:pt-24">
@@ -464,9 +463,7 @@ export default function ServicePageClient({ service }: { service: Service }) {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((s, i) => {
               const RelatedIcon = iconMap[s.icon] ?? Code2;
-              const rAccent = palette[
-                Math.max(0, categoryOrder.indexOf(s.category)) % palette.length
-              ];
+              const rAccent = palette[0];
               return (
                 <Reveal key={s.slug} delay={(i % 3) * 0.06}>
                   <Link

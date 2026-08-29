@@ -80,10 +80,10 @@ const Navigation = () => {
       <div className="container-shell">
         <div
           className={cn(
-            "mt-3 sm:mt-4 flex items-center justify-between gap-4 rounded-2xl border px-4 py-2.5 transition-all duration-300 sm:px-5",
+            "mt-3 sm:mt-4 flex items-center justify-between gap-4 rounded-2xl border px-4 py-2.5 transition-all duration-500 ease-out sm:px-5",
             isScrolled
-              ? "bg-white border-brand-500/25 shadow-[0_8px_32px_rgba(0,141,236,0.12)]"
-              : "border-transparent bg-transparent",
+              ? "border-brand-500/30 bg-white shadow-[0_8px_32px_rgba(0,141,236,0.15)]"
+              : "border-brand-500/20 bg-white/95 shadow-sm backdrop-blur-sm",
           )}
         >
           {/* Logo */}
@@ -134,7 +134,7 @@ const Navigation = () => {
                 )}
                 aria-hidden={!isServicesOpen}
               >
-                <div className="glass overflow-hidden rounded-2xl shadow-[0_28px_70px_-20px_rgba(0,80,140,0.35)] ring-1 ring-border">
+                <div className="overflow-hidden rounded-2xl border border-brand-500/20 bg-white shadow-[0_28px_70px_-20px_rgba(0,80,140,0.35)] ring-1 ring-border">
                   <div className="grid gap-0 md:grid-cols-[1.6fr_1fr]">
                     {/* Categorised services */}
                     <div className="p-4">
@@ -285,7 +285,7 @@ const Navigation = () => {
             : "pointer-events-none max-h-0 -translate-y-2 opacity-0",
         )}
       >
-        <div className="glass mt-2 max-h-[72vh] space-y-1 overflow-y-auto rounded-2xl p-3">
+        <div className="mt-2 max-h-[72vh] space-y-1 overflow-y-auto rounded-2xl border border-brand-500/25 bg-white p-3 shadow-[0_8px_32px_rgba(0,141,236,0.12)]">
           {navLinks.map((link) => (
             <Link
               key={link.href}
