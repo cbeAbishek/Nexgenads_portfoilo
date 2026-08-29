@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { X } from "lucide-react";
+import { MapPin, LocateFixed, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,6 +35,11 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
     coverLetter: "",
   });
 
+  const [isLocating, setIsLocating] = useState(false);
+  const [locationStatus, setLocationStatus] = useState<{
+    type: "info" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null;
@@ -47,6 +52,70 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const detectLocation = () => {
+    if (!("geolocation" in navigator)) {
+      setLocationStatus({
+        type: "error",
+        message: "Geolocation is not supported by this browser.",
+      });
+      return;
+    }
+
+    setIsLocating(true);
+    setLocationStatus({ type: null, message: "" });
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          const { latitude, longitude } = position.coords;
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}&accept-language=en`,
+          );
+          if (!res.ok) throw new Error("Geocoding failed");
+          const data = await res.json();
+          const a = data.address ?? {};
+          const district =
+            a.district ||
+            a.county ||
+            a.suburb ||
+            a.city ||
+            a.town ||
+            a.municipality ||
+            "";
+          const districtName = district.replace(/\s+district\s*$/i, "").trim();
+          if (districtName) {
+            setFormData((prev) => ({ ...prev, currentLocation: districtName }));
+            setLocationStatus({
+              type: "info",
+              message: "Your district has been auto-filled.",
+            });
+          } else {
+            setLocationStatus({
+              type: "error",
+              message: "Could not detect district. Please enter it manually.",
+            });
+          }
+        } catch {
+          setLocationStatus({
+            type: "error",
+            message: "Could not fetch location. Please enter it manually.",
+          });
+        } finally {
+          setIsLocating(false);
+        }
+      },
+      () => {
+        setIsLocating(false);
+        setLocationStatus({
+          type: "error",
+          message:
+            "Location permission denied. Please enter your district manually.",
+        });
+      },
+      { timeout: 10000 },
+    );
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -162,34 +231,71 @@ export default function JobApplicationForm({ job, open, onClose }: JobApplicatio
 
               <div className="space-y-2">
                 <Label htmlFor="phone" className="text-sm font-semibold text-gray-700">
-                  Phone Number <span className="text-red-500">*</span>
+                  Mobile Number <span className="text-red-500">*</span>
                 </Label>
                 <Input
                   id="phone"
                   name="phone"
                   type="tel"
+                  inputMode="numeric"
+                  maxLength={10}
                   value={formData.phone}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, "").slice(0, 10);
+                    setFormData((prev) => ({ ...prev, phone: value }));
+                  }}
                   required
+                  pattern="[6-9][0-9]{9}"
+                  title="Enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9"
                   className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md"
-                  placeholder="+91 98765 43210"
+                  placeholder="98765 43210"
                 />
+                <p className="text-xs text-gray-500">10-digit Indian mobile number</p>
               </div>
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="currentLocation" className="text-sm font-semibold text-gray-700">
-                Current Location <span className="text-red-500">*</span>
+                Current Location (District) <span className="text-red-500">*</span>
               </Label>
-              <Input
-                id="currentLocation"
-                name="currentLocation"
-                value={formData.currentLocation}
-                onChange={handleInputChange}
-                required
-                className="bg-white border-gray-200 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md"
-                placeholder="City, State"
-              />
+              <div className="flex gap-2">
+                <div className="relative flex-1">
+                  <MapPin className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                  <Input
+                    id="currentLocation"
+                    name="currentLocation"
+                    value={formData.currentLocation}
+                    onChange={handleInputChange}
+                    required
+                    className="bg-white border-gray-200 pl-9 hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition-all shadow-sm hover:shadow-md"
+                    placeholder="Enter your district (e.g. Mumbai)"
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={detectLocation}
+                  disabled={isLocating}
+                  className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-brand-300 bg-brand-50 px-3 py-1 text-sm font-semibold text-brand-700 transition-all hover:bg-brand-100 hover:border-brand-400 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {isLocating ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <LocateFixed className="h-4 w-4" />
+                  )}
+                  {isLocating ? "Detecting..." : "Detect"}
+                </button>
+              </div>
+              {locationStatus.type && (
+                <p
+                  className={`text-xs ${
+                    locationStatus.type === "error"
+                      ? "text-red-600"
+                      : "text-green-700"
+                  }`}
+                >
+                  {locationStatus.message}
+                </p>
+              )}
             </div>
           </div>
 

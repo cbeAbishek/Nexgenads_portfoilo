@@ -9,6 +9,7 @@ import {
   Clock,
   Building,
   ChevronRight,
+  ChevronDown,
   Users,
   Send,
   Sparkles,
@@ -17,6 +18,10 @@ import {
   Heart,
   GraduationCap,
   Rocket,
+  Code2,
+  Megaphone,
+  PenTool,
+  ShieldCheck,
 } from "lucide-react";
 import { Badge, GlassCard } from "@/components/shared/UIComponents";
 import JobApplicationForm from "@/components/forms/JobApplicationForm";
@@ -24,9 +29,16 @@ import HeroBackdrop from "@/components/ui/hero-backdrop";
 
 const departmentColors = [
   "bg-brand-500/10 text-brand-600 border-brand-500/25",
-  "bg-crimson-500/10 text-crimson-600 border-crimson-500/25",
-  "bg-gold-500/10 text-gold-700 border-gold-500/30",
+  "bg-brand-500/10 text-brand-600 border-brand-500/25",
+  "bg-brand-500/10 text-brand-600 border-brand-500/25",
 ];
+
+const departmentIcon: Record<string, typeof Code2> = {
+  Engineering: Code2,
+  Marketing: Megaphone,
+  Design: PenTool,
+  "Quality Assurance": ShieldCheck,
+};
 
 const benefits = [
   {
@@ -225,94 +237,99 @@ export default function CareerPageClient({ jobOpenings }: CareerPageClientProps)
         <div className="mx-auto max-w-5xl space-y-6">
           {jobOpenings.map((job, index) => (
             <Reveal key={job.id} delay={(index % 3) * 0.06}>
-              <GlassCard className="group relative overflow-hidden border-brand-100 bg-white/80 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-8">
-                <div
-                  className={`absolute inset-x-0 top-0 h-1 ${
-                    ["bg-brand-500", "bg-crimson-500", "bg-gold-500"][index % 3]
-                  }`}
-                  aria-hidden
-                />
-                <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+              <GlassCard className="group relative overflow-hidden border-brand-100 bg-white/80 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-7">
+                <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+                  {/* Role icon */}
+                  {/* <div className="hidden h-14 w-14 shrink-0 flex-col items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/25 sm:flex">
+                    {(() => {
+                      const Icon = departmentIcon[job.department] ?? Briefcase;
+                      return <Icon className="h-7 w-7" />;
+                    })()}
+                  </div> */}
+
                   <div className="flex-1">
-                    <div className="mb-4 flex flex-wrap items-center gap-3">
-                      <Badge
-                        variant="outline"
-                        className={`border shadow-sm ${departmentColors[index % 3]}`}
-                      >
-                        {job.department}
-                      </Badge>
-                      <Badge
-                        variant="outline"
-                        className="border-brand-200 text-brand-700 transition-colors hover:bg-brand-50"
-                      >
-                        {job.employmentType}
-                      </Badge>
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <div>
+                        <div className="mb-2 flex flex-wrap items-center gap-2">
+                          <Badge
+                            variant="outline"
+                            className={`border shadow-sm ${departmentColors[index % 3]}`}
+                          >
+                            {job.department}
+                          </Badge>
+                          <Badge
+                            variant="outline"
+                            className="border-brand-200 text-brand-700 transition-colors hover:bg-brand-50"
+                          >
+                            {job.employmentType}
+                          </Badge>
+                          {job.salary && (
+                            <span className="inline-flex items-center gap-1 rounded-full border border-brand-500/25 bg-brand-50 px-2.5 py-0.5 text-xs font-semibold text-brand-700">
+                              {job.salary}
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="text-xl font-bold text-ink-700 transition-colors group-hover:text-brand-600 md:text-2xl">
+                          {job.title}
+                        </h3>
+                      </div>
+
+                      <div className="flex flex-row items-center gap-2 lg:flex-col lg:items-end">
+                        <button
+                          onClick={() => handleApplyClick(job)}
+                          className="group/btn inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:scale-[1.03] hover:bg-brand-600 active:scale-95"
+                        >
+                          Apply Now
+                          <ChevronRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                        </button>
+                        {/* <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+                          <Clock className="h-3.5 w-3.5" />
+                          Posted{" "}
+                          {new Date(job.postedDate).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </span> */}
+                      </div>
                     </div>
 
-                    <h3 className="mb-3 text-xl font-bold text-ink-700 transition-colors group-hover:text-brand-600 md:text-2xl">
-                      {job.title}
-                    </h3>
-
-                    <div className="mb-4 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                    <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1.5">
                         <MapPin className="h-4 w-4 text-brand-500" />
                         {job.location}
                       </span>
                       <span className="flex items-center gap-1.5">
-                        <Briefcase className="h-4 w-4 text-crimson-500" />
+                        <Briefcase className="h-4 w-4 text-brand-500" />
                         {job.experience}
                       </span>
                       <span className="flex items-center gap-1.5">
-                        <Building className="h-4 w-4 text-gold-500" />
+                        <Building className="h-4 w-4 text-brand-500" />
                         {job.department}
                       </span>
                     </div>
 
-                    <p className="mb-4 leading-relaxed text-muted-foreground">
+                    <p className="mt-3 leading-relaxed text-muted-foreground">
                       {job.description}
                     </p>
 
-                    {job.salary && (
-                      <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-gold-500/25 bg-gold-500/10 px-3 py-1 text-sm font-semibold text-gold-700">
-                        {job.salary}
+                    <div className="mt-5 grid gap-3 border-t border-brand-500/10 pt-4 sm:grid-cols-2">
+                      <div>
+                        <h4 className="mb-2 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-ink-700">
+                          <ChevronDown className="h-3.5 w-3.5 text-brand-500" />
+                          Key Responsibilities
+                        </h4>
+                        <ul className="space-y-1.5 text-sm text-muted-foreground">
+                          {job.responsibilities
+                            .slice(0, 3)
+                            .map((resp, i) => (
+                              <li key={i} className="flex items-start gap-2">
+                                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
+                                <span className="leading-relaxed">{resp}</span>
+                              </li>
+                            ))}
+                        </ul>
                       </div>
-                    )}
-
-                    <div className="mt-4 space-y-3">
-                      <h4 className="text-xs font-bold uppercase tracking-wider text-ink-700">
-                        Key Responsibilities
-                      </h4>
-                      <ul className="grid gap-2.5 text-sm text-muted-foreground">
-                        {job.responsibilities
-                          .slice(0, 3)
-                          .map((resp, i) => (
-                            <li key={i} className="flex items-start gap-2">
-                              <ChevronRight className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-500 transition-transform group-hover:translate-x-0.5" />
-                              <span className="leading-relaxed">{resp}</span>
-                            </li>
-                          ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-3 lg:w-52">
-                    <button
-                      onClick={() => handleApplyClick(job)}
-                      className="group/btn inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-6 py-3.5 font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:scale-[1.02] hover:bg-brand-600 active:scale-95"
-                    >
-                      Apply Now
-                      <ChevronRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                    </button>
-                    <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
-                      <Clock className="h-3 w-3" />
-                      <span>
-                        Posted{" "}
-                        {new Date(job.postedDate).toLocaleDateString("en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                      </span>
                     </div>
                   </div>
                 </div>
@@ -336,11 +353,11 @@ export default function CareerPageClient({ jobOpenings }: CareerPageClientProps)
             {benefits.map((b, i) => (
               <Reveal key={b.title} delay={(i % 3) * 0.06}>
                 <GlassCard className="group h-full border-brand-100 bg-white/80 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10">
-                  <div
+                  {/* <div
                     className={`mb-5 flex h-12 w-12 items-center justify-center rounded-xl ${b.accent} transition-transform duration-300 group-hover:scale-110`}
                   >
                     <b.icon className="h-6 w-6" />
-                  </div>
+                  </div> */}
                   <h3 className="text-lg font-semibold text-ink-700">
                     {b.title}
                   </h3>

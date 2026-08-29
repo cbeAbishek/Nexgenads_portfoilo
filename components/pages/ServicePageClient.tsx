@@ -50,14 +50,6 @@ const iconMap: Record<string, LucideIcon> = {
   server: Server,
 };
 
-const categoryOrder = [
-  "Development",
-  "AI & Automation",
-  "Marketing",
-  "Creative",
-  "Infrastructure",
-];
-
 const palette = [
   {
     dot: "bg-brand-500",
