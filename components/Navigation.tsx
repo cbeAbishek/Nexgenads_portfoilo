@@ -10,8 +10,13 @@ import {
   Bot,
   ChevronDown,
   Code2,
+  GraduationCap,
+  Heart,
   Menu,
   Megaphone,
+  MessageSquareHeart,
+  Ticket,
+  Users,
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -50,11 +55,40 @@ const moreServices = services.filter(
   (s) => s.category === "Creative" || s.category === "Infrastructure",
 );
 
+const feedbackRoles = [
+  {
+    label: "Student",
+    href: "/feedback?role=student",
+    icon: GraduationCap,
+    description: "College details + training",
+  },
+  {
+    label: "Client",
+    href: "/feedback?role=client",
+    icon: MessageSquareHeart,
+    description: "Project & service feedback",
+  },
+  {
+    label: "Intern",
+    href: "/feedback?role=intern",
+    icon: Ticket,
+    description: "Internship experience",
+  },
+  {
+    label: "Public",
+    href: "/feedback?role=public",
+    icon: Users,
+    description: "Events & community",
+  },
+];
+
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
+  const [isMobileFeedbackOpen, setIsMobileFeedbackOpen] = useState(false);
   const pathname = usePathname();
   const [lastPathname, setLastPathname] = useState(pathname);
   if (pathname !== lastPathname) {
@@ -62,6 +96,8 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
     setIsServicesOpen(false);
     setIsMobileServicesOpen(false);
+    setIsFeedbackOpen(false);
+    setIsMobileFeedbackOpen(false);
   }
   const servicesRef = useRef<HTMLDivElement>(null);
 
@@ -231,6 +267,86 @@ const Navigation = () => {
               </div>
             </div>
 
+            {/* Feedback dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsFeedbackOpen(true)}
+              onMouseLeave={() => setIsFeedbackOpen(false)}
+            >
+              <button
+                onClick={() => setIsFeedbackOpen((v) => !v)}
+                className={cn(
+                  "flex items-center gap-1 rounded-xl px-3.5 py-2 text-sm font-medium transition-colors",
+                  isActiveRoute("/feedback")
+                    ? "text-brand-600"
+                    : "text-foreground/70 hover:bg-brand-50 hover:text-foreground",
+                )}
+                aria-expanded={isFeedbackOpen}
+              >
+                <Heart className="h-4 w-4 text-gold-500" />
+                Feedback
+                <ChevronDown
+                  className={cn(
+                    "h-4 w-4 transition-transform duration-300",
+                    isFeedbackOpen && "rotate-180",
+                  )}
+                />
+              </button>
+
+              <div
+                className={cn(
+                  "absolute left-1/2 top-full w-[24rem] max-w-[92vw] -translate-x-1/2 pt-2 transition-all duration-200",
+                  isFeedbackOpen
+                    ? "pointer-events-auto translate-y-0 opacity-100"
+                    : "pointer-events-none -translate-y-1 opacity-0",
+                )}
+                aria-hidden={!isFeedbackOpen}
+              >
+                <div className="overflow-hidden rounded-2xl border border-brand-500/20 bg-white shadow-[0_28px_70px_-20px_rgba(0,80,140,0.35)] ring-1 ring-border">
+                  <div className="bg-gradient-to-br from-brand-50/70 to-white p-4">
+                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-brand-600">
+                      Share your experience
+                    </p>
+                    <h3 className="mt-1 text-sm font-bold text-foreground">
+                      We&apos;d love to hear from you
+                    </h3>
+                    <Link
+                      href="/feedback"
+                      onClick={() => setIsFeedbackOpen(false)}
+                      className="mt-2 flex items-center gap-2 rounded-xl border border-brand-500/25 bg-white px-3 py-2.5 text-sm font-semibold text-brand-600 transition-colors hover:bg-brand-50"
+                    >
+                      <Heart className="h-4 w-4" />
+                      Welcome — start feedback
+                      <ArrowRight className="ml-auto h-3.5 w-3.5" />
+                    </Link>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-1 p-3">
+                    {feedbackRoles.map((f) => (
+                      <Link
+                        key={f.href}
+                        href={f.href}
+                        onClick={() => setIsFeedbackOpen(false)}
+                        className="group flex items-start gap-2.5 rounded-lg px-2.5 py-2.5 transition-colors hover:bg-brand-50"
+                      >
+                        <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-500 group-hover:text-white">
+                          <f.icon className="h-4 w-4" />
+                        </span>
+                        <span>
+                          <span className="block text-[13px] font-semibold text-foreground/85">
+                            {f.label}
+                          </span>
+                          <span className="block text-[11px] font-medium text-muted-foreground">
+                            {f.description}
+                          </span>
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {navLinks.slice(2).map((link) => (
               <DesktopLink
                 key={link.href}
@@ -342,6 +458,44 @@ const Navigation = () => {
                   </Link>
                 ))}
               </div>
+            </div>
+          )}
+          <button
+            onClick={() => setIsMobileFeedbackOpen((v) => !v)}
+            className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-foreground/80 hover:bg-brand-50"
+            aria-expanded={isMobileFeedbackOpen}
+          >
+            <span className="flex items-center gap-2">
+              <Heart className="h-4 w-4 text-gold-500" /> Feedback
+            </span>
+            <ChevronDown
+              className={cn(
+                "h-4 w-4 transition-transform",
+                isMobileFeedbackOpen && "rotate-180",
+              )}
+            />
+          </button>
+          {isMobileFeedbackOpen && (
+            <div className="space-y-1 pl-3">
+              <Link
+                href="/feedback"
+                className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-brand-600 hover:bg-brand-50"
+              >
+                <Heart className="h-4 w-4" /> Welcome — start feedback
+              </Link>
+              {feedbackRoles.map((f) => (
+                <Link
+                  key={f.href}
+                  href={f.href}
+                  className="flex items-center gap-2.5 rounded-xl px-4 py-2.5 text-sm text-foreground/70 hover:bg-brand-50 hover:text-brand-600"
+                >
+                  <f.icon className="h-4 w-4 text-brand-600" />
+                  {f.label}
+                  <span className="ml-auto text-[11px] font-medium text-muted-foreground">
+                    {f.description}
+                  </span>
+                </Link>
+              ))}
             </div>
           )}
           <Link

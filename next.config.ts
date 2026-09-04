@@ -27,7 +27,7 @@ const securityHeaders = [
       "frame-ancestors 'none'",
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com",
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob: https://www.google-analytics.com https://*.googleusercontent.com",
+      "img-src 'self' data: blob: https://www.google-analytics.com https://*.googleusercontent.com https://images.dog.ceo",
       "font-src 'self' data:",
       "connect-src 'self' https://www.google-analytics.com https://analytics.google.com",
       "frame-src https://www.google.com https://maps.google.com https://drive.google.com",
@@ -36,6 +36,14 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.dog.ceo",
+      },
+    ],
+  },
   async headers() {
     return [
       {
