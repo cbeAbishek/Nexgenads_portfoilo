@@ -51,6 +51,7 @@ const Footer = () => {
       { label: "Careers", href: "/career" },
       { label: "Blog", href: "/blog" },
       { label: "Contact", href: "/contact" },
+      { label: "Admin", href: "/admin" },
     ],
     products: [
       { label: "1Grow - Sales & Marketing SaaS", href: "https://1grow.in" },
