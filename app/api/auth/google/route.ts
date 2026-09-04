@@ -23,8 +23,8 @@ export async function GET(request: NextRequest) {
   }
 
   const redirectUri =
-    process.env.NEXT_PUBLIC_GOOGLE_CALLBACK_URL ||
-    `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:8000'}/api/auth/callback`;
+    process.env.GOOGLE_CALLBACK_URL ||
+    `${process.env.APP_URL || 'http://localhost:8000'}/api/auth/callback`;
 
   const returnTo = safeReturnTo(request.nextUrl.searchParams.get('returnTo'));
   const state = Buffer.from(`nexgenads:${returnTo}`).toString('base64url');

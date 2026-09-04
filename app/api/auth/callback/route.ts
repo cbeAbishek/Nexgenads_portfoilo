@@ -8,8 +8,8 @@ const getOAuthConfig = () => {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
   const redirectUri =
-    process.env.NEXT_PUBLIC_GOOGLE_CALLBACK_URL ||
-    `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:8000'}/api/auth/callback`;
+    process.env.GOOGLE_CALLBACK_URL ||
+    `${process.env.APP_URL || 'http://localhost:8000'}/api/auth/callback`;
 
   if (!clientId || !clientSecret) {
     return null;
@@ -19,7 +19,7 @@ const getOAuthConfig = () => {
 
 export async function GET(request: NextRequest) {
   const config = getOAuthConfig();
-  const homeUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:8000';
+  const homeUrl = process.env.APP_URL || 'http://localhost:8000';
 
   const searchParams = request.nextUrl.searchParams;
   const code = searchParams.get('code');

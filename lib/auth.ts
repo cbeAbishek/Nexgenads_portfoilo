@@ -25,7 +25,7 @@ export async function createSession(payload: SessionPayload): Promise<void> {
     httpOnly: true,
     secure:
       process.env.NODE_ENV === 'production' &&
-      (process.env.NEXT_PUBLIC_APP_URL || '').startsWith('https://'),
+      (process.env.APP_URL || '').startsWith('https://'),
     sameSite: 'lax',
     path: '/',
     maxAge: SESSION_MAX_AGE_SECONDS,
