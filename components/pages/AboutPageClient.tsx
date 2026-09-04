@@ -21,7 +21,7 @@ import HeroBackdrop from "@/components/ui/hero-backdrop";
 
 const teamMembers = [
   {
-    name: "Abishek G.",
+    name: "Abishek G",
     role: "Founder & CEO",
     description:
       "Sets the product and engineering vision, keeping the team focused on building intelligent software.",
@@ -39,6 +39,36 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/mohammed-jubair-572862334/",
     badgeClass: "bg-gold-500/10 text-gold-600 border-gold-500/25",
     barClass: "bg-gold-500",
+  },
+  {
+    name: "Sarran M",
+    role: "CTO - Chief Technology Officer",
+    description:
+      "Leads architecture, AI product strategy, and technical innovation to ship scalable, intelligent platforms.",
+    image: "/team/sarran.png",
+    linkedin: "https://www.linkedin.com/in/sarran-m-52a96a331/",
+    badgeClass: "bg-violet-500/10 text-violet-600 border-violet-500/20",
+    barClass: "bg-violet-500",
+  },
+  {
+    name: "Semmozhiyan N S",
+    role: "Site Reliability Engineer",
+    description:
+      "Keeps our infrastructure fast, reliable, and always-on with automation-first operations.",
+    image: "/team/sem.png",
+    linkedin: "https://www.linkedin.com/in/semmozhiyan-dev/",
+    badgeClass: "bg-teal-500/10 text-teal-600 border-teal-500/20",
+    barClass: "bg-teal-500",
+  },
+  {
+    name: "Naveen K",
+    role: "UI/UX Engineer",
+    description:
+      "Crafts clean, intuitive interfaces and design systems that make complex products feel effortless.",
+    image: "/team/naveen.png",
+    linkedin: "https://www.linkedin.com/in/naveen-k2008/",
+    badgeClass: "bg-rose-500/10 text-rose-600 border-rose-500/20",
+    barClass: "bg-rose-500",
   },
 ];
 
@@ -350,7 +380,7 @@ const AboutPageClient = () => {
       <section className="bg-white/50 py-16 md:py-24">
         <div className="container-shell">
           <Reveal className="mb-10 text-center md:mb-14">
-            <Eyebrow>Leadership</Eyebrow>
+            <Eyebrow>Our Team</Eyebrow>
 
             <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-ink-700 sm:text-4xl">
               The people behind NexGenAds
@@ -362,7 +392,7 @@ const AboutPageClient = () => {
             />
           </Reveal>
 
-          <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+          <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
             {teamMembers.map((member, index) => (
               <Reveal key={member.name} delay={index * 0.1} className="h-full">
                 <motion.article
