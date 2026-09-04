@@ -95,6 +95,16 @@ CREATE TABLE IF NOT EXISTS feedback_submissions (
   session_rating INT, -- 1 - 5
   guidance_rating INT, -- 1 - 5
   project_training_rating INT, -- 1 - 5
+  client_service VARCHAR(255), -- client only: which service they use / are interested in
+  intern_role VARCHAR(255), -- intern only: internship role
+  intern_time VARCHAR(255), -- intern only: preferred internship timing
+  feedback_about VARCHAR(255), -- public only: what the feedback is about
+  feedback_1 TEXT,
+  feedback_2 TEXT,
+  feedback_3 TEXT,
+  rating_1 INT, -- 1 - 5
+  rating_2 INT, -- 1 - 5
+  rating_3 INT, -- 1 - 5
   nexgenads_followed BOOLEAN DEFAULT FALSE,
   onedotgrow_followed BOOLEAN DEFAULT FALSE,
   review_left BOOLEAN DEFAULT FALSE,
@@ -106,6 +116,18 @@ CREATE TABLE IF NOT EXISTS feedback_submissions (
 CREATE INDEX IF NOT EXISTS idx_feedback_submissions_role ON feedback_submissions(role);
 CREATE INDEX IF NOT EXISTS idx_feedback_submissions_email ON feedback_submissions(email);
 CREATE INDEX IF NOT EXISTS idx_feedback_submissions_created_at ON feedback_submissions(created_at DESC);
+
+-- Ensure new role-based columns exist on already-created tables.
+ALTER TABLE feedback_submissions ADD COLUMN IF NOT EXISTS client_service VARCHAR(255);
+ALTER TABLE feedback_submissions ADD COLUMN IF NOT EXISTS intern_role VARCHAR(255);
+ALTER TABLE feedback_submissions ADD COLUMN IF NOT EXISTS intern_time VARCHAR(255);
+ALTER TABLE feedback_submissions ADD COLUMN IF NOT EXISTS feedback_about VARCHAR(255);
+ALTER TABLE feedback_submissions ADD COLUMN IF NOT EXISTS feedback_1 TEXT;
+ALTER TABLE feedback_submissions ADD COLUMN IF NOT EXISTS feedback_2 TEXT;
+ALTER TABLE feedback_submissions ADD COLUMN IF NOT EXISTS feedback_3 TEXT;
+ALTER TABLE feedback_submissions ADD COLUMN IF NOT EXISTS rating_1 INT;
+ALTER TABLE feedback_submissions ADD COLUMN IF NOT EXISTS rating_2 INT;
+ALTER TABLE feedback_submissions ADD COLUMN IF NOT EXISTS rating_3 INT;
 
 ALTER TABLE feedback_submissions ENABLE ROW LEVEL SECURITY;
 

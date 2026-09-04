@@ -15,17 +15,12 @@ import {
   Clipboard,
   ClipboardCheck,
   Clock,
-  Dog,
   ExternalLink,
   GraduationCap,
-  Heart,
   Instagram,
-  Laugh,
   Loader2,
   Plus,
-  Quote,
   Send,
-  Sparkles,
   Star,
   ThumbsUp,
   Ticket,
@@ -155,10 +150,166 @@ const GUIDANCE_TEMPLATE = `The career and business guidance I received from NexG
 
 const TRAINING_TEMPLATE = `The project training at NexGenAds was excellent! I worked on real projects with modern tools, and the mentors were always available to help. It felt like a real company environment, which boosted my skills and confidence a lot. Highly recommended for anyone who wants practical exposure!`;
 
+const CLIENT_SERVICE_TEMPLATE = `Working with NexGenAds was a smooth and professional experience. They delivered the service we needed on time, communicated clearly, and genuinely understood our goals. We're really happy with the outcome and would gladly work with them again. Highly recommended!`;
+
+const CLIENT_COMMUNICATION_TEMPLATE = `The team at NexGenAds kept us updated at every stage and were always quick to respond to our questions. Clear timelines, honest advice, and a friendly approach made the whole collaboration effortless. Great communication from start to finish!`;
+
+const CLIENT_OVERALL_TEMPLATE = `Overall, partnering with NexGenAds was a great decision. Professional, reliable, and result-oriented — they treated our project like their own. We look forward to working with them again. Thank you, NexGenAds!`;
+
+const INTERN_EXPERIENCE_TEMPLATE = `My internship at NexGenAds was a fantastic hands-on experience! I got to work on real projects with real deadlines, just like in a professional company. The exposure went far beyond what I expected from an internship. Truly grateful for the opportunity!`;
+
+const INTERN_MENTORSHIP_TEMPLATE = `The mentors at NexGenAds were approachable and genuinely invested in my growth. They explained things clearly, reviewed my work, and always pushed me to do better. Their support made a huge difference in my confidence and skills.`;
+
+const INTERN_LEARNING_TEMPLATE = `I learned more in a few weeks at NexGenAds than in months elsewhere! From modern tools to industry workflows, every day added something new. The practical tasks and feedback helped me grow as a developer. Highly recommend interning here!`;
+
+const PUBLIC_WORKSHOPS_TEMPLATE = `I attended a NexGenAds workshop/event and it was really well organized! The content was practical, the examples were relatable, and the team made it interactive and fun. Looking forward to joining more sessions from them.`;
+
+const PUBLIC_PRODUCTS_TEMPLATE = `NexGenAds products and services are thoughtfully built and easy to use. You can clearly see the effort and expertise that goes into each product. Keep up the great work!`;
+
+const PUBLIC_OVERALL_TEMPLATE = `NexGenAds is doing amazing work for students and businesses alike. Their content, events, and products are genuinely helpful and inspiring. Proud to be following their journey — all the best to the team!`;
+
+type ReviewItem = { id: string; label: string; template: string };
+
+const CLIENT_SERVICES = [
+  'Website Development',
+  'Mobile App Development',
+  'Digital Marketing & Ads',
+  'SaaS Products / Growth',
+  'Branding & Design',
+  'IoT & Hardware',
+];
+
+const INTERN_ROLES = [
+  'Flutter Developer',
+  'Web Developer',
+  'UI/UX Designer',
+  'Digital Marketer',
+  'Content Creator',
+  'Ad Ops / Media Buyer',
+  'Business Analyst',
+];
+
+const INTERN_TIMES = [
+  'Morning Shift (9 AM – 12 PM)',
+  'Afternoon Shift (12 PM – 3 PM)',
+  'Evening Shift (3 PM – 6 PM)',
+  'Flexible / Remote',
+  'Not sure yet',
+];
+
+const PUBLIC_FEEDBACK_ABOUT = [
+  'Workshop / Event',
+  'Products & Services',
+  'Content & Social Media',
+  'Career Guidance',
+  'Overall Experience',
+];
+
+const ROLE_CONFIG: Record<
+  RoleType,
+  {
+    detailsTitle: string;
+    detailsHint: string;
+    needsFollow: boolean;
+    reviewTitle: string;
+    reviewHint: string;
+    items: ReviewItem[];
+  }
+> = {
+  student: {
+    detailsTitle: 'College details',
+    detailsHint:
+      'Tell us a little more about your academics so we can serve you better.',
+    needsFollow: true,
+    reviewTitle: 'Share your review',
+    reviewHint:
+      'Rate your experience, copy a ready-made review, and leave it on Google.',
+    items: [
+      { id: 'session', label: 'Session feedback', template: SESSION_TEMPLATE },
+      { id: 'guidance', label: 'Guidance feedback', template: GUIDANCE_TEMPLATE },
+      {
+        id: 'training',
+        label: 'Project / training feedback',
+        template: TRAINING_TEMPLATE,
+      },
+    ],
+  },
+  client: {
+    detailsTitle: 'Tell us about the service',
+    detailsHint:
+      'Which service did you use or are you interested in, so we can prepare the right next steps?',
+    needsFollow: false,
+    reviewTitle: 'Share your review',
+    reviewHint:
+      'Rate the service you received, copy a ready-made review, and leave it on Google.',
+    items: [
+      { id: 'service', label: 'Service feedback', template: CLIENT_SERVICE_TEMPLATE },
+      {
+        id: 'communication',
+        label: 'Communication',
+        template: CLIENT_COMMUNICATION_TEMPLATE,
+      },
+      { id: 'overall', label: 'Overall experience', template: CLIENT_OVERALL_TEMPLATE },
+    ],
+  },
+  intern: {
+    detailsTitle: 'Internship details',
+    detailsHint:
+      "Tell us the role you're interested in and your preferred internship timing.",
+    needsFollow: true,
+    reviewTitle: 'Share your review',
+    reviewHint:
+      'Rate your internship experience, copy a ready-made review, and leave it on Google.',
+    items: [
+      {
+        id: 'experience',
+        label: 'Internship experience',
+        template: INTERN_EXPERIENCE_TEMPLATE,
+      },
+      {
+        id: 'mentorship',
+        label: 'Mentorship & guidance',
+        template: INTERN_MENTORSHIP_TEMPLATE,
+      },
+      {
+        id: 'learning',
+        label: 'Learning & skills',
+        template: INTERN_LEARNING_TEMPLATE,
+      },
+    ],
+  },
+  public: {
+    detailsTitle: 'What is this feedback about?',
+    detailsHint:
+      'Pick a topic so we can route your feedback to the right team.',
+    needsFollow: true,
+    reviewTitle: 'Share your review',
+    reviewHint:
+      'Rate your experience, copy a ready-made review, and leave it on Google.',
+    items: [
+      {
+        id: 'workshops',
+        label: 'Workshops & events',
+        template: PUBLIC_WORKSHOPS_TEMPLATE,
+      },
+      {
+        id: 'products',
+        label: 'Products & services',
+        template: PUBLIC_PRODUCTS_TEMPLATE,
+      },
+      {
+        id: 'overall',
+        label: 'Overall experience',
+        template: PUBLIC_OVERALL_TEMPLATE,
+      },
+    ],
+  },
+};
+
 const STEP_LABELS: { name: StepName; label: string }[] = [
   { name: 'role', label: 'Who are you?' },
   { name: 'identity', label: 'Your details' },
-  { name: 'details', label: 'College details' },
+  { name: 'details', label: 'Details' },
   { name: 'follow-nexgenads', label: 'Follow NexGenAds' },
   { name: 'follow-1grow', label: 'Follow 1Grow' },
   { name: 'review', label: 'Share your review' },
@@ -216,14 +367,16 @@ const FeedbackPageClient = () => {
   const [nexgenadsCountdown, setNexgenadsCountdown] = useState(0);
   const [onedotgrowCountdown, setOnedotgrowCountdown] = useState(0);
 
-  const [sessionFeedback, setSessionFeedback] = useState(SESSION_TEMPLATE);
-  const [guidanceFeedback, setGuidanceFeedback] = useState(GUIDANCE_TEMPLATE);
-  const [projectTrainingFeedback, setProjectTrainingFeedback] =
-    useState(TRAINING_TEMPLATE);
+  const [clientService, setClientService] = useState('');
+  const [clientServiceOther, setClientServiceOther] = useState('');
+  const [internRole, setInternRole] = useState('');
+  const [internRoleOther, setInternRoleOther] = useState('');
+  const [internTime, setInternTime] = useState('');
+  const [feedbackAbout, setFeedbackAbout] = useState('');
+  const [feedbackAboutOther, setFeedbackAboutOther] = useState('');
 
-  const [sessionRating, setSessionRating] = useState(0);
-  const [guidanceRating, setGuidanceRating] = useState(0);
-  const [trainingRating, setTrainingRating] = useState(0);
+  const [feedbackMap, setFeedbackMap] = useState<Record<string, string>>({});
+  const [ratingMap, setRatingMap] = useState<Record<string, number>>({});
   const [reviewLeft, setReviewLeft] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -362,43 +515,90 @@ const FeedbackPageClient = () => {
       setFullName(fb.full_name || '');
       setEmail(fb.email || '');
 
-      if (role === 'student') {
-        if (COLLEGES.includes(fb.college_name)) {
-          setCollegeSelect(fb.college_name);
-        } else if (fb.college_name) {
-          setCollegeSelect('other');
-          setCollegeOther(fb.college_name);
+      if (role && fb.role === role) {
+        if (role === 'student') {
+          if (COLLEGES.includes(fb.college_name)) {
+            setCollegeSelect(fb.college_name);
+          } else if (fb.college_name) {
+            setCollegeSelect('other');
+            setCollegeOther(fb.college_name);
+          }
+          setDepartment(fb.department || '');
+          setYear(fb.year || '');
+
+          const savedDomains = (fb.interested_domain || '')
+            .split(',')
+            .map((s: string) => s.trim())
+            .filter(Boolean);
+          const savedCustom = savedDomains.filter(
+            (d: string) =>
+              !DOMAINS.some((known) => known.toLowerCase() === d.toLowerCase())
+          );
+          setCustomDomains((prev) =>
+            Array.from(new Set([...prev, ...savedCustom]))
+          );
+          setInterestedDomains(savedDomains);
+
+          const items = ROLE_CONFIG.student.items;
+          setFeedbackMap({
+            [items[0].id]:
+              fb.session_feedback || items[0].template,
+            [items[1].id]:
+              fb.guidance_feedback || items[1].template,
+            [items[2].id]:
+              fb.project_training_feedback || items[2].template,
+          });
+          setRatingMap({
+            [items[0].id]: fb.session_rating || 0,
+            [items[1].id]: fb.guidance_rating || 0,
+            [items[2].id]: fb.project_training_rating || 0,
+          });
+        } else {
+          const items = ROLE_CONFIG[role].items;
+          const savedFeedback: Record<string, string> = {};
+          const savedRatings: Record<string, number> = {};
+          const savedTexts = [fb.feedback_1, fb.feedback_2, fb.feedback_3];
+          const savedRatingsArr = [fb.rating_1, fb.rating_2, fb.rating_3];
+          items.forEach((item, index) => {
+            savedFeedback[item.id] =
+              savedTexts[index] || item.template;
+            savedRatings[item.id] = savedRatingsArr[index] || 0;
+          });
+          setFeedbackMap(savedFeedback);
+          setRatingMap(savedRatings);
+
+          if (role === 'client') {
+            if (CLIENT_SERVICES.includes(fb.client_service)) {
+              setClientService(fb.client_service);
+            } else if (fb.client_service) {
+              setClientService('other');
+              setClientServiceOther(fb.client_service);
+            }
+          }
+          if (role === 'intern') {
+            if (INTERN_ROLES.includes(fb.intern_role)) {
+              setInternRole(fb.intern_role);
+            } else if (fb.intern_role) {
+              setInternRole('other');
+              setInternRoleOther(fb.intern_role);
+            }
+            setInternTime(fb.intern_time || '');
+          }
+          if (role === 'public') {
+            if (PUBLIC_FEEDBACK_ABOUT.includes(fb.feedback_about)) {
+              setFeedbackAbout(fb.feedback_about);
+            } else if (fb.feedback_about) {
+              setFeedbackAbout('other');
+              setFeedbackAboutOther(fb.feedback_about);
+            }
+          }
         }
-        setDepartment(fb.department || '');
-        setYear(fb.year || '');
-
-        const savedDomains = (fb.interested_domain || '')
-          .split(',')
-          .map((s: string) => s.trim())
-          .filter(Boolean);
-        const savedCustom = savedDomains.filter(
-          (d: string) =>
-            !DOMAINS.some((known) => known.toLowerCase() === d.toLowerCase())
-        );
-        setCustomDomains((prev) =>
-          Array.from(new Set([...prev, ...savedCustom]))
-        );
-        setInterestedDomains(savedDomains);
+        setNexgenadsFollowed(!!fb.nexgenads_followed);
+        setOnedotgrowFollowed(!!fb.onedotgrow_followed);
+        setNexgenadsOpened(!!fb.nexgenads_followed);
+        setOnedotgrowOpened(!!fb.onedotgrow_followed);
+        setReviewLeft(!!fb.review_left);
       }
-
-      setSessionFeedback(fb.session_feedback || SESSION_TEMPLATE);
-      setGuidanceFeedback(fb.guidance_feedback || GUIDANCE_TEMPLATE);
-      setProjectTrainingFeedback(
-        fb.project_training_feedback || TRAINING_TEMPLATE
-      );
-      setSessionRating(fb.session_rating || 0);
-      setGuidanceRating(fb.guidance_rating || 0);
-      setTrainingRating(fb.project_training_rating || 0);
-      setNexgenadsFollowed(!!fb.nexgenads_followed);
-      setOnedotgrowFollowed(!!fb.onedotgrow_followed);
-      setNexgenadsOpened(!!fb.nexgenads_followed);
-      setOnedotgrowOpened(!!fb.onedotgrow_followed);
-      setReviewLeft(!!fb.review_left);
     } catch (error) {
       console.error('Loading previous feedback failed', error);
     }
@@ -427,47 +627,104 @@ const FeedbackPageClient = () => {
       setSubmitError('Please enter a valid email address.');
       return;
     }
-    if (role === 'student') {
-      goToStep('details');
-    } else {
-      goToStep('follow-nexgenads');
-    }
+    goToStep('details');
   };
 
   const handleDetailsNext = () => {
-    const collegeName =
-      collegeSelect === 'other' ? collegeOther.trim() : collegeSelect;
-    if (!collegeSelect) {
-      setSubmitError('Please select your college.');
+    if (role === 'student') {
+      const collegeName =
+        collegeSelect === 'other' ? collegeOther.trim() : collegeSelect;
+      if (!collegeSelect) {
+        setSubmitError('Please select your college.');
+        return;
+      }
+      if (collegeSelect === 'other' && !collegeOther.trim()) {
+        setSubmitError('Please enter your college name.');
+        return;
+      }
+      if (!department.trim()) {
+        setSubmitError('Please enter your department.');
+        return;
+      }
+      if (!year) {
+        setSubmitError('Please select your year.');
+        return;
+      }
+      if (interestedDomains.length === 0) {
+        setSubmitError('Please select at least one interested domain.');
+        return;
+      }
+      if (interestedDomains.length < 5) {
+        setSubmitError(
+          `Please select at least 5 interested domains (currently ${interestedDomains.length}).`
+        );
+        return;
+      }
+      if (interestedDomains.length > 10) {
+        setSubmitError('You can select at most 10 interested domains.');
+        return;
+      }
+      void collegeName;
+      goToStep('follow-nexgenads');
       return;
     }
-    if (collegeSelect === 'other' && !collegeOther.trim()) {
-      setSubmitError('Please enter your college name.');
+
+    if (role === 'client') {
+      const service =
+        clientService === 'other'
+          ? clientServiceOther.trim()
+          : clientService;
+      if (!clientService) {
+        setSubmitError('Please select a service.');
+        return;
+      }
+      if (clientService === 'other' && !clientServiceOther.trim()) {
+        setSubmitError('Please describe the service.');
+        return;
+      }
+      void service;
+      goToStep('review');
       return;
     }
-    if (!department.trim()) {
-      setSubmitError('Please enter your department.');
+
+    if (role === 'intern') {
+      const internRoleValue =
+        internRole === 'other' ? internRoleOther.trim() : internRole;
+      if (!internRole) {
+        setSubmitError('Please select your internship role.');
+        return;
+      }
+      if (internRole === 'other' && !internRoleOther.trim()) {
+        setSubmitError('Please enter the internship role.');
+        return;
+      }
+      if (!internTime) {
+        setSubmitError('Please select your internship timing.');
+        return;
+      }
+      void internRoleValue;
+      goToStep('follow-nexgenads');
       return;
     }
-    if (!year) {
-      setSubmitError('Please select your year.');
+
+    if (role === 'public') {
+      const about =
+        feedbackAbout === 'other'
+          ? feedbackAboutOther.trim()
+          : feedbackAbout;
+      if (!feedbackAbout) {
+        setSubmitError('Please select what your feedback is about.');
+        return;
+      }
+      if (feedbackAbout === 'other' && !feedbackAboutOther.trim()) {
+        setSubmitError('Please describe what your feedback is about.');
+        return;
+      }
+      void about;
+      goToStep('follow-nexgenads');
       return;
     }
-    if (interestedDomains.length === 0) {
-      setSubmitError('Please select at least one interested domain.');
-      return;
-    }
-    if (interestedDomains.length < 5) {
-      setSubmitError(
-        `Please select at least 5 interested domains (currently ${interestedDomains.length}).`
-      );
-      return;
-    }
-    if (interestedDomains.length > 10) {
-      setSubmitError('You can select at most 10 interested domains.');
-      return;
-    }
-    void collegeName;
+
     goToStep('follow-nexgenads');
   };
 
@@ -513,6 +770,18 @@ const FeedbackPageClient = () => {
     try {
       const collegeName =
         collegeSelect === 'other' ? collegeOther.trim() : collegeSelect;
+      const service =
+        clientService === 'other'
+          ? clientServiceOther.trim()
+          : clientService;
+      const internRoleValue =
+        internRole === 'other' ? internRoleOther.trim() : internRole;
+      const about =
+        feedbackAbout === 'other'
+          ? feedbackAboutOther.trim()
+          : feedbackAbout;
+
+      const items = role ? ROLE_CONFIG[role].items : [];
 
       const payload = {
         role,
@@ -522,12 +791,14 @@ const FeedbackPageClient = () => {
         department: department.trim(),
         year,
         interestedDomain: interestedDomains.join(', '),
-        sessionFeedback,
-        guidanceFeedback,
-        projectTrainingFeedback,
-        sessionRating,
-        guidanceRating,
-        projectTrainingRating: trainingRating,
+        clientService: service,
+        internRole: internRoleValue,
+        internTime,
+        feedbackAbout: about,
+        feedback: items.map(
+          (item) => feedbackMap[item.id] ?? item.template
+        ),
+        ratings: items.map((item) => ratingMap[item.id] || 0),
         nexgenadsFollowed,
         onedotgrowFollowed,
         reviewLeft,
@@ -566,7 +837,18 @@ const FeedbackPageClient = () => {
 
   const currentStepIndex = STEP_LABELS.findIndex((s) => s.name === step);
   const visibleSteps =
-    role === 'student' ? STEP_LABELS : STEP_LABELS.filter((s) => s.name !== 'details');
+    role === 'client'
+      ? STEP_LABELS.filter(
+          (s) => s.name !== 'follow-nexgenads' && s.name !== 'follow-1grow'
+        )
+      : STEP_LABELS;
+
+  const stepLabel = (name: StepName): string => {
+    if (name === 'details' && role) {
+      return ROLE_CONFIG[role].detailsTitle;
+    }
+    return STEP_LABELS.find((s) => s.name === name)?.label ?? '';
+  };
 
   const renderStars = (
     label: string,
@@ -661,9 +943,9 @@ const FeedbackPageClient = () => {
           Your Voice <span className="text-[#1d36bf]">Matters</span>
         </h1>
         <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          Share your NexGenAds experience session, guidance and project
-          training feedback follow us on Instagram, leave a Google review, and
-          grab a laugh on the way out.
+          {role
+            ? `Share your ${role === 'client' ? 'service' : role === 'intern' ? 'internship' : role === 'public' ? 'feedback' : 'session, guidance and project training'} experience, follow us on Instagram, leave a Google review, and grab a laugh on the way out.`
+            : 'Share your experience, follow us on Instagram, leave a Google review, and grab a laugh on the way out.'}
         </p>
       </div>
     </section>
@@ -677,7 +959,7 @@ const FeedbackPageClient = () => {
           {visibleSteps.length}
         </p>
         <p className="text-sm font-medium text-brand-600">
-          {STEP_LABELS.find((s) => s.name === step)?.label}
+          {stepLabel(step)}
         </p>
       </div>
       <div className="flex w-full items-center gap-1.5">
@@ -883,17 +1165,19 @@ const FeedbackPageClient = () => {
     );
   };
 
-  const renderDetailsStep = () => (
+  const renderDetailsStep = () => {
+    if (!role) return null;
+    const cfg = ROLE_CONFIG[role];
+    return (
     <div className="animate-fade-in mx-auto max-w-xl">
       <div className="mb-8 text-center">
         <h2 className="mb-2 text-2xl font-bold text-foreground md:text-3xl">
-          College details
+          {cfg.detailsTitle}
         </h2>
-        <p className="text-muted-foreground">
-          Tell us a little more about your academics so we can serve you better.
-        </p>
+        <p className="text-muted-foreground">{cfg.detailsHint}</p>
       </div>
       <div className="space-y-5">
+        {role === 'student' && <>
         <div>
           <Label className="text-sm font-semibold">
             College <span className="text-destructive">*</span>
@@ -1030,6 +1314,116 @@ const FeedbackPageClient = () => {
             appear as a selectable option.
           </p>
         </div>
+        </>}
+
+        {role === 'client' && (
+          <div>
+            <Label className="text-sm font-semibold">
+              Which service are you interested in / using?{' '}
+              <span className="text-destructive">*</span>
+            </Label>
+            <Select value={clientService} onValueChange={setClientService}>
+              <SelectTrigger className="mt-2 h-11 w-full rounded-xl border-border/70 bg-white shadow-sm hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200">
+                <SelectValue placeholder="Select a service" />
+              </SelectTrigger>
+              <SelectContent>
+                {CLIENT_SERVICES.map((service) => (
+                  <SelectItem key={service} value={service}>
+                    {service}
+                  </SelectItem>
+                ))}
+                <SelectItem value="other">Other</SelectItem>
+              </SelectContent>
+            </Select>
+            {clientService === 'other' && (
+              <Input
+                value={clientServiceOther}
+                onChange={(e) => setClientServiceOther(e.target.value)}
+                placeholder="Describe the service"
+                className="mt-2 h-11 rounded-xl border-border/70 bg-white shadow-sm hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+              />
+            )}
+          </div>
+        )}
+
+        {role === 'intern' && (
+          <>
+            <div>
+              <Label className="text-sm font-semibold">
+                Which internship role are you interested in?{' '}
+                <span className="text-destructive">*</span>
+              </Label>
+              <Select value={internRole} onValueChange={setInternRole}>
+                <SelectTrigger className="mt-2 h-11 w-full rounded-xl border-border/70 bg-white shadow-sm hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200">
+                  <SelectValue placeholder="Select a role" />
+                </SelectTrigger>
+                <SelectContent>
+                  {INTERN_ROLES.map((r) => (
+                    <SelectItem key={r} value={r}>
+                      {r}
+                    </SelectItem>
+                  ))}
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+              {internRole === 'other' && (
+                <Input
+                  value={internRoleOther}
+                  onChange={(e) => setInternRoleOther(e.target.value)}
+                  placeholder="Enter the role"
+                  className="mt-2 h-11 rounded-xl border-border/70 bg-white shadow-sm hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+                />
+              )}
+            </div>
+            <div>
+              <Label className="text-sm font-semibold">
+                Preferred internship timing <span className="text-destructive">*</span>
+              </Label>
+              <Select value={internTime} onValueChange={setInternTime}>
+                <SelectTrigger className="mt-2 h-11 w-full rounded-xl border-border/70 bg-white shadow-sm hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200">
+                  <SelectValue placeholder="Select a timing" />
+                </SelectTrigger>
+                <SelectContent>
+                  {INTERN_TIMES.map((t) => (
+                    <SelectItem key={t} value={t}>
+                      {t}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </>
+        )}
+
+        {role === 'public' && (
+          <div>
+            <Label className="text-sm font-semibold">
+              What is your feedback about?{' '}
+              <span className="text-destructive">*</span>
+            </Label>
+            <Select value={feedbackAbout} onValueChange={setFeedbackAbout}>
+              <SelectTrigger className="mt-2 h-11 w-full rounded-xl border-border/70 bg-white shadow-sm hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200">
+                <SelectValue placeholder="Select a topic" />
+              </SelectTrigger>
+              <SelectContent>
+                {PUBLIC_FEEDBACK_ABOUT.map((topic) => (
+                  <SelectItem key={topic} value={topic}>
+                    {topic}
+                  </SelectItem>
+                ))}
+                <SelectItem value="other">Other</SelectItem>
+              </SelectContent>
+            </Select>
+            {feedbackAbout === 'other' && (
+              <Input
+                value={feedbackAboutOther}
+                onChange={(e) => setFeedbackAboutOther(e.target.value)}
+                placeholder="Describe the topic"
+                className="mt-2 h-11 rounded-xl border-border/70 bg-white shadow-sm hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+              />
+            )}
+          </div>
+        )}
 
         {submitError && step === 'details' && (
           <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-600">
@@ -1058,6 +1452,7 @@ const FeedbackPageClient = () => {
       </div>
     </div>
   );
+  };
 
   const renderFollowStep = (type: 'nexgenads' | '1grow') => {
     const isNexgenads = type === 'nexgenads';
@@ -1186,7 +1581,7 @@ const FeedbackPageClient = () => {
           <Button
             type="button"
             variant="ghost"
-            onClick={() => goToStep(isNexgenads ? 'identity' : 'follow-nexgenads')}
+            onClick={() => goToStep(isNexgenads ? 'details' : 'follow-nexgenads')}
             className="rounded-xl"
           >
             <ArrowLeft className="h-4 w-4" /> Back
@@ -1196,18 +1591,19 @@ const FeedbackPageClient = () => {
     );
   };
 
-  const renderReviewStep = () => (
+  const renderReviewStep = () => {
+    if (!role) return null;
+    const cfg = ROLE_CONFIG[role];
+    return (
     <div className="animate-fade-in mx-auto max-w-2xl">
       <div className="mb-8 text-center">
         <span className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-gold-500 to-orange-500 text-white shadow-xl shadow-gold-500/30">
           <Star className="h-8 w-8 fill-white" />
         </span>
         <h2 className="mb-2 text-2xl font-bold text-foreground md:text-3xl">
-          Share your review
+          {cfg.reviewTitle}
         </h2>
-        <p className="text-muted-foreground">
-          Rate your experience, copy a ready-made review, and leave it on Google.
-        </p>
+        <p className="text-muted-foreground">{cfg.reviewHint}</p>
       </div>
 
       <div className="space-y-8">
@@ -1224,13 +1620,16 @@ const FeedbackPageClient = () => {
             </span>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
-            {renderStars('Session', sessionRating, setSessionRating)}
-            {renderStars('Guidance', guidanceRating, setGuidanceRating)}
-            {renderStars(
-              'Project / Training',
-              trainingRating,
-              setTrainingRating
-            )}
+            {cfg.items.map((item) => (
+              <div key={item.id}>
+                {renderStars(
+                  item.label,
+                  ratingMap[item.id] || 0,
+                  (value) =>
+                    setRatingMap((prev) => ({ ...prev, [item.id]: value }))
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -1275,11 +1674,13 @@ const FeedbackPageClient = () => {
                   Edit to match your experience, then copy &amp; paste into the
                   Google review.
                 </p>
-                {/* <button
+                <button
                   type="button"
                   onClick={() => {
-                    const full =
-                      `${sessionFeedback.trim()}\n\n${guidanceFeedback.trim()}\n\n${projectTrainingFeedback.trim()}`.trim();
+                    const full = cfg.items
+                      .map((item) => feedbackMap[item.id] ?? item.template)
+                      .join('\n\n')
+                      .trim();
                     copyToClipboard('all', full);
                   }}
                   className="flex items-center gap-1.5 rounded-full border border-border/70 bg-white px-3 py-1.5 text-xs font-semibold text-foreground/80 transition-colors hover:border-brand-400 hover:text-brand-600"
@@ -1293,26 +1694,22 @@ const FeedbackPageClient = () => {
                       <Clipboard className="h-3.5 w-3.5" /> Copy all
                     </>
                   )}
-                </button> */}
+                </button>
               </div>
-              {renderCopyBlock(
-                'session',
-                'Session feedback',
-                sessionFeedback,
-                setSessionFeedback
-              )}
-              {renderCopyBlock(
-                'guidance',
-                'Guidance feedback',
-                guidanceFeedback,
-                setGuidanceFeedback
-              )}
-              {renderCopyBlock(
-                'training',
-                'Project / training feedback',
-                projectTrainingFeedback,
-                setProjectTrainingFeedback
-              )}
+              {cfg.items.map((item) => (
+                <div key={item.id}>
+                  {renderCopyBlock(
+                    item.id,
+                    item.label,
+                    feedbackMap[item.id] ?? item.template,
+                    (value) =>
+                      setFeedbackMap((prev) => ({
+                        ...prev,
+                        [item.id]: value,
+                      }))
+                  )}
+                </div>
+              ))}
             </div>
           )}
         </div>
@@ -1410,7 +1807,7 @@ const FeedbackPageClient = () => {
           <Button
             type="button"
             variant="ghost"
-            onClick={() => goToStep('follow-1grow')}
+            onClick={() => goToStep(role === 'client' ? 'details' : 'follow-1grow')}
             className="rounded-xl"
           >
             <ArrowLeft className="h-4 w-4" /> Back
@@ -1449,6 +1846,7 @@ const FeedbackPageClient = () => {
       </div>
     </div>
   );
+  };
 
   const renderDoneStep = () => {
     const firstName = (googleUser?.name || fullName || 'friend').split(' ')[0];
@@ -1505,7 +1903,6 @@ const FeedbackPageClient = () => {
 
           <div className="flex flex-col overflow-hidden rounded-3xl border border-brand-500/30 bg-gradient-to-br from-brand-500/10 via-white to-brand-500/5 shadow-sm">
             <div className="flex items-center gap-2 border-b border-brand-500/20 bg-brand-500/10 px-5 py-3">
-             
               <p className="text-sm font-bold text-foreground">
                 An image for you
               </p>
@@ -1591,14 +1988,17 @@ const FeedbackPageClient = () => {
               setOnedotgrowFollowed(false);
               setNexgenadsCountdown(0);
               setOnedotgrowCountdown(0);
-              setSessionFeedback(SESSION_TEMPLATE);
-              setGuidanceFeedback(GUIDANCE_TEMPLATE);
-              setProjectTrainingFeedback(TRAINING_TEMPLATE);
+              setFeedbackMap({});
+              setRatingMap({});
+              setClientService('');
+              setClientServiceOther('');
+              setInternRole('');
+              setInternRoleOther('');
+              setInternTime('');
+              setFeedbackAbout('');
+              setFeedbackAboutOther('');
               setReviewLeft(false);
               setShowTemplates(false);
-              setSessionRating(0);
-              setGuidanceRating(0);
-              setTrainingRating(0);
               setFullName('');
               setEmail('');
               setCollegeSelect('');

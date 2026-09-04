@@ -54,12 +54,12 @@ export async function POST(request: NextRequest) {
       department,
       year,
       interestedDomain,
-      sessionFeedback,
-      guidanceFeedback,
-      projectTrainingFeedback,
-      sessionRating,
-      guidanceRating,
-      projectTrainingRating,
+      feedback,
+      ratings,
+      clientService,
+      internRole,
+      internTime,
+      feedbackAbout,
       nexgenadsFollowed,
       onedotgrowFollowed,
       reviewLeft,
@@ -67,6 +67,13 @@ export async function POST(request: NextRequest) {
 
     if (!role || !ALLOWED_ROLES.includes(role)) {
       return NextResponse.json({ error: 'Invalid role' }, { status: 400 });
+    }
+
+    if (role === 'student' && !Array.isArray(feedback)) {
+      return NextResponse.json(
+        { error: 'Invalid feedback payload' },
+        { status: 400 }
+      );
     }
 
     // Name + email come from the Google session when available; otherwise fall back
@@ -86,6 +93,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid email format' }, { status: 400 });
     }
 
+    const studentFeedback =
+      role === 'student' && Array.isArray(feedback) && Array.isArray(ratings)
+        ? feedback
+        : [];
+
     const row: Record<string, unknown> = {
       full_name: fullName,
       email,
@@ -95,12 +107,22 @@ export async function POST(request: NextRequest) {
       department: role === 'student' ? department || null : null,
       year: role === 'student' ? year || null : null,
       interested_domain: role === 'student' ? interestedDomain || null : null,
-      session_feedback: sessionFeedback || null,
-      guidance_feedback: guidanceFeedback || null,
-      project_training_feedback: projectTrainingFeedback || null,
-      session_rating: sessionRating || null,
-      guidance_rating: guidanceRating || null,
-      project_training_rating: projectTrainingRating || null,
+      session_feedback: studentFeedback[0] || null,
+      guidance_feedback: studentFeedback[1] || null,
+      project_training_feedback: studentFeedback[2] || null,
+      session_rating: ratings?.[0] || null,
+      guidance_rating: ratings?.[1] || null,
+      project_training_rating: ratings?.[2] || null,
+      feedback_1: role !== 'student' ? feedback?.[0] || null : null,
+      feedback_2: role !== 'student' ? feedback?.[1] || null : null,
+      feedback_3: role !== 'student' ? feedback?.[2] || null : null,
+      rating_1: role !== 'student' ? ratings?.[0] || null : null,
+      rating_2: role !== 'student' ? ratings?.[1] || null : null,
+      rating_3: role !== 'student' ? ratings?.[2] || null : null,
+      client_service: role === 'client' ? clientService || null : null,
+      intern_role: role === 'intern' ? internRole || null : null,
+      intern_time: role === 'intern' ? internTime || null : null,
+      feedback_about: role === 'public' ? feedbackAbout || null : null,
       nexgenads_followed: !!nexgenadsFollowed,
       onedotgrow_followed: !!onedotgrowFollowed,
       review_left: !!reviewLeft,
