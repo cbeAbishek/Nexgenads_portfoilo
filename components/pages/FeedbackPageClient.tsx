@@ -7,10 +7,12 @@ import {
   ArrowLeft,
   ArrowRight,
   Award,
+  BadgeCheck,
   Check,
   CheckCircle2,
   Clipboard,
   ClipboardCheck,
+  Clock,
   Dog,
   ExternalLink,
   GraduationCap,
@@ -18,8 +20,13 @@ import {
   Instagram,
   Laugh,
   Loader2,
+  PartyPopper,
+  Plus,
+  Quote,
+  Send,
   Sparkles,
   Star,
+  ThumbsUp,
   Ticket,
   User,
   Users,
@@ -100,16 +107,45 @@ const COLLEGES = [
 ];
 
 const DOMAINS = [
-  'All Fields',
-  'Editing',
-  'Dance',
-  'Development',
-  'Design & Creative',
-  'AI & Machine Learning',
-  'Marketing & Sales',
+  'Software Development',
+  'Mobile App Development',
+  'Artificial Intelligence (AI)',
+  'Machine Learning (ML)',
   'Data Science',
-  'Management',
-  'Other',
+  'Cloud Computing',
+  'Game Development',
+  'Robotics',
+  'Embedded Systems',
+  'Wireless Technology',
+  'Automation',
+  'Robotics & Drones',
+  'AgriTech',
+  'Food Technology',
+  'Sustainable Agriculture',
+  'Automobile Engineering',
+  'Electric Vehicles (EV)',
+  'Manufacturing',
+  'Healthcare Technology',
+  'Biotechnology',
+  'Dance',
+  'Music',
+  'Singing',
+  'Video Creation',
+  'YouTube Content Creation',
+  'Photography',
+  'Videography',
+  'Video Editing',
+  'Graphic Design',
+  'Animation',
+  'Gaming',
+  'Entrepreneurship',
+  'Startups',
+  'Stock Market',
+  'Sports & Fitness',
+  'Travel',
+  'Social Work',
+  'Teaching',
+  'Leadership',
 ];
 
 const SESSION_TEMPLATE = `I recently attended a session at NexGenAds and it was a fantastic experience! The team explained everything in a clear, practical way with real-world examples. The hands-on approach made learning easy and enjoyable. Highly recommend NexGenAds to anyone looking to learn and grow. Thank you, NexGenAds team!`;
@@ -169,6 +205,8 @@ const FeedbackPageClient = () => {
   const [department, setDepartment] = useState('');
   const [year, setYear] = useState('');
   const [interestedDomains, setInterestedDomains] = useState<string[]>([]);
+  const [customDomains, setCustomDomains] = useState<string[]>([]);
+  const [newDomain, setNewDomain] = useState('');
 
   const [nexgenadsOpened, setNexgenadsOpened] = useState(false);
   const [onedotgrowOpened, setOnedotgrowOpened] = useState(false);
@@ -308,12 +346,19 @@ const FeedbackPageClient = () => {
         }
         setDepartment(fb.department || '');
         setYear(fb.year || '');
-        setInterestedDomains(
-          (fb.interested_domain || '')
-            .split(',')
-            .map((s: string) => s.trim())
-            .filter(Boolean)
+
+        const savedDomains = (fb.interested_domain || '')
+          .split(',')
+          .map((s: string) => s.trim())
+          .filter(Boolean);
+        const savedCustom = savedDomains.filter(
+          (d: string) =>
+            !DOMAINS.some((known) => known.toLowerCase() === d.toLowerCase())
         );
+        setCustomDomains((prev) =>
+          Array.from(new Set([...prev, ...savedCustom]))
+        );
+        setInterestedDomains(savedDomains);
       }
 
       setSessionFeedback(fb.session_feedback || SESSION_TEMPLATE);
@@ -326,6 +371,8 @@ const FeedbackPageClient = () => {
       setTrainingRating(fb.project_training_rating || 0);
       setNexgenadsFollowed(!!fb.nexgenads_followed);
       setOnedotgrowFollowed(!!fb.onedotgrow_followed);
+      setNexgenadsOpened(!!fb.nexgenads_followed);
+      setOnedotgrowOpened(!!fb.onedotgrow_followed);
       setReviewLeft(!!fb.review_left);
     } catch (error) {
       console.error('Loading previous feedback failed', error);
@@ -384,25 +431,54 @@ const FeedbackPageClient = () => {
       setSubmitError('Please select at least one interested domain.');
       return;
     }
+    if (interestedDomains.length < 5) {
+      setSubmitError(
+        `Please select at least 5 interested domains (currently ${interestedDomains.length}).`
+      );
+      return;
+    }
+    if (interestedDomains.length > 10) {
+      setSubmitError('You can select at most 10 interested domains.');
+      return;
+    }
     void collegeName;
     goToStep('follow-nexgenads');
   };
 
   const toggleDomain = (domain: string) => {
     setInterestedDomains((prev) => {
-      if (domain === 'All Fields') {
-        return prev.includes('All Fields')
-          ? []
-          : [...DOMAINS.filter((d) => d !== 'Other')];
-      }
-      const next = new Set(prev.filter((d) => d !== 'All Fields'));
+      const next = new Set(prev);
       if (next.has(domain)) {
         next.delete(domain);
       } else {
+        if (next.size >= 10) {
+          setSubmitError('You can select up to 10 domains only.');
+          return Array.from(next);
+        }
         next.add(domain);
+        setSubmitError('');
       }
       return Array.from(next);
     });
+  };
+
+  const addCustomDomain = () => {
+    const value = newDomain.trim();
+    if (!value) return;
+    const all = DOMAINS.concat(customDomains);
+    const exists = all.some((d) => d.toLowerCase() === value.toLowerCase());
+    if (exists) {
+      setSubmitError('This domain is already in the list.');
+      return;
+    }
+    if (interestedDomains.length >= 10) {
+      setSubmitError('You can select at most 10 domains. Uncheck one first.');
+      return;
+    }
+    setCustomDomains((prev) => Array.from(new Set([...prev, value])));
+    setInterestedDomains((prev) => Array.from(new Set([...prev, value])));
+    setNewDomain('');
+    setSubmitError('');
   };
 
   const handleSubmit = async () => {
@@ -473,41 +549,65 @@ const FeedbackPageClient = () => {
     value: number,
     onChange: (v: number) => void
   ) => (
-    <div className="flex items-center justify-between gap-4 rounded-xl border border-border/70 bg-white p-4">
-      <Label className="text-sm font-semibold text-foreground">{label}</Label>
-      <div className="flex items-center gap-1">
+    <div
+      className={cn(
+        'flex flex-col items-center gap-2 rounded-2xl border bg-white p-4 text-center transition-all',
+        value > 0
+          ? 'border-gold-500/50 shadow-lg shadow-gold-500/10'
+          : 'border-border/70 hover:border-gold-300'
+      )}
+    >
+      <div className="flex items-center gap-0.5">
         {[1, 2, 3, 4, 5].map((star) => (
           <button
             key={star}
             type="button"
             aria-label={`${label} ${star} star`}
             onClick={() => onChange(star)}
-            className="rounded-md p-0.5 transition-transform hover:scale-110"
+            className="rounded-md p-0.5 transition-transform hover:scale-125"
           >
             <Star
               className={cn(
-                'h-5 w-5 transition-colors',
+                'h-6 w-6 transition-all',
                 star <= value
-                  ? 'fill-gold-500 text-gold-500'
-                  : 'text-muted-foreground/40'
+                  ? 'fill-gold-500 text-gold-500 drop-shadow-sm'
+                  : 'text-muted-foreground/30 hover:text-gold-400'
               )}
             />
           </button>
         ))}
       </div>
+      <div>
+        <p className="text-sm font-semibold text-foreground">{label}</p>
+        <p
+          className={cn(
+            'mt-0.5 text-[11px] font-medium',
+            value > 0 ? 'text-gold-600' : 'text-muted-foreground'
+          )}
+        >
+          {value > 0 ? `${value} / 5` : 'Tap to rate'}
+        </p>
+      </div>
     </div>
   );
 
-  const renderCopyBlock = (key: string, title: string, template: string) => (
-    <div className="rounded-xl border border-border/70 bg-white">
-      <div className="flex items-center justify-between gap-2 border-b border-border/60 px-4 py-3">
-        <p className="text-sm font-semibold text-foreground">{title}</p>
+  const renderCopyBlock = (
+    key: string,
+    title: string,
+    value: string,
+    onChange: (value: string) => void
+  ) => (
+    <div className="overflow-hidden rounded-2xl border border-border/70 bg-white shadow-sm transition-colors hover:border-brand-300">
+      <div className="flex items-center justify-between gap-2 bg-gradient-to-r from-brand-50/60 to-transparent px-4 py-3">
+        <p className="flex items-center gap-2 text-sm font-semibold text-foreground">
+          <Quote className="h-4 w-4 text-brand-500" /> {title}
+        </p>
         <Button
           type="button"
           size="sm"
           variant="secondary"
-          onClick={() => copyToClipboard(key, template)}
-          className="shrink-0"
+          onClick={() => copyToClipboard(key, value)}
+          className="shrink-0 rounded-full bg-white shadow-sm"
         >
           {copiedKey === key ? (
             <ClipboardCheck className="h-4 w-4 text-green-600" />
@@ -517,9 +617,20 @@ const FeedbackPageClient = () => {
           {copiedKey === key ? 'Copied!' : 'Copy'}
         </Button>
       </div>
-      <p className="px-4 py-3 text-sm leading-relaxed text-muted-foreground">
-        {template}
-      </p>
+      <div className="px-4 pb-1 pt-1">
+        <p className="text-[11px] font-medium text-muted-foreground">
+          Edit to match your experience, then copy &amp; paste into the Google
+          review.
+        </p>
+      </div>
+      <div className="px-4 pb-4">
+        <Textarea
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          rows={4}
+          className="mt-2 resize-y rounded-xl border-border/70 bg-brand-50/15 text-sm leading-relaxed text-foreground shadow-inner focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+        />
+      </div>
     </div>
   );
 
@@ -809,14 +920,25 @@ const FeedbackPageClient = () => {
         <div>
           <Label className="text-sm font-semibold">
             Interested domain <span className="text-destructive">*</span>
-            <span className="ml-1 text-xs font-normal text-muted-foreground">
-              (select all that apply)
-            </span>
           </Label>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Select between 5 and 10 domains.{' '}
+            <span
+              className={cn(
+                'font-semibold',
+                interestedDomains.length >= 5 && interestedDomains.length <= 10
+                  ? 'text-green-600'
+                  : 'text-gold-600'
+              )}
+            >
+              {interestedDomains.length}
+            </span>{' '}
+            / 10 selected.
+          </p>
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
-            {DOMAINS.map((domain) => {
+            {DOMAINS.concat(customDomains).map((domain) => {
               const checked = interestedDomains.includes(domain);
-              const isAllFields = domain === 'All Fields';
+              const isCustom = customDomains.includes(domain);
               return (
                 <label
                   key={domain}
@@ -840,15 +962,42 @@ const FeedbackPageClient = () => {
                   >
                     {domain}
                   </span>
-                  {isAllFields && checked && (
-                    <span className="ml-auto text-[10px] font-semibold uppercase tracking-wide text-brand-600">
-                      Selects all
+                  {isCustom && (
+                    <span className="ml-auto shrink-0 rounded-full bg-brand-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-brand-600">
+                      Custom
                     </span>
                   )}
                 </label>
               );
             })}
           </div>
+
+          <div className="mt-3 flex items-center gap-2">
+            <Input
+              value={newDomain}
+              onChange={(e) => setNewDomain(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  addCustomDomain();
+                }
+              }}
+              placeholder="Add a new domain if it's not in the list…"
+              className="h-11 rounded-xl border-border/70 bg-white shadow-sm hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+            />
+            <Button
+              type="button"
+              onClick={addCustomDomain}
+              disabled={!newDomain.trim()}
+              className="h-11 shrink-0 rounded-xl bg-brand-gradient font-semibold shadow-lg shadow-brand-500/25 transition-all hover:shadow-xl"
+            >
+              <Plus className="h-4 w-4" /> Add
+            </Button>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            Can&apos;t find your domain? Type it above and press Add — it will
+            appear as a selectable option.
+          </p>
         </div>
 
         {submitError && step === 'details' && (
@@ -898,7 +1047,11 @@ const FeedbackPageClient = () => {
         setOnedotgrowOpened(true);
         setOnedotgrowFollowed(true);
       }
+      startFollowCountdown(type);
     };
+
+    const countdown = isNexgenads ? nexgenadsCountdown : onedotgrowCountdown;
+    const nextReady = opened && countdown === 0;
 
     const markDone = () => {
       goToStep(isNexgenads ? 'follow-1grow' : 'review');
@@ -965,23 +1118,34 @@ const FeedbackPageClient = () => {
                     <ExternalLink className="h-4 w-4" />
                   </a>
                 </Button>
-                <Button
-                  type="button"
-                  size="lg"
-                  onClick={markDone}
-                  className="w-full rounded-xl border-2 border-green-500/40 bg-green-500/10 py-6 text-base font-semibold text-green-700 transition-all hover:bg-green-500/20"
-                >
-                  {followed ? (
-                    <>
-                      <CheckCircle2 className="h-5 w-5" /> Done — following {handle}
-                    </>
-                  ) : (
-                    <>
-                      <Check className="h-5 w-5" /> I&apos;ve followed — next step
-                    </>
-                  )}
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
+                {nextReady ? (
+                  <Button
+                    type="button"
+                    size="lg"
+                    onClick={markDone}
+                    className="w-full rounded-xl border-2 border-green-500/40 bg-green-500/10 py-6 text-base font-semibold text-green-700 transition-all hover:bg-green-500/20"
+                  >
+                    {followed ? (
+                      <>
+                        <CheckCircle2 className="h-5 w-5" /> Done — following {handle}
+                      </>
+                    ) : (
+                      <>
+                        <Check className="h-5 w-5" /> I&apos;ve followed — next step
+                      </>
+                    )}
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                ) : (
+                  <Button
+                    type="button"
+                    size="lg"
+                    disabled
+                    className="w-full cursor-not-allowed rounded-xl border-2 border-border bg-muted py-6 text-base font-semibold text-muted-foreground"
+                  >
+                    <Clock className="h-5 w-5" /> Next step in {countdown}s…
+                  </Button>
+                )}
               </>
             )}
           </div>
@@ -1015,69 +1179,146 @@ const FeedbackPageClient = () => {
         </p>
       </div>
 
-      <div className="space-y-6">
-        <div className="space-y-3">
-          <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground">
-            Rate your experience
-          </h3>
-          {renderStars('Session feedback', sessionRating, setSessionRating)}
-          {renderStars('Guidance feedback', guidanceRating, setGuidanceRating)}
-          {renderStars(
-            'Project / training feedback',
-            trainingRating,
-            setTrainingRating
-          )}
+      <div className="space-y-8">
+        <div>
+          <div className="mb-4 flex items-center gap-2.5">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gold-500/15 text-gold-600">
+              <Star className="h-4 w-4 fill-current" />
+            </span>
+            <h3 className="text-base font-bold text-foreground">
+              Rate your experience
+            </h3>
+            <span className="ml-auto text-xs font-medium text-muted-foreground">
+              Tap a star
+            </span>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {renderStars('Session', sessionRating, setSessionRating)}
+            {renderStars('Guidance', guidanceRating, setGuidanceRating)}
+            {renderStars(
+              'Project / Training',
+              trainingRating,
+              setTrainingRating
+            )}
+          </div>
         </div>
 
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground">
+        <div>
+          <div className="mb-4 flex items-center gap-2.5">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500/15 text-brand-600">
+              <Clipboard className="h-4 w-4" />
+            </span>
+            <h3 className="text-base font-bold text-foreground">
               Copy-paste review templates
             </h3>
-            <span className="text-xs text-muted-foreground">
-              Pick one or more &amp; paste into Google review
-            </span>
+            <button
+              type="button"
+              onClick={() => {
+                const full =
+                  `${sessionFeedback.trim()}\n\n${guidanceFeedback.trim()}\n\n${projectTrainingFeedback.trim()}`.trim();
+                copyToClipboard('all', full);
+              }}
+              className="ml-auto flex items-center gap-1.5 rounded-full border border-border/70 bg-white px-3 py-1.5 text-xs font-semibold text-foreground/80 transition-colors hover:border-brand-400 hover:text-brand-600"
+            >
+              {copiedKey === 'all' ? (
+                <>
+                  <ClipboardCheck className="h-3.5 w-3.5 text-green-600" /> Copied!
+                </>
+              ) : (
+                <>
+                  <Clipboard className="h-3.5 w-3.5" /> Copy all
+                </>
+              )}
+            </button>
           </div>
-          {renderCopyBlock('session', 'Session feedback', SESSION_TEMPLATE)}
-          {renderCopyBlock('guidance', 'Guidance feedback', GUIDANCE_TEMPLATE)}
-          {renderCopyBlock('training', 'Project / training feedback', TRAINING_TEMPLATE)}
+          <div className="space-y-4">
+            {renderCopyBlock('session', 'Session feedback', sessionFeedback, setSessionFeedback)}
+            {renderCopyBlock('guidance', 'Guidance feedback', guidanceFeedback, setGuidanceFeedback)}
+            {renderCopyBlock('training', 'Project / training feedback', projectTrainingFeedback, setProjectTrainingFeedback)}
+          </div>
         </div>
 
-        <div className="rounded-2xl border border-brand-500/25 bg-gradient-to-br from-brand-50 to-white p-6 text-center">
-          <h3 className="mb-1 text-lg font-bold text-foreground">
-            Leave us a Google review
-          </h3>
-          <p className="mb-4 text-sm text-muted-foreground">
-            Your review helps more students, clients and partners find us. It
-            takes 30 seconds!
-          </p>
-          <div className="flex flex-col gap-3">
-            <Button
-              asChild
-              size="lg"
-              className="w-full rounded-xl bg-brand-gradient py-5 text-base font-bold text-white shadow-lg shadow-brand-500/25 transition-all hover:shadow-xl"
-            >
-              <a
-                href={GOOGLE_REVIEW_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+        <div className="relative overflow-hidden rounded-3xl border border-brand-500/25 bg-gradient-to-br from-brand-500/10 via-white to-gold-500/15 p-1.5 shadow-inner">
+          <div className="rounded-[1.2rem] bg-white/90 p-6 text-center md:p-8">
+            <div className="mb-4 flex justify-center">
+              <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-600 text-white shadow-xl shadow-brand-500/30">
+                <Send className="h-6 w-6" />
+              </span>
+            </div>
+            <h3 className="mb-2 text-xl font-bold text-foreground">
+              Leave us a Google review
+            </h3>
+            <p className="mx-auto mb-6 max-w-md text-sm leading-relaxed text-muted-foreground">
+              Your feedback on Google helps more students, clients and partners
+              find us. It takes just{' '}
+              <span className="font-semibold text-foreground">30 seconds</span>.
+            </p>
+
+            <div className="mx-auto mb-6 flex max-w-sm items-center gap-3 rounded-2xl border border-border/70 bg-white p-4 text-left shadow-sm">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white shadow ring-1 ring-border">
+                <GoogleIcon />
+              </span>
+              <div className="min-w-0">
+                <p className="flex items-center gap-1.5 text-sm font-bold text-foreground">
+                  Google Review{' '}
+                  <BadgeCheck className="h-4 w-4 text-brand-600" />
+                </p>
+                <p className="truncate text-xs text-muted-foreground">
+                  public · google.com/maps
+                </p>
+              </div>
+              <span className="ml-auto flex shrink-0 gap-0.5">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <Star
+                    key={s}
+                    className="h-4 w-4 fill-gold-500 text-gold-500"
+                  />
+                ))}
+              </span>
+            </div>
+
+            <div className="flex justify-center">
+              <Button
+                asChild
+                size="lg"
                 onClick={() => setReviewLeft(true)}
+                className="w-64 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 py-5 text-base font-bold text-white shadow-lg shadow-gold-500/30 transition-all hover:scale-[1.02] hover:shadow-xl"
               >
-                <Sparkles className="h-5 w-5" /> Write a Google review
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            </Button>
+                <a
+                  href={GOOGLE_REVIEW_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Star className="h-5 w-5 fill-white" /> Write a review
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </Button>
+            </div>
+
+            <label
+              className={cn(
+                'mt-6 flex cursor-pointer items-center justify-center gap-2.5 rounded-2xl border border-dashed px-4 py-3.5 text-sm transition-colors',
+                reviewLeft
+                  ? 'border-green-500/40 bg-green-50 text-green-700'
+                  : 'border-border/70 text-muted-foreground hover:border-brand-400'
+              )}
+            >
+              <Checkbox
+                checked={reviewLeft}
+                onCheckedChange={(checked) => setReviewLeft(checked === true)}
+                className="border-brand-400 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600"
+              />
+              {reviewLeft ? (
+                <span className="flex items-center gap-1.5 font-semibold">
+                  <Check className="h-4 w-4" /> Feedback sent — thank you!
+                </span>
+              ) : (
+                <span className="font-medium">
+                  Tick here once you&apos;ve submitted your review on Google
+                </span>
+              )}
+            </label>
           </div>
-          <label className="mt-4 flex cursor-pointer items-center justify-center gap-2 text-sm">
-            <Checkbox
-              checked={reviewLeft}
-              onCheckedChange={(checked) => setReviewLeft(checked === true)}
-              className="border-brand-400 data-[state=checked]:bg-brand-600 data-[state=checked]:border-brand-600"
-            />
-            <span className="font-medium text-foreground">
-              Yes, I&apos;ve submitted my review on Google
-            </span>
-          </label>
         </div>
 
         {submitError && step === 'review' && (
@@ -1127,127 +1368,154 @@ const FeedbackPageClient = () => {
 
     return (
       <div className="animate-fade-in mx-auto max-w-2xl text-center">
-        <span className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-green-500 text-white shadow-xl shadow-green-500/30">
+        <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-green-500 to-emerald-600 text-white shadow-xl shadow-green-500/30">
           <CheckCircle2 className="h-10 w-10" />
-        </span>
+        </div>
         <h2
-          className="mb-3 text-3xl font-extrabold tracking-tight text-foreground md:text-4xl"
+          className="mb-2 text-3xl font-extrabold tracking-tight text-foreground md:text-4xl"
           style={{ fontFamily: 'var(--font-neue-machina)' }}
         >
           Thank you, <span className="text-[#1d36bf]">{firstName}!</span>
         </h2>
-        <p className="mx-auto mb-8 max-w-lg text-lg text-muted-foreground">
-          Thank you for your valuable time and effort. Your feedback helps
-          NexGenAds grow, and your words truly mean the world to us.
+        <p className="mx-auto mb-2 flex items-center justify-center gap-1.5 text-lg text-muted-foreground">
+          <PartyPopper className="h-5 w-5 text-gold-500" />
+          Feedback submitted successfully!
+        </p>
+        <p className="mx-auto mb-8 max-w-lg text-muted-foreground">
+          Thank you for your valuable time and effort. Your words truly mean the
+          world to us — here&apos;s a little fun for today.
         </p>
 
-        <div className="mb-8 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-2xl border border-gold-500/30 bg-gradient-to-br from-gold-500/15 to-transparent p-6">
-            <p className="mb-3 flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-wide text-gold-700">
-              <Laugh className="h-5 w-5" /> Your joke for today
-            </p>
-            {jokeLoading && (
-              <div className="flex items-center justify-center py-4">
-                <Loader2 className="h-6 w-6 animate-spin text-brand-500" />
-              </div>
-            )}
-            {!jokeLoading && jokeText && (
-              <p className="whitespace-pre-line text-lg font-medium leading-relaxed text-foreground">
-                {jokeText}
-              </p>
-            )}
-            {!jokeLoading && !jokeText && (
-              <p className="text-sm text-muted-foreground">
-                Couldn&apos;t fetch a joke right now — here&apos;s one anyway:
-                Why do programmers prefer dark mode? Because light attracts
-                bugs!
-              </p>
-            )}
-            {joke?.category && (
-              <span className="mt-3 inline-block rounded-full bg-white/70 px-3 py-1 text-xs font-semibold text-gold-700">
-                {joke.category} · Safe &amp; clean
+        <div className="mb-8 grid gap-4 md:grid-cols-2">
+          <div className="flex flex-col overflow-hidden rounded-3xl border border-gold-500/30 bg-gradient-to-br from-gold-500/15 via-white to-gold-500/5 shadow-sm">
+            <div className="flex items-center gap-2 border-b border-gold-500/20 bg-gold-500/10 px-5 py-3">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gold-500 text-white">
+                <Laugh className="h-4 w-4" />
               </span>
-            )}
-            <div className="mt-4">
-              <Button
-                type="button"
-                size="sm"
-                variant="outline"
-                onClick={fetchJoke}
-                disabled={jokeLoading}
-                className="rounded-full"
-              >
-                <Sparkles className="h-4 w-4" /> Another joke
-              </Button>
+              <p className="text-sm font-bold text-foreground">
+                Your joke for today
+              </p>
+            </div>
+            <div className="flex flex-1 flex-col items-center justify-center px-5 py-5 text-center">
+              {jokeLoading && (
+                <div className="flex items-center justify-center py-4">
+                  <Loader2 className="h-6 w-6 animate-spin text-gold-500" />
+                </div>
+              )}
+              {!jokeLoading && jokeText && (
+                <Quote className="mb-2 h-5 w-5 text-gold-500" />
+              )}
+              {!jokeLoading && jokeText && (
+                <p className="whitespace-pre-line text-base font-medium leading-relaxed text-foreground">
+                  {jokeText}
+                </p>
+              )}
+              {!jokeLoading && !jokeText && (
+                <p className="text-sm text-muted-foreground">
+                  Couldn&apos;t fetch a joke right now — here&apos;s one anyway:
+                  Why do programmers prefer dark mode? Because light attracts
+                  bugs!
+                </p>
+              )}
+              {joke?.category && (
+                <span className="mt-3 inline-block rounded-full bg-gold-500/15 px-3 py-1 text-xs font-semibold text-gold-700">
+                  {joke.category} · Safe &amp; clean
+                </span>
+              )}
+              <div className="mt-4">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={fetchJoke}
+                  disabled={jokeLoading}
+                  className="rounded-full border-gold-500/40 bg-white text-gold-700 transition-colors hover:bg-gold-500/10"
+                >
+                  <Sparkles className="h-4 w-4" /> Another joke
+                </Button>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col rounded-2xl border border-brand-500/25 bg-gradient-to-br from-brand-50/60 to-transparent p-6">
-            <p className="mb-3 flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-wide text-brand-600">
-              <Dog className="h-5 w-5" /> A good boy for you
-            </p>
-            <div className="flex flex-1 items-center justify-center">
+          <div className="flex flex-col overflow-hidden rounded-3xl border border-brand-500/30 bg-gradient-to-br from-brand-500/10 via-white to-brand-500/5 shadow-sm">
+            <div className="flex items-center gap-2 border-b border-brand-500/20 bg-brand-500/10 px-5 py-3">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500 text-white">
+                <Dog className="h-4 w-4" />
+              </span>
+              <p className="text-sm font-bold text-foreground">
+                A good boy for you
+              </p>
+            </div>
+            <div className="flex flex-1 flex-col items-center justify-center px-5 py-5">
               {dogLoading && (
                 <div className="flex items-center justify-center py-6">
                   <Loader2 className="h-6 w-6 animate-spin text-brand-500" />
                 </div>
               )}
               {!dogLoading && dogImage && (
-                <Image
-                  src={dogImage}
-                  alt="A cute doggo from Dog CEO"
-                  width={480}
-                  height={300}
-                  className="max-h-52 w-full rounded-xl border border-border/60 object-cover shadow-sm"
-                />
+                <div className="overflow-hidden rounded-2xl border border-border/60 shadow-sm">
+                  <Image
+                    src={dogImage}
+                    alt="A cute doggo from Dog CEO"
+                    width={480}
+                    height={300}
+                    className="h-48 w-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
               )}
               {!dogLoading && !dogImage && (
                 <p className="text-sm text-muted-foreground">
-                  Couldn&apos;t fetch a photo right now — maybe this good boy
-                  is napping!
+                  Couldn&apos;t fetch a photo right now — maybe this good boy is
+                  napping!
                 </p>
               )}
-            </div>
-            <div className="mt-4 text-center">
-              <Button
-                type="button"
-                size="sm"
-                variant="outline"
-                onClick={fetchDog}
-                disabled={dogLoading}
-                className="rounded-full"
-              >
-                <Sparkles className="h-4 w-4" /> Another dog
-              </Button>
+              <div className="mt-4">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={fetchDog}
+                  disabled={dogLoading}
+                  className="rounded-full border-brand-500/40 bg-white text-brand-600 transition-colors hover:bg-brand-500/10"
+                >
+                  <Sparkles className="h-4 w-4" /> Another dog
+                </Button>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mb-8 grid gap-3 sm:grid-cols-3">
-          <a
-            href={NEXGENADS_INSTA}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 rounded-xl border border-border/70 bg-white px-4 py-3 text-sm font-semibold text-foreground transition-all hover:border-brand-400 hover:text-brand-600"
-          >
-            <Instagram className="h-4 w-4" /> @nexgenads.ai
-          </a>
-          <a
-            href={ONEGROW_INSTA}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 rounded-xl border border-border/70 bg-white px-4 py-3 text-sm font-semibold text-foreground transition-all hover:border-brand-400 hover:text-brand-600"
-          >
-            <Instagram className="h-4 w-4" /> @1growofficial
-          </a>
-          <a
-            href={GOOGLE_REVIEW_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 rounded-xl border border-border/70 bg-white px-4 py-3 text-sm font-semibold text-foreground transition-all hover:border-gold-400 hover:text-gold-600"
-          >
-            <Star className="h-4 w-4" /> Leave a review
-          </a>
+        <div className="mb-8 rounded-3xl border border-border/60 bg-white p-5 shadow-sm">
+          <p className="mb-4 flex items-center justify-center gap-2 text-sm font-bold text-foreground">
+            <ThumbsUp className="h-4 w-4 text-brand-600" /> Stay connected with
+            NexGenAds
+          </p>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <a
+              href={NEXGENADS_INSTA}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-center gap-2 rounded-xl border border-border/70 bg-white px-4 py-3 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-brand-400 hover:text-brand-600 hover:shadow-md"
+            >
+              <Instagram className="h-4 w-4" /> @nexgenads.ai
+            </a>
+            <a
+              href={ONEGROW_INSTA}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-center gap-2 rounded-xl border border-border/70 bg-white px-4 py-3 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-brand-400 hover:text-brand-600 hover:shadow-md"
+            >
+              <Instagram className="h-4 w-4" /> @1growofficial
+            </a>
+            <a
+              href={GOOGLE_REVIEW_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-center gap-2 rounded-xl border border-border/70 bg-white px-4 py-3 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-gold-400 hover:text-gold-600 hover:shadow-md"
+            >
+              <Star className="h-4 w-4" /> Leave a review
+            </a>
+          </div>
         </div>
 
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -1255,11 +1523,11 @@ const FeedbackPageClient = () => {
             asChild
             variant="outline"
             className="rounded-xl"
-            onClick={() =>
-              window.scrollTo({ top: 0, behavior: 'smooth' })
-            }
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <Link href="/">Back to home</Link>
+            <Link href="/" className="flex items-center gap-2">
+              <ArrowLeft className="h-4 w-4" /> Back to home
+            </Link>
           </Button>
           <Button
             type="button"
@@ -1269,6 +1537,11 @@ const FeedbackPageClient = () => {
               setOnedotgrowOpened(false);
               setNexgenadsFollowed(false);
               setOnedotgrowFollowed(false);
+              setNexgenadsCountdown(0);
+              setOnedotgrowCountdown(0);
+              setSessionFeedback(SESSION_TEMPLATE);
+              setGuidanceFeedback(GUIDANCE_TEMPLATE);
+              setProjectTrainingFeedback(TRAINING_TEMPLATE);
               setReviewLeft(false);
               setSessionRating(0);
               setGuidanceRating(0);
@@ -1280,6 +1553,8 @@ const FeedbackPageClient = () => {
               setDepartment('');
               setYear('');
               setInterestedDomains([]);
+              setCustomDomains([]);
+              setNewDomain('');
               setDogImage(null);
               setJoke(null);
               goToStep('role');
