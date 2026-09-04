@@ -654,9 +654,6 @@ const FeedbackPageClient = () => {
   const renderHeader = () => (
     <section className="relative overflow-hidden bg-gradient-to-br from-brand-50/80 via-white to-gold-500/10">
       <div className="container-custom mx-auto max-w-5xl px-4 pb-10 pt-28 text-center md:px-6 md:pt-36">
-        <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-500/25 bg-white px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-brand-600 shadow-sm">
-          <Heart className="h-3.5 w-3.5" /> Feedback Program
-        </span>
         <h1
           className="mb-4 text-4xl font-extrabold tracking-tight text-foreground md:text-6xl"
           style={{ fontFamily: 'var(--font-neue-machina)' }}
@@ -1510,7 +1507,7 @@ const FeedbackPageClient = () => {
             <div className="flex items-center gap-2 border-b border-brand-500/20 bg-brand-500/10 px-5 py-3">
              
               <p className="text-sm font-bold text-foreground">
-                A fun image for you
+                An image for you
               </p>
             </div>
             <div className="flex flex-1 flex-col items-center justify-center px-5 py-5">
