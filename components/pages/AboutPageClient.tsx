@@ -374,10 +374,10 @@ const AboutPageClient = () => {
                   }}
                   className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/70 bg-white/80 shadow-lg shadow-brand-500/5 backdrop-blur-xl transition-shadow duration-300 hover:shadow-2xl hover:shadow-brand-500/15 focus-within:ring-2 focus-within:ring-brand-500/40"
                 >
-                  <div
+                  {/* <div
                     className={`absolute inset-x-0 top-0 z-10 h-1 ${member.barClass}`}
                     aria-hidden="true"
-                  />
+                  /> */}
 
                   {/* Image ratio: 9:6 */}
                   <div className="relative aspect-[9/6] w-full overflow-hidden">
@@ -406,7 +406,7 @@ const AboutPageClient = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${member.name} on LinkedIn`}
-                      className="absolute bottom-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-white/20 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+                      className="absolute bottom-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-white/20 shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
                     >
                       <Linkedin className="h-5 w-5" aria-hidden="true" />
                     </a>
