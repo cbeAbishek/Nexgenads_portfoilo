@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowLeft,
   ArrowRight,
@@ -14,14 +15,17 @@ import {
   Clipboard,
   ClipboardCheck,
   Clock,
+  Dog,
   ExternalLink,
   GraduationCap,
   Heart,
   Instagram,
+  Laugh,
   Loader2,
   Plus,
   Quote,
   Send,
+  Sparkles,
   Star,
   ThumbsUp,
   Ticket,
@@ -53,6 +57,14 @@ type StepName =
   | 'done';
 
 type GoogleUser = { name: string; email: string; picture?: string } | null;
+
+type Joke = {
+  error?: boolean;
+  setup?: string;
+  delivery?: string;
+  joke?: string;
+  category?: string;
+};
 
 const ROLE_META: Record<
   RoleType,
@@ -220,6 +232,12 @@ const FeedbackPageClient = () => {
 
   const [showTemplates, setShowTemplates] = useState(false);
 
+  const [joke, setJoke] = useState<Joke | null>(null);
+  const [jokeLoading, setJokeLoading] = useState(false);
+  const [dogImage, setDogImage] = useState<string | null>(null);
+  const [dogLoading, setDogLoading] = useState(false);
+  const doneFetchedRef = useRef(false);
+
   const didInitRef = useRef(false);
 
   const checkSession = useCallback(async () => {
@@ -248,7 +266,15 @@ const FeedbackPageClient = () => {
 
     if (params.get('auth') === 'success') {
       setAuthStatus('loading');
-      checkSession().then(() => setAuthStatus('idle'));
+      checkSession().then(() => {
+        setAuthStatus('idle');
+        if (roleParam && ROLE_META[roleParam]) {
+          setStep('identity');
+        }
+        const url = new URL(window.location.href);
+        url.searchParams.delete('auth');
+        window.history.replaceState({}, '', url.toString());
+      });
     } else if (params.get('error')) {
       setAuthStatus('failed');
       setAuthError('Google sign-in was not completed. You can continue manually below.');
@@ -259,8 +285,57 @@ const FeedbackPageClient = () => {
 
   const startGoogleSignIn = () => {
     setAuthStatus('oauth');
-    window.location.href = '/api/auth/google';
+    const returnTo = role ? `/feedback?role=${role}` : '/feedback';
+    window.location.href = `/api/auth/google?returnTo=${encodeURIComponent(returnTo)}`;
   };
+
+  const fetchJoke = useCallback(async () => {
+    setJokeLoading(true);
+    try {
+      const response = await fetch('/api/joke');
+      const data = await response.json();
+      if (data && !data.error) {
+        setJoke(data as Joke);
+      } else {
+        setJoke(null);
+      }
+    } catch (error) {
+      console.error('Joke fetch failed', error);
+      setJoke(null);
+    } finally {
+      setJokeLoading(false);
+    }
+  }, []);
+
+  const fetchDog = useCallback(async () => {
+    setDogLoading(true);
+    try {
+      const response = await fetch('/api/dog');
+      const data = await response.json();
+      if (data && data.status === 'success' && data.message) {
+        setDogImage(data.message as string);
+      } else {
+        setDogImage(null);
+      }
+    } catch (error) {
+      console.error('Dog fetch failed', error);
+      setDogImage(null);
+    } finally {
+      setDogLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (step === 'done') {
+      if (!doneFetchedRef.current) {
+        doneFetchedRef.current = true;
+        fetchJoke();
+        fetchDog();
+      }
+    } else {
+      doneFetchedRef.current = false;
+    }
+  }, [step, fetchJoke, fetchDog]);
 
   const startFollowCountdown = useCallback((type: 'nexgenads' | '1grow') => {
     const setter =
@@ -338,6 +413,7 @@ const FeedbackPageClient = () => {
   const goToStep = (next: StepName) => {
     setSubmitError('');
     setStep(next);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
@@ -653,9 +729,9 @@ const FeedbackPageClient = () => {
                   <span className="text-sm font-bold text-foreground">
                     {ROLE_META[role].label}
                   </span>
-                  <span className="text-xs font-medium text-muted-foreground">
+                  {/* <span className="text-xs font-medium text-muted-foreground">
                     {ROLE_META[role].description}
-                  </span>
+                  </span> */}
                 </span>
               </span>
             ) : (
@@ -680,9 +756,9 @@ const FeedbackPageClient = () => {
                     <span className="text-sm font-bold text-foreground">
                       {ROLE_META[key].label}
                     </span>
-                    <span className="text-xs text-muted-foreground">
+                    {/* <span className="text-xs text-muted-foreground">
                       {ROLE_META[key].description}
-                    </span>
+                    </span> */}
                   </span>
                 </span>
               </SelectItem>
@@ -1396,6 +1472,74 @@ const FeedbackPageClient = () => {
           NexGenAds grow, and your words truly mean the world to us.
         </p>
 
+        <div className="mb-8 grid gap-4 sm:grid-cols-2">
+          <div className="flex flex-col overflow-hidden rounded-3xl border border-gold-500/30 bg-gradient-to-br from-gold-500/15 via-white to-gold-500/5 shadow-sm">
+            <div className="flex items-center gap-2 border-b border-gold-500/20 bg-gold-500/10 px-5 py-3">
+              <p className="text-sm font-bold text-foreground">
+                Your joke for today
+              </p>
+            </div>
+            <div className="flex flex-1 flex-col items-center justify-center px-5 py-5 text-center">
+              {jokeLoading && (
+                <div className="flex items-center justify-center py-4">
+                  <Loader2 className="h-6 w-6 animate-spin text-gold-500" />
+                </div>
+              )}
+              {!jokeLoading && !joke && (
+                <p className="text-sm text-muted-foreground">
+                  Couldn&apos;t fetch a joke right now — here&apos;s one anyway:
+                  Why do programmers prefer dark mode? Because light attracts
+                  bugs!
+                </p>
+              )}
+              {!jokeLoading &&
+                joke &&
+                !joke.error &&
+                (joke.joke || (joke.setup && joke.delivery)) && (
+                  <>
+          
+                    <p className="whitespace-pre-line text-base font-medium leading-relaxed text-foreground">
+                      {joke.joke || `${joke.setup}\n\n${joke.delivery}`}
+                    </p>
+                  </>
+                )}
+            </div>
+          </div>
+
+          <div className="flex flex-col overflow-hidden rounded-3xl border border-brand-500/30 bg-gradient-to-br from-brand-500/10 via-white to-brand-500/5 shadow-sm">
+            <div className="flex items-center gap-2 border-b border-brand-500/20 bg-brand-500/10 px-5 py-3">
+             
+              <p className="text-sm font-bold text-foreground">
+                A fun image for you
+              </p>
+            </div>
+            <div className="flex flex-1 flex-col items-center justify-center px-5 py-5">
+              {dogLoading && (
+                <div className="flex items-center justify-center py-6">
+                  <Loader2 className="h-6 w-6 animate-spin text-brand-500" />
+                </div>
+              )}
+              {!dogLoading && dogImage && (
+                <div className="overflow-hidden rounded-2xl border border-border/60 shadow-sm">
+                  <Image
+                    src={dogImage}
+                    alt="A cute doggo from Dog CEO"
+                    width={480}
+                    height={300}
+                    className="h-48 w-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+              )}
+              {!dogLoading && !dogImage && (
+                <p className="text-sm text-muted-foreground">
+                  Couldn&apos;t fetch a photo right now — maybe this good boy is
+                  napping!
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+
         <div className="mb-8 rounded-3xl border border-border/60 bg-white p-5 shadow-sm">
           <p className="mb-4 flex items-center justify-center gap-2 text-sm font-bold text-foreground">
             <ThumbsUp className="h-4 w-4 text-brand-600" /> Stay connected with
@@ -1467,6 +1611,8 @@ const FeedbackPageClient = () => {
               setInterestedDomains([]);
               setCustomDomains([]);
               setNewDomain('');
+              setDogImage(null);
+              setJoke(null);
               goToStep('role');
             }}
             className="rounded-xl bg-brand-gradient font-semibold shadow-lg shadow-brand-500/25 hover:shadow-xl"

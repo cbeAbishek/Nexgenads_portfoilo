@@ -20,21 +20,39 @@ const getOAuthConfig = () => {
 export async function GET(request: NextRequest) {
   const config = getOAuthConfig();
   const homeUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:8000';
-  const feedbackUrl = `${homeUrl}/feedback`;
-
-  if (!config) {
-    return NextResponse.redirect(
-      `${feedbackUrl}?error=oauth_not_configured`
-    );
-  }
 
   const searchParams = request.nextUrl.searchParams;
   const code = searchParams.get('code');
   const state = searchParams.get('state');
   const error = searchParams.get('error');
 
+  const RAW_RETURN_PREFIX = 'nexgenads:';
+  let returnTo = '/feedback';
+  if (state) {
+    try {
+      const decoded = Buffer.from(state, 'base64url').toString('utf8');
+      if (decoded.startsWith(RAW_RETURN_PREFIX)) {
+        const candidate = decoded.slice(RAW_RETURN_PREFIX.length);
+        if (candidate.startsWith('/') && !candidate.startsWith('//')) {
+          returnTo = candidate;
+        }
+      }
+    } catch {
+      // ignore malformed state; fall back to /feedback
+    }
+  }
+
+  const buildRedirect = (param: string) => {
+    const separator = returnTo.includes('?') ? '&' : '?';
+    return `${homeUrl}${returnTo}${separator}${param}`;
+  };
+
+  if (!config) {
+    return NextResponse.redirect(buildRedirect('error=oauth_not_configured'));
+  }
+
   if (error || !code) {
-    return NextResponse.redirect(`${feedbackUrl}?error=auth_failed`);
+    return NextResponse.redirect(buildRedirect('error=auth_failed'));
   }
 
   try {
@@ -53,7 +71,9 @@ export async function GET(request: NextRequest) {
     const tokenData = await tokenRes.json();
     if (!tokenRes.ok || !tokenData.access_token) {
       console.error('Google token exchange failed:', tokenData);
-      return NextResponse.redirect(`${feedbackUrl}?error=token_exchange_failed`);
+      return NextResponse.redirect(
+        buildRedirect('error=token_exchange_failed')
+      );
     }
 
     const userInfoRes = await fetch(USERINFO_URL, {
@@ -63,7 +83,7 @@ export async function GET(request: NextRequest) {
     const userInfo = await userInfoRes.json();
     if (!userInfoRes.ok || !userInfo.email) {
       console.error('Google userinfo failed:', userInfo);
-      return NextResponse.redirect(`${feedbackUrl}?error=userinfo_failed`);
+      return NextResponse.redirect(buildRedirect('error=userinfo_failed'));
     }
 
     await createSession({
@@ -73,11 +93,9 @@ export async function GET(request: NextRequest) {
       picture: userInfo.picture,
     });
 
-    const returnTo = searchParams.get('returnTo');
-    const destination = returnTo?.startsWith('/') ? `${homeUrl}${returnTo}` : feedbackUrl;
-    return NextResponse.redirect(`${destination}?auth=success`);
+    return NextResponse.redirect(buildRedirect('auth=success'));
   } catch (err) {
     console.error('Google OAuth callback error:', err);
-    return NextResponse.redirect(`${feedbackUrl}?error=unexpected`);
+    return NextResponse.redirect(buildRedirect('error=unexpected'));
   }
 }
