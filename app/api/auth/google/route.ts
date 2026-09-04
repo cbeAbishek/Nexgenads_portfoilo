@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const SCOPES = [
   'openid',
@@ -6,7 +6,14 @@ const SCOPES = [
   'profile',
 ].join(' ');
 
-export async function GET() {
+const safeReturnTo = (value: string | null): string => {
+  if (value && value.startsWith('/') && !value.startsWith('//')) {
+    return value;
+  }
+  return '/feedback';
+};
+
+export async function GET(request: NextRequest) {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   if (!clientId) {
     return NextResponse.json(
@@ -19,6 +26,9 @@ export async function GET() {
     process.env.NEXT_PUBLIC_GOOGLE_CALLBACK_URL ||
     `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:8000'}/api/auth/callback`;
 
+  const returnTo = safeReturnTo(request.nextUrl.searchParams.get('returnTo'));
+  const state = Buffer.from(`nexgenads:${returnTo}`).toString('base64url');
+
   const params = new URLSearchParams({
     client_id: clientId,
     redirect_uri: redirectUri,
@@ -27,6 +37,7 @@ export async function GET() {
     access_type: 'online',
     include_granted_scopes: 'true',
     prompt: 'select_account',
+    state,
   });
 
   return NextResponse.redirect(

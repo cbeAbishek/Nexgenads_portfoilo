@@ -2,7 +2,6 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import {
   ArrowLeft,
   ArrowRight,
@@ -10,21 +9,19 @@ import {
   BadgeCheck,
   Check,
   CheckCircle2,
+  ChevronDown,
+  ChevronUp,
   Clipboard,
   ClipboardCheck,
   Clock,
-  Dog,
   ExternalLink,
   GraduationCap,
   Heart,
   Instagram,
-  Laugh,
   Loader2,
-  PartyPopper,
   Plus,
   Quote,
   Send,
-  Sparkles,
   Star,
   ThumbsUp,
   Ticket,
@@ -56,14 +53,6 @@ type StepName =
   | 'done';
 
 type GoogleUser = { name: string; email: string; picture?: string } | null;
-
-type Joke = {
-  error?: boolean;
-  setup?: string;
-  delivery?: string;
-  joke?: string;
-  category?: string;
-};
 
 const ROLE_META: Record<
   RoleType,
@@ -229,10 +218,7 @@ const FeedbackPageClient = () => {
   const [submitError, setSubmitError] = useState('');
   const [copiedKey, setCopiedKey] = useState('');
 
-  const [joke, setJoke] = useState<Joke | null>(null);
-  const [jokeLoading, setJokeLoading] = useState(false);
-  const [dogImage, setDogImage] = useState<string | null>(null);
-  const [dogLoading, setDogLoading] = useState(false);
+  const [showTemplates, setShowTemplates] = useState(false);
 
   const didInitRef = useRef(false);
 
@@ -275,42 +261,6 @@ const FeedbackPageClient = () => {
     setAuthStatus('oauth');
     window.location.href = '/api/auth/google';
   };
-
-  const fetchJoke = useCallback(async () => {
-    setJokeLoading(true);
-    try {
-      const response = await fetch('/api/joke');
-      const data = await response.json();
-      if (data && !data.error) {
-        setJoke(data as Joke);
-      } else {
-        setJoke(null);
-      }
-    } catch (error) {
-      console.error('Joke fetch failed', error);
-      setJoke(null);
-    } finally {
-      setJokeLoading(false);
-    }
-  }, []);
-
-  const fetchDog = useCallback(async () => {
-    setDogLoading(true);
-    try {
-      const response = await fetch('/api/dog');
-      const data = await response.json();
-      if (data && data.status === 'success' && data.message) {
-        setDogImage(data.message as string);
-      } else {
-        setDogImage(null);
-      }
-    } catch (error) {
-      console.error('Dog fetch failed', error);
-      setDogImage(null);
-    } finally {
-      setDogLoading(false);
-    }
-  }, []);
 
   const startFollowCountdown = useCallback((type: 'nexgenads' | '1grow') => {
     const setter =
@@ -519,8 +469,6 @@ const FeedbackPageClient = () => {
       }
 
       goToStep('done');
-      fetchJoke();
-      fetchDog();
     } catch (error) {
       setSubmitError(
         error instanceof Error ? error.message : 'Something went wrong. Please try again.'
@@ -599,8 +547,7 @@ const FeedbackPageClient = () => {
   ) => (
     <div className="overflow-hidden rounded-2xl border border-border/70 bg-white shadow-sm transition-colors hover:border-brand-300">
       <div className="flex items-center justify-between gap-2 bg-gradient-to-r from-brand-50/60 to-transparent px-4 py-3">
-        <p className="flex items-center gap-2 text-sm font-semibold text-foreground">
-          <Quote className="h-4 w-4 text-brand-500" /> {title}
+        <p className="flex items-center gap-2 text-sm font-semibold text-foreground"> {title}
         </p>
         <Button
           type="button"
@@ -616,12 +563,6 @@ const FeedbackPageClient = () => {
           )}
           {copiedKey === key ? 'Copied!' : 'Copy'}
         </Button>
-      </div>
-      <div className="px-4 pb-1 pt-1">
-        <p className="text-[11px] font-medium text-muted-foreground">
-          Edit to match your experience, then copy &amp; paste into the Google
-          review.
-        </p>
       </div>
       <div className="px-4 pb-4">
         <Textarea
@@ -647,8 +588,8 @@ const FeedbackPageClient = () => {
           Your Voice <span className="text-[#1d36bf]">Matters</span>
         </h1>
         <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          Share your NexGenAds experience — session, guidance and project
-          training feedback — follow us on Instagram, leave a Google review, and
+          Share your NexGenAds experience session, guidance and project
+          training feedback follow us on Instagram, leave a Google review, and
           grab a laugh on the way out.
         </p>
       </div>
@@ -686,8 +627,8 @@ const FeedbackPageClient = () => {
   );
 
   const renderRoleStep = () => (
-    <div className="animate-fade-in">
-      <div className="mx-auto mb-8 max-w-xl text-center">
+    <div className="animate-fade-in mx-auto max-w-xl">
+      <div className="mb-8 text-center">
         <h2 className="mb-2 text-2xl font-bold text-foreground md:text-3xl">
           Who are you?
         </h2>
@@ -696,43 +637,60 @@ const FeedbackPageClient = () => {
           for you.
         </p>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2">
-        {(Object.keys(ROLE_META) as RoleType[]).map((key) => (
-          <button
-            key={key}
-            type="button"
-            onClick={() => setRole(key)}
-            className={cn(
-              'group rounded-2xl border-2 bg-white p-6 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-500/10',
-              role === key
-                ? 'border-brand-500 bg-gradient-to-br from-brand-50 to-white shadow-lg shadow-brand-500/10'
-                : 'border-border/70 hover:border-brand-400'
-            )}
-          >
-            <div
-              className={cn(
-                'mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl transition-colors',
-                role === key
-                  ? 'bg-brand-500 text-white'
-                  : 'bg-brand-50 text-brand-600 group-hover:bg-brand-100'
-              )}
-            >
-              {ROLE_META[key].icon}
-            </div>
-            <p className="mb-1 text-lg font-bold text-foreground">
-              {ROLE_META[key].label}
-            </p>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              {ROLE_META[key].description}
-            </p>
-            {role === key && (
-              <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-600">
-                Selected <Check className="h-4 w-4" />
+
+      <div>
+        <Select
+          value={role ?? undefined}
+          onValueChange={(value) => setRole(value as RoleType)}
+        >
+          <SelectTrigger className="w-full h-full gap-3 py-8 border-2 border-border/70 bg-white px-4 text-base shadow-sm transition-colors hover:border-brand-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 [&>svg]:size-5">
+            {role ? (
+              <span className="flex items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-brand-600">
+                  {ROLE_META[role].icon}
+                </span>
+                <span className="flex flex-col items-start">
+                  <span className="text-sm font-bold text-foreground">
+                    {ROLE_META[role].label}
+                  </span>
+                  <span className="text-xs font-medium text-muted-foreground">
+                    {ROLE_META[role].description}
+                  </span>
+                </span>
+              </span>
+            ) : (
+              <span className="flex items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-brand-500">
+                  <Users className="h-5 w-5" />
+                </span>
+                <span className="text-base font-semibold text-foreground/70">
+                  Select who you are
+                </span>
               </span>
             )}
-          </button>
-        ))}
+          </SelectTrigger>
+          <SelectContent className="min-w-[var(--radix-select-trigger-width)]">
+            {(Object.keys(ROLE_META) as RoleType[]).map((key) => (
+              <SelectItem key={key} value={key} className="py-2.5">
+                <span className="flex items-center gap-3">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-brand-600">
+                    {ROLE_META[key].icon}
+                  </span>
+                  <span className="flex flex-col items-start gap-0.5">
+                    <span className="text-sm font-bold text-foreground">
+                      {ROLE_META[key].label}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {ROLE_META[key].description}
+                    </span>
+                  </span>
+                </span>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
+
       <div className="mt-8 flex justify-end">
         <Button
           size="lg"
@@ -995,7 +953,7 @@ const FeedbackPageClient = () => {
             </Button>
           </div>
           <p className="text-xs text-muted-foreground">
-            Can&apos;t find your domain? Type it above and press Add — it will
+            Can&apos;t find your domain? Type it above and press Add it will
             appear as a selectable option.
           </p>
         </div>
@@ -1036,8 +994,8 @@ const FeedbackPageClient = () => {
     const handle = isNexgenads ? '@nexgenads.ai' : '@1growofficial';
     const title = isNexgenads ? 'Follow NexGenAds on Instagram' : 'Follow 1Grow on Instagram';
     const description = isNexgenads
-      ? 'Stay connected with NexGenAds — product launches, behind-the-scenes, tips and more!'
-      : 'Check out 1Grow — the all-in-one sales & marketing OS built by NexGen.';
+      ? 'Stay connected with NexGenAds product launches, behind-the-scenes, tips and more!'
+      : 'Check out 1Grow the all-in-one sales & marketing OS built by NexGen.';
 
     const markOpened = () => {
       if (isNexgenads) {
@@ -1081,7 +1039,7 @@ const FeedbackPageClient = () => {
           {opened && (
             <p className="mb-4 flex items-center justify-center gap-1.5 text-sm font-medium text-green-600">
               <CheckCircle2 className="h-4 w-4" />
-              You opened {handle} — kindly hit Follow and come back
+              You opened {handle} kindly hit Follow and come back
             </p>
           )}
           <div className="flex flex-col gap-3">
@@ -1096,7 +1054,7 @@ const FeedbackPageClient = () => {
                 rel="noopener noreferrer"
                 onClick={markOpened}
               >
-                <Instagram className="h-5 w-5" /> Open Instagram — {handle}
+                <Instagram className="h-5 w-5" /> Open Instagram {handle}
                 <ExternalLink className="h-4 w-4" />
               </a>
             </Button>
@@ -1114,7 +1072,7 @@ const FeedbackPageClient = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Instagram className="h-5 w-5" /> Revisit — {handle}
+                    <Instagram className="h-5 w-5" /> Revisit {handle}
                     <ExternalLink className="h-4 w-4" />
                   </a>
                 </Button>
@@ -1127,11 +1085,11 @@ const FeedbackPageClient = () => {
                   >
                     {followed ? (
                       <>
-                        <CheckCircle2 className="h-5 w-5" /> Done — following {handle}
+                        <CheckCircle2 className="h-5 w-5" /> Done following {handle}
                       </>
                     ) : (
                       <>
-                        <Check className="h-5 w-5" /> I&apos;ve followed — next step
+                        <Check className="h-5 w-5" /> I&apos;ve followed next step
                       </>
                     )}
                     <ArrowRight className="h-4 w-4" />
@@ -1203,39 +1161,87 @@ const FeedbackPageClient = () => {
           </div>
         </div>
 
-        <div>
-          <div className="mb-4 flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500/15 text-brand-600">
+        <div className="rounded-2xl border border-border/70 bg-white/60 p-4 md:p-5">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-500/15 text-brand-600">
               <Clipboard className="h-4 w-4" />
             </span>
             <h3 className="text-base font-bold text-foreground">
               Copy-paste review templates
             </h3>
+            <span className="hidden text-sm text-muted-foreground sm:inline">
+              (optional)
+            </span>
             <button
               type="button"
-              onClick={() => {
-                const full =
-                  `${sessionFeedback.trim()}\n\n${guidanceFeedback.trim()}\n\n${projectTrainingFeedback.trim()}`.trim();
-                copyToClipboard('all', full);
-              }}
-              className="ml-auto flex items-center gap-1.5 rounded-full border border-border/70 bg-white px-3 py-1.5 text-xs font-semibold text-foreground/80 transition-colors hover:border-brand-400 hover:text-brand-600"
+              onClick={() => setShowTemplates((prev) => !prev)}
+              className="ml-auto flex items-center gap-1.5 rounded-full border border-border/70 bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground/80 transition-colors hover:border-brand-400 hover:text-brand-600"
             >
-              {copiedKey === 'all' ? (
+              {showTemplates ? (
                 <>
-                  <ClipboardCheck className="h-3.5 w-3.5 text-green-600" /> Copied!
+                  <ChevronUp className="h-3.5 w-3.5" /> Hide templates
                 </>
               ) : (
                 <>
-                  <Clipboard className="h-3.5 w-3.5" /> Copy all
+                  <ChevronDown className="h-3.5 w-3.5" /> Show templates
                 </>
               )}
             </button>
           </div>
-          <div className="space-y-4">
-            {renderCopyBlock('session', 'Session feedback', sessionFeedback, setSessionFeedback)}
-            {renderCopyBlock('guidance', 'Guidance feedback', guidanceFeedback, setGuidanceFeedback)}
-            {renderCopyBlock('training', 'Project / training feedback', projectTrainingFeedback, setProjectTrainingFeedback)}
-          </div>
+          {!showTemplates && (
+            <p className="mt-2 text-sm text-muted-foreground">
+              Need ready-made text for your Google review? Tap{' '}
+              <span className="font-semibold text-brand-600">Show templates</span>{' '}
+              to edit &amp; copy.
+            </p>
+          )}
+          {showTemplates && (
+            <div className="mt-4 space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="text-xs font-medium text-muted-foreground">
+                  Edit to match your experience, then copy &amp; paste into the
+                  Google review.
+                </p>
+                {/* <button
+                  type="button"
+                  onClick={() => {
+                    const full =
+                      `${sessionFeedback.trim()}\n\n${guidanceFeedback.trim()}\n\n${projectTrainingFeedback.trim()}`.trim();
+                    copyToClipboard('all', full);
+                  }}
+                  className="flex items-center gap-1.5 rounded-full border border-border/70 bg-white px-3 py-1.5 text-xs font-semibold text-foreground/80 transition-colors hover:border-brand-400 hover:text-brand-600"
+                >
+                  {copiedKey === 'all' ? (
+                    <>
+                      <ClipboardCheck className="h-3.5 w-3.5 text-green-600" /> Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Clipboard className="h-3.5 w-3.5" /> Copy all
+                    </>
+                  )}
+                </button> */}
+              </div>
+              {renderCopyBlock(
+                'session',
+                'Session feedback',
+                sessionFeedback,
+                setSessionFeedback
+              )}
+              {renderCopyBlock(
+                'guidance',
+                'Guidance feedback',
+                guidanceFeedback,
+                setGuidanceFeedback
+              )}
+              {renderCopyBlock(
+                'training',
+                'Project / training feedback',
+                projectTrainingFeedback,
+                setProjectTrainingFeedback
+              )}
+            </div>
+          )}
         </div>
 
         <div className="relative overflow-hidden rounded-3xl border border-brand-500/25 bg-gradient-to-br from-brand-500/10 via-white to-gold-500/15 p-1.5 shadow-inner">
@@ -1254,11 +1260,11 @@ const FeedbackPageClient = () => {
               <span className="font-semibold text-foreground">30 seconds</span>.
             </p>
 
-            <div className="mx-auto mb-6 flex max-w-sm items-center gap-3 rounded-2xl border border-border/70 bg-white p-4 text-left shadow-sm">
+            <div className="mx-auto mb-6 flex max-w-sm flex-wrap items-center gap-3 rounded-2xl border border-border/70 bg-white p-4 text-left shadow-sm">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white shadow ring-1 ring-border">
                 <GoogleIcon />
               </span>
-              <div className="min-w-0">
+              <div className="min-w-0 flex-1">
                 <p className="flex items-center gap-1.5 text-sm font-bold text-foreground">
                   Google Review{' '}
                   <BadgeCheck className="h-4 w-4 text-brand-600" />
@@ -1267,7 +1273,7 @@ const FeedbackPageClient = () => {
                   public · google.com/maps
                 </p>
               </div>
-              <span className="ml-auto flex shrink-0 gap-0.5">
+              <span className="flex w-full shrink-0 justify-center gap-0.5 sm:w-auto sm:justify-end">
                 {[1, 2, 3, 4, 5].map((s) => (
                   <Star
                     key={s}
@@ -1282,7 +1288,7 @@ const FeedbackPageClient = () => {
                 asChild
                 size="lg"
                 onClick={() => setReviewLeft(true)}
-                className="w-64 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 py-5 text-base font-bold text-white shadow-lg shadow-gold-500/30 transition-all hover:scale-[1.02] hover:shadow-xl"
+                className="w-full max-w-xs rounded-full bg-gradient-to-br from-gold-500 to-gold-600 py-5 text-base font-bold text-white shadow-lg shadow-gold-500/30 transition-all hover:scale-[1.02] hover:shadow-xl"
               >
                 <a
                   href={GOOGLE_REVIEW_LINK}
@@ -1310,7 +1316,7 @@ const FeedbackPageClient = () => {
               />
               {reviewLeft ? (
                 <span className="flex items-center gap-1.5 font-semibold">
-                  <Check className="h-4 w-4" /> Feedback sent — thank you!
+                  <Check className="h-4 w-4" /> Feedback sent thank you!
                 </span>
               ) : (
                 <span className="font-medium">
@@ -1327,7 +1333,7 @@ const FeedbackPageClient = () => {
           </p>
         )}
 
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
           <Button
             type="button"
             variant="ghost"
@@ -1336,23 +1342,36 @@ const FeedbackPageClient = () => {
           >
             <ArrowLeft className="h-4 w-4" /> Back
           </Button>
-          <Button
-            type="button"
-            size="lg"
-            onClick={handleSubmit}
-            disabled={isSubmitting}
-            className="rounded-xl bg-green-600 py-5 text-base font-bold text-white shadow-lg shadow-green-600/25 transition-all hover:bg-green-700 hover:shadow-xl"
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="h-5 w-5 animate-spin" /> Submitting…
-              </>
-            ) : (
-              <>
-                <CheckCircle2 className="h-5 w-5" /> Submit my feedback
-              </>
+          <div className="flex flex-col gap-2">
+            <Button
+              type="button"
+              size="lg"
+              onClick={handleSubmit}
+              disabled={isSubmitting || !reviewLeft}
+              className={cn(
+                'rounded-xl py-5 text-base font-bold text-white shadow-lg transition-all',
+                reviewLeft
+                  ? 'bg-green-600 shadow-green-600/25 hover:bg-green-700 hover:shadow-xl'
+                  : 'cursor-not-allowed bg-green-600/40 shadow-none'
+              )}
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="h-5 w-5 animate-spin" /> Submitting…
+                </>
+              ) : (
+                <>
+                  <CheckCircle2 className="h-5 w-5" /> Submit my feedback
+                </>
+              )}
+            </Button>
+            {!reviewLeft && (
+              <p className="text-center text-xs font-medium text-muted-foreground sm:text-right">
+                Tick the confirmation above after submitting your Google review
+                to enable submit.
+              </p>
             )}
-          </Button>
+          </div>
         </div>
       </div>
     </div>
@@ -1360,11 +1379,6 @@ const FeedbackPageClient = () => {
 
   const renderDoneStep = () => {
     const firstName = (googleUser?.name || fullName || 'friend').split(' ')[0];
-    const jokeText = joke?.joke
-      ? joke.joke
-      : joke?.setup && joke?.delivery
-      ? `${joke.setup}\n\n${joke.delivery}`
-      : null;
 
     return (
       <div className="animate-fade-in mx-auto max-w-2xl text-center">
@@ -1372,118 +1386,15 @@ const FeedbackPageClient = () => {
           <CheckCircle2 className="h-10 w-10" />
         </div>
         <h2
-          className="mb-2 text-3xl font-extrabold tracking-tight text-foreground md:text-4xl"
+          className="mb-4 text-3xl font-extrabold tracking-tight text-foreground md:text-4xl"
           style={{ fontFamily: 'var(--font-neue-machina)' }}
         >
           Thank you, <span className="text-[#1d36bf]">{firstName}!</span>
         </h2>
-        <p className="mx-auto mb-2 flex items-center justify-center gap-1.5 text-lg text-muted-foreground">
-          <PartyPopper className="h-5 w-5 text-gold-500" />
-          Feedback submitted successfully!
-        </p>
         <p className="mx-auto mb-8 max-w-lg text-muted-foreground">
-          Thank you for your valuable time and effort. Your words truly mean the
-          world to us — here&apos;s a little fun for today.
+          Thank you for your valuable time and effort. Your feedback helps
+          NexGenAds grow, and your words truly mean the world to us.
         </p>
-
-        <div className="mb-8 grid gap-4 md:grid-cols-2">
-          <div className="flex flex-col overflow-hidden rounded-3xl border border-gold-500/30 bg-gradient-to-br from-gold-500/15 via-white to-gold-500/5 shadow-sm">
-            <div className="flex items-center gap-2 border-b border-gold-500/20 bg-gold-500/10 px-5 py-3">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gold-500 text-white">
-                <Laugh className="h-4 w-4" />
-              </span>
-              <p className="text-sm font-bold text-foreground">
-                Your joke for today
-              </p>
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-center px-5 py-5 text-center">
-              {jokeLoading && (
-                <div className="flex items-center justify-center py-4">
-                  <Loader2 className="h-6 w-6 animate-spin text-gold-500" />
-                </div>
-              )}
-              {!jokeLoading && jokeText && (
-                <Quote className="mb-2 h-5 w-5 text-gold-500" />
-              )}
-              {!jokeLoading && jokeText && (
-                <p className="whitespace-pre-line text-base font-medium leading-relaxed text-foreground">
-                  {jokeText}
-                </p>
-              )}
-              {!jokeLoading && !jokeText && (
-                <p className="text-sm text-muted-foreground">
-                  Couldn&apos;t fetch a joke right now — here&apos;s one anyway:
-                  Why do programmers prefer dark mode? Because light attracts
-                  bugs!
-                </p>
-              )}
-              {joke?.category && (
-                <span className="mt-3 inline-block rounded-full bg-gold-500/15 px-3 py-1 text-xs font-semibold text-gold-700">
-                  {joke.category} · Safe &amp; clean
-                </span>
-              )}
-              <div className="mt-4">
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="outline"
-                  onClick={fetchJoke}
-                  disabled={jokeLoading}
-                  className="rounded-full border-gold-500/40 bg-white text-gold-700 transition-colors hover:bg-gold-500/10"
-                >
-                  <Sparkles className="h-4 w-4" /> Another joke
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col overflow-hidden rounded-3xl border border-brand-500/30 bg-gradient-to-br from-brand-500/10 via-white to-brand-500/5 shadow-sm">
-            <div className="flex items-center gap-2 border-b border-brand-500/20 bg-brand-500/10 px-5 py-3">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500 text-white">
-                <Dog className="h-4 w-4" />
-              </span>
-              <p className="text-sm font-bold text-foreground">
-                A good boy for you
-              </p>
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-center px-5 py-5">
-              {dogLoading && (
-                <div className="flex items-center justify-center py-6">
-                  <Loader2 className="h-6 w-6 animate-spin text-brand-500" />
-                </div>
-              )}
-              {!dogLoading && dogImage && (
-                <div className="overflow-hidden rounded-2xl border border-border/60 shadow-sm">
-                  <Image
-                    src={dogImage}
-                    alt="A cute doggo from Dog CEO"
-                    width={480}
-                    height={300}
-                    className="h-48 w-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-              )}
-              {!dogLoading && !dogImage && (
-                <p className="text-sm text-muted-foreground">
-                  Couldn&apos;t fetch a photo right now — maybe this good boy is
-                  napping!
-                </p>
-              )}
-              <div className="mt-4">
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="outline"
-                  onClick={fetchDog}
-                  disabled={dogLoading}
-                  className="rounded-full border-brand-500/40 bg-white text-brand-600 transition-colors hover:bg-brand-500/10"
-                >
-                  <Sparkles className="h-4 w-4" /> Another dog
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div className="mb-8 rounded-3xl border border-border/60 bg-white p-5 shadow-sm">
           <p className="mb-4 flex items-center justify-center gap-2 text-sm font-bold text-foreground">
@@ -1518,7 +1429,7 @@ const FeedbackPageClient = () => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row">
           <Button
             asChild
             variant="outline"
@@ -1543,6 +1454,7 @@ const FeedbackPageClient = () => {
               setGuidanceFeedback(GUIDANCE_TEMPLATE);
               setProjectTrainingFeedback(TRAINING_TEMPLATE);
               setReviewLeft(false);
+              setShowTemplates(false);
               setSessionRating(0);
               setGuidanceRating(0);
               setTrainingRating(0);
@@ -1555,8 +1467,6 @@ const FeedbackPageClient = () => {
               setInterestedDomains([]);
               setCustomDomains([]);
               setNewDomain('');
-              setDogImage(null);
-              setJoke(null);
               goToStep('role');
             }}
             className="rounded-xl bg-brand-gradient font-semibold shadow-lg shadow-brand-500/25 hover:shadow-xl"

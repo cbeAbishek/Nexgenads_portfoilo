@@ -316,7 +316,7 @@ const Navigation = () => {
                       className="mt-2 flex items-center gap-2 rounded-xl border border-brand-500/25 bg-white px-3 py-2.5 text-sm font-semibold text-brand-600 transition-colors hover:bg-brand-50"
                     >
                       <Heart className="h-4 w-4" />
-                      Welcome — start feedback
+                      Welcome start feedback
                       <ArrowRight className="ml-auto h-3.5 w-3.5" />
                     </Link>
                   </div>
@@ -481,7 +481,7 @@ const Navigation = () => {
                 href="/feedback"
                 className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-brand-600 hover:bg-brand-50"
               >
-                <Heart className="h-4 w-4" /> Welcome — start feedback
+                <Heart className="h-4 w-4" /> Welcome start feedback
               </Link>
               {feedbackRoles.map((f) => (
                 <Link
@@ -511,7 +511,7 @@ const Navigation = () => {
               height={28}
               className="h-7 w-7 rounded-md object-cover"
             />
-            Products — 1Grow
+            Products 1Grow
           </Link>
           <Button
             asChild
