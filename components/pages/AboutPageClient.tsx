@@ -26,7 +26,7 @@ const teamMembers = [
     description:
       "Sets the product and engineering vision, keeping the team focused on building intelligent software.",
     image: "/team/abi.png",
-    linkedin: "https://linkedin.com/in/abishekg",
+    linkedin: "https://www.linkedin.com/in/abishek-cbe/",
     badgeClass: "bg-brand-500/10 text-brand-600 border-brand-500/20",
     barClass: "bg-brand-500",
   },
@@ -69,6 +69,16 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/naveen-k2008/",
     badgeClass: "bg-rose-500/10 text-rose-600 border-rose-500/20",
     barClass: "bg-rose-500",
+  },
+  {
+    name: "Nakshatra V",
+    role: "Technical Support Engineer",
+    description:
+      "Provides fast, reliable technical support, troubleshooting, and customer success for NexGen's platforms.",
+    image: "/team/nak.png",
+    linkedin: "https://www.linkedin.com/in/nakshatra-veera-ragavan-279861335/",
+    badgeClass: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
+    barClass: "bg-emerald-500",
   },
 ];
 
